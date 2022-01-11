@@ -1,0 +1,19 @@
+button {
+  color: #FFFFFF;
+  border: 0px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &.primary {
+    color: white;
+    background-color: #7F90A3;
+    &:hover:enabled {
+      background-color: #879cb3;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: auto;
+  }
+}
