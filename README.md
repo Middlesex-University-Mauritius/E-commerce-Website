@@ -29,3 +29,21 @@ An online booking system for events. CRM, Checkout, Listings and seat reservatio
 - test: Everything related to testing
 - docs: Everything related to documentation
 - chore: Regular code maintenance.[ You can also use emojis to represent commit types]
+
+## Installations
+
+**starting web**
+right click on ```web``` and create a shortcut. drag the shortcut to htdocs. You will then be able access the website using ```localhost:8080/web```
+
+**sass**
+To use sass you need node js and npm installed. Follow this [tutorial](https://phoenixnap.com/kb/install-node-js-npm-on-windows).
+
+**install sass**
+```
+npm install -g sass
+```
+
+**compile sass into css**
+```
+sass --watch sass/index.scss styles.scss
+```
