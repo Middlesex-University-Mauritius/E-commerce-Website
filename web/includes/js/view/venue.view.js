@@ -1,4 +1,12 @@
 let selections = {};
+let subtotal = 0;
+
+const emptyMessage = (content) => {
+  const message = document.createElement("p");
+  message.innerText = "No tickets. click on seat to reserve."
+  message.className = "text-center text-gray-700 py-10 select-none";
+  content.append(message);
+}
 
 export class Venue {
   container = document.createElement("div");
@@ -6,6 +14,7 @@ export class Venue {
 
   constructor(parent) {
     this.container.className = "venue-container";
+    this.container.id = "venue-container"
     this.parent = parent;
   }
 
@@ -24,6 +33,7 @@ export class Section extends Venue {
   SEAT_SIZE = 50;
   SEAT_SPACING = 23;
   seats = {};
+  seatsContent = document.getElementById("tabs-content-seats");
 
   constructor(type, width = 600, height = 220) {
     super();
@@ -34,11 +44,18 @@ export class Section extends Venue {
       (this.width / this.SEAT_SIZE) * (this.height / this.SEAT_SIZE);
   }
 
-  render(parent) {
+  render(parent, label=null) {
     this.section.style.height = `${this.height}px`;
     this.section.style.width = `${this.width}px`;
     this.section.className = "section";
     this.section.id = this.type;
+    if (label) {
+      this.section.style.background = "#727272";
+      const text = document.createElement("p");
+      text.innerText = label;
+      text.className = `text-center text-4xl mt-[${(this.height / 2) - 22}px] text-white`
+      this.section.append(text);
+    }
     parent.append(this.section);
   }
 
@@ -71,8 +88,28 @@ export class Section extends Venue {
   }
 
   populateSeats() {
+    const subtotalComponent = document.getElementById("subtotal")
+
     for (let i = 0; i <= this.width - this.SEAT_SIZE; i += this.SEAT_SIZE) {
       for (let j = 0; j <= this.height - this.SEAT_SIZE; j += this.SEAT_SIZE) {
+        const [x, y] = [
+          Math.floor(i / this.SEAT_SIZE),
+          Math.floor(j / this.SEAT_SIZE),
+        ];
+
+        const id = `${this.type}${x}${y}`;
+
+        if (!this.seats[id]) {
+          this.seats[id] = {
+            row: y,
+            col: x,
+            type: this.type,
+            price: this.getPrice(),
+            customer: null,
+            disabled: false
+          }
+        }
+
         const parent = document.createElement("div");
         parent.className = "seat-parent";
         parent.style.top = j + "px";
@@ -82,23 +119,19 @@ export class Section extends Venue {
 
         const circle = document.createElement("div");
         circle.className = "seat";
+        circle.id = id;
         circle.style.height = this.SEAT_SIZE - this.SEAT_SPACING + "px";
         circle.style.width = this.SEAT_SIZE - this.SEAT_SPACING + "px";
 
         parent.append(circle);
-
-        const [x, y] = [
-          Math.floor(i / this.SEAT_SIZE),
-          Math.floor(j / this.SEAT_SIZE),
-        ];
-
-        const id = `${this.type}${x}${y}`;
 
         if (this.seats[id] && this.seats[id].customer) {
           circle.classList.add("active");
         }
 
         circle.addEventListener("click", () => {
+          const content = document.getElementById("content");
+
           if (this.seats[id] && this.seats[id].disabled) {
             return;
           }
@@ -107,6 +140,7 @@ export class Section extends Venue {
             circle.classList.remove("active");
             circle.childNodes[0].remove();
             delete selections[id];
+            subtotal -= this.getPrice();
           } else {
             const icon = document.createElement("i");
             icon.className = "fas fa-check";
@@ -118,7 +152,68 @@ export class Section extends Venue {
               type: this.type,
               price: this.getPrice(),
             };
+            subtotal += this.getPrice();
           }
+
+          content.innerHTML = null;
+
+          if (Object.keys(selections).length === 0) {
+            emptyMessage(content);
+          } else {
+            Object.keys(selections).map((id) => {
+              const s = selections[id];
+
+              const card = document.createElement("div");
+              card.className = "tickets-content-card"
+
+              const titleContainer = document.createElement("div");
+              titleContainer.className = "flex justify-between";
+
+              const header = document.createElement("div");
+              const title = document.createElement("p");
+              title.className = "text-md font-bold";
+              title.innerText = s.type.toUpperCase();
+              const seatNo = document.createElement("p");
+              seatNo.className = "seat-no";
+              seatNo.innerText = `R${s.row}C${s.col}`;
+              header.append(title, seatNo)
+
+              const deleteBtn = document.createElement("p");
+              deleteBtn.className = "my-auto underline cursor-pointer text-red-700 hover:text-red-600 select-none";
+              deleteBtn.innerText = "Delete";
+              deleteBtn.addEventListener("click", () => {
+                subtotal -= s.price;
+                card.remove();
+                delete selections[id];
+                const seat = document.getElementById(id);
+                seat.classList.remove("active");
+                seat.childNodes[0].remove();
+                subtotalComponent.innerText = subtotal;
+
+                if (Object.keys(selections).length === 0) {
+                  emptyMessage(content);
+                }
+              })
+
+              titleContainer.append(header, deleteBtn);
+
+              const more = document.createElement("div");
+              more.className = "more";
+              const abbreviated = document.createElement("p");
+              abbreviated.className = "abbrevated";
+              abbreviated.innerText = `row ${s.row} column ${s.col}`;
+              const price = document.createElement("p");
+              price.innerText = `Rs ${s.price}`;
+              more.append(abbreviated, price);
+
+              card.append(titleContainer, more);
+
+              content.append(card);
+            })
+          }
+
+
+          subtotalComponent.innerText = subtotal;
         });
 
         this.section.append(parent);
