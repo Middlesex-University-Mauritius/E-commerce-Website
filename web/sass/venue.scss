@@ -1,0 +1,40 @@
+.venue-container {
+  background: none;
+  overflow: scroll;
+
+  .section {
+    background: white;
+    border: 2px solid #c8c8c8;
+    margin: 0 auto;
+    position: relative;
+
+    &:not(:last-child),
+    &:not(:first-child) {
+      margin-top: -2px;
+    }
+
+    .seat-parent {
+      position: absolute;
+
+      .seat {
+        position: absolute;
+        background-color: #a4a5a7;
+        border-radius: 100%;
+        text-align: center;
+        transform: translate(-50%, -50%);
+        margin-top: 50%;
+        margin-left: 50%;
+        transition: 0.3s;
+        cursor: pointer;
+
+        &.active {
+          background-color: #7f90a3;
+        }
+
+        i {
+          color: white;
+        }
+      }
+    }
+  }
+}

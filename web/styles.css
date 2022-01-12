@@ -10,7 +10,7 @@
 }
 
 body {
-  background-color: #F8FAFB;
+  background: #F8FAFB;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -82,6 +82,91 @@ p.error {
   background-color: #FCEDE9;
   border: 1px solid #F2E0DD;
   color: #ff2c2c;
+}
+
+.venue-container {
+  background: none;
+  overflow: scroll;
+}
+.venue-container .section {
+  background: white;
+  border: 2px solid #c8c8c8;
+  margin: 0 auto;
+  position: relative;
+}
+.venue-container .section:not(:last-child), .venue-container .section:not(:first-child) {
+  margin-top: -2px;
+}
+.venue-container .section .seat-parent {
+  position: absolute;
+}
+.venue-container .section .seat-parent .seat {
+  position: absolute;
+  background-color: #a4a5a7;
+  border-radius: 100%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  margin-top: 50%;
+  margin-left: 50%;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.venue-container .section .seat-parent .seat.active {
+  background-color: #7f90a3;
+}
+.venue-container .section .seat-parent .seat i {
+  color: white;
+}
+
+.sidebar {
+  background: #F6F7F9;
+  border: 1px solid #E7E7E7;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sidebar .tabs-container {
+  display: flex;
+  width: 100%;
+}
+.sidebar .tabs-container .header {
+  text-align: center;
+  flex: 1;
+  padding: 10px;
+  background: white;
+  border-bottom: 3px solid #E7E7E7;
+  cursor: pointer;
+  transition: all 0.18s;
+  border-bottom: 3px solid #7F90A3;
+}
+.sidebar #content {
+  padding: 0px 10px;
+  max-height: 700px;
+  overflow-y: auto;
+  flex-direction: column;
+  height: 700px;
+}
+.sidebar #content .tickets-content-card {
+  border: 1px solid #DEDEDE;
+  padding: 10px;
+  background-color: white;
+  margin: 10px 0px;
+  border-radius: 4px;
+}
+.sidebar #content .tickets-content-card .seat-no {
+  color: #7F90A3;
+}
+.sidebar #content .tickets-content-card .abbrevated {
+  color: #7F90A3;
+}
+.sidebar #content .tickets-content-card .more {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: 1px solid #DEDEDE;
 }
 
 /*# sourceMappingURL=styles.css.map */

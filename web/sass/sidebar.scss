@@ -1,0 +1,57 @@
+.sidebar {
+  background: #F6F7F9;
+  border: 1px solid #E7E7E7;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .tabs-container {
+    display: flex;
+    width: 100%;
+
+    .header {
+      text-align: center;
+      flex: 1;
+      padding: 10px;
+      background: white;
+      border-bottom: 3px solid #E7E7E7;
+      cursor: pointer;
+      transition: all 0.18s;
+      border-bottom: 3px solid #7F90A3;
+    }
+  }
+
+  #content { 
+    padding: 0px 10px;
+    max-height: 700px;
+    overflow-y: auto;
+    flex-direction: column;
+    height: 700px;
+
+    .tickets-content-card {
+      border: 1px solid #DEDEDE;
+      padding: 10px;
+      background-color: white;
+      margin: 10px 0px;
+      border-radius: 4px;
+
+      .seat-no {
+        color: #7F90A3;
+      }
+
+      .abbrevated {
+        color: #7F90A3;
+      }
+      
+      .more {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 10px;
+        margin-top: 10px;
+        border-top: 1px solid #DEDEDE;
+      }
+    }
+  }
+}
