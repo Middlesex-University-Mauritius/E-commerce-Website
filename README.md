@@ -47,3 +47,6 @@ npm install -g sass
 ```
 sass --watch sass/index.scss styles.scss
 ```
+
+**show errors in php**
+add ```display_errors = on``` in ```/opt/lampp/etc/php.ini```
