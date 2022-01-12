@@ -23,6 +23,7 @@
     </div>
   </div>
 
+  <script type="module" src="./js/mocks/vip.js"></script>
   <script type="module" src="./js/index.js"></script>
   <script type="module" src="../includes/js/scripts/storage.js"></script>
   <script type="module" src="../includes/js/view/venue.view.js"></script>

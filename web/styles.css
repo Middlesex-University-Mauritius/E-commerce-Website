@@ -89,7 +89,7 @@ p.error {
 }
 .venue-container .section {
   background: white;
-  border: 2px solid #C8C8C8;
+  border: 2px solid #c8c8c8;
   margin: 0 auto;
   position: relative;
 }
@@ -101,7 +101,7 @@ p.error {
 }
 .venue-container .section .seat-parent .seat {
   position: absolute;
-  background-color: #A4A5A7;
+  background-color: #a4a5a7;
   border-radius: 100%;
   text-align: center;
   transform: translate(-50%, -50%);
@@ -110,11 +110,8 @@ p.error {
   transition: 0.3s;
   cursor: pointer;
 }
-.venue-container .section .seat-parent .seat:hover {
-  background-color: #7F90A3;
-}
 .venue-container .section .seat-parent .seat.active {
-  background-color: #7F90A3;
+  background-color: #7f90a3;
 }
 .venue-container .section .seat-parent .seat i {
   color: white;

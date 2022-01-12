@@ -1,7 +1,4 @@
-import { Storage } from "../scripts/storage.js";
-
-const storage = new Storage("selections", {});
-let selections = storage.get();
+let selections = {};
 
 export class Venue {
   container = document.createElement("div");
@@ -17,13 +14,12 @@ export class Venue {
   }
 }
 
-
 export class Section extends Venue {
   section = document.createElement("div");
-  height = 0
-  width = 0
-  type = null
-  capacity = 0
+  height = 0;
+  width = 0;
+  type = null;
+  capacity = 0;
 
   SEAT_SIZE = 50;
   SEAT_SPACING = 23;
@@ -31,10 +27,11 @@ export class Section extends Venue {
 
   constructor(type, width = 600, height = 220) {
     super();
-    this.type = type
-    this.height = height
-    this.width = width
-    this.capacity = (this.width / this.SEAT_SIZE) * (this.height / this.SEAT_SIZE)
+    this.type = type;
+    this.height = height;
+    this.width = width;
+    this.capacity =
+      (this.width / this.SEAT_SIZE) * (this.height / this.SEAT_SIZE);
   }
 
   render(parent) {
@@ -50,16 +47,27 @@ export class Section extends Venue {
   }
 
   getPrice() {
-    switch(this.type) {
+    switch (this.type) {
       case "vip":
-        return 900
+        return 900;
       case "premium":
-        return 700
+        return 700;
       case "regular":
-        return 300
+        return 300;
       default:
-        return 0
+        return 0;
     }
+  }
+
+  getAvailability(data) {
+    data.forEach((seat) => {
+      const id = `${seat.type}${seat.col}${seat.row}`;
+
+      this.seats[id] = {
+        ...seat,
+        disabled: seat.customer ? true : false,
+      };
+    });
   }
 
   populateSeats() {
@@ -79,42 +87,39 @@ export class Section extends Venue {
 
         parent.append(circle);
 
-        const [x, y] = [Math.floor(i / this.SEAT_SIZE), Math.floor(j / this.SEAT_SIZE)]
+        const [x, y] = [
+          Math.floor(i / this.SEAT_SIZE),
+          Math.floor(j / this.SEAT_SIZE),
+        ];
 
-        const id = `${this.type}${x}${y}`
+        const id = `${this.type}${x}${y}`;
 
-        if (selections[id]) {
-          const icon = document.createElement("i");
-          icon.className = "fas fa-check";
+        if (this.seats[id] && this.seats[id].customer) {
           circle.classList.add("active");
-          circle.append(icon);
         }
 
-        const data = {
-          row: y,
-          col: x,
-          type: this.type,
-          price: this.getPrice()
-        }
+        circle.addEventListener("click", () => {
+          if (this.seats[id] && this.seats[id].disabled) {
+            return;
+          }
 
-        this.seats[id] = data;
-
-        circle.addEventListener("click", (event) => {
           if (selections[id]) {
             circle.classList.remove("active");
             circle.childNodes[0].remove();
-            circle.style.background = "#A4A5A7";
             delete selections[id];
           } else {
             const icon = document.createElement("i");
             icon.className = "fas fa-check";
             circle.classList.add("active");
             circle.append(icon);
-            selections[id] = data;
+            selections[id] = {
+              row: y,
+              col: x,
+              type: this.type,
+              price: this.getPrice(),
+            };
           }
-
-          storage.set(selections);
-        })
+        });
 
         this.section.append(parent);
       }
