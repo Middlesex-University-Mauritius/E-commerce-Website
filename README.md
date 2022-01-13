@@ -9,7 +9,7 @@
 
 
 ## Description
-An online booking system for events. CRM, Checkout, Listings and seat reservation. 
+An online booking system for events. CRM, Checkout, Listings and seat reservation.
 
 
 ## Structure
@@ -50,3 +50,9 @@ sass --watch sass/index.scss styles.scss
 
 **show errors in php**
 add ```display_errors = on``` in ```/opt/lampp/etc/php.ini```
+
+## Mongod
+```
+mongod --port 27018
+sudo killall mongod
+```
