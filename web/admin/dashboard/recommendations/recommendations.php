@@ -12,16 +12,19 @@
 </head>
 
 <body id="body">
+  <?php
+  include_once "../../includes/template.inc.php";
 
-  <div class="flex">
-    <?php include_once "../../includes/sidebar.inc.php" ?>
-
-    <div class="flex-1 py-6 px-10">
-      <p class="text-3xl">Customers</p>
-    </div>
-  </div>
-
-
+  renderTemplate(
+    "<div>
+      <p>Hello World</p>
+      <p>Hello World</p>
+      <p>Hello World</p>
+      <p>Hello World</p>
+      <p>Hello World</p>
+    </div>"
+  );
+  ?>
 </body>
 
 </html>
