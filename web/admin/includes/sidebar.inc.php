@@ -8,13 +8,10 @@ function field($destination, $label, $icon)
   echo "</a>";
 }
 
-function renderSidebar()
-{
-  echo "<div class='bg-blue-900 min-w-[250px] min-h-screen px-2 py-5 space-y-2 flex flex-col text-left'>";
-  field("customers", "Customers", "far fa-user");
-  field("recommendations", "Recommendations", "far fa-dot-circle");
-  field("events", "My Events", "far fa-star");
-  field("add", "Add Event", "fas fa-plus");
-  field("orders", "View Orders", "fas fa-shopping-cart");
-  echo "</div>";
-}
+echo "<div class='bg-blue-900 min-w-[250px] min-h-screen px-2 py-5 space-y-2 flex flex-col text-left'>";
+field("customers", "Customers", "far fa-user");
+field("recommendations", "Recommendations", "far fa-dot-circle");
+field("events", "My Events", "far fa-star");
+field("add event", "Add Event", "fas fa-plus");
+field("orders", "View Orders", "fas fa-shopping-cart");
+echo "</div>";

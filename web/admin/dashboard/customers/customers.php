@@ -12,19 +12,26 @@
 </head>
 
 <body id="body">
-  <?php
-  include_once "../../includes/template.inc.php";
+  <div class="flex">
+    <?php
+    include_once "../../includes/sidebar.inc.php";
+    ?>
 
-  renderTemplate(
-    "<div>
-      <p>Hello World</p>
-      <p>Hello World</p>
-      <p>Hello World</p>
-      <p>Hello World</p>
-      <p>Hello World</p>
-    </div>"
-  );
-  ?>
+    <div class="w-full">
+
+      <p class="text-3xl px-10 py-6 border-b w-full">
+        <?php echo ucfirst(basename($_SERVER['PHP_SELF'], ".php")) ?>
+      </p>
+
+      <div class="flex-1 py-6 px-10">
+
+        <div class='flex space-x-10'>
+          <p>Hello world</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
