@@ -66,6 +66,13 @@ button.primary {
 button.primary:hover:enabled {
   background-color: #879cb3;
 }
+button.cancel {
+  color: #7c7c7c;
+  background-color: #f0f0f0;
+}
+button.cancel:hover:enabled {
+  background-color: #f5f5f5;
+}
 button:disabled {
   opacity: 0.5;
   cursor: auto;

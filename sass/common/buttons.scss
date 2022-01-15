@@ -12,6 +12,14 @@ button {
     }
   }
 
+  &.cancel {
+    color: rgb(124, 124, 124);
+    background-color: #f0f0f0;
+    &:hover:enabled {
+      background-color: #f5f5f5;
+    }
+  }
+
   &:disabled {
     opacity: 0.5;
     cursor: auto;

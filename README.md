@@ -56,3 +56,10 @@ add ```display_errors = on``` in ```/opt/lampp/etc/php.ini```
 mongod --port 27018
 sudo killall mongod
 ```
+
+## PHP Mongodb Driver
+```
+sudo apt-get install php-dev
+sudo apt-get install php-pear
+sudo pecl install mongodb
+```
