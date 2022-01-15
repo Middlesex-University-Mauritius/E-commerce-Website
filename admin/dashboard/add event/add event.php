@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../../../styles.css">
   <script src="https://kit.fontawesome.com/f2f51db1ed.js" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <title>Dashboard</title>
 </head>
 
@@ -36,7 +37,7 @@
 
                 <div>
                   <p class='text-gray-700'>Description</p>
-                  <textarea class='my-2 w-full p-4 h-[200px]' id='description' name='description'></textarea>
+                  <textarea class='my-2 w-full p-4 h-[200px] resize-none' id='description' name='description'></textarea>
                 </div>
 
                 <div>
@@ -57,7 +58,7 @@
 
                 <div class='flex flex-col space-y-2'>
                   <div>
-                    <input onchange="onCategoryChange(this)" type='checkbox' id='live-music' />
+                    <input checked onchange="onCategoryChange(this)" type='checkbox' id='live-music' />
                     <label class='ml-1 select-none cursor-pointer' for='live-music'>Live music</label>
                   </div>
 
@@ -82,7 +83,7 @@
       <div class="w-full bg-white px-10 py-4 border-t">
         <div class="float-right flex space-x-4">
           <button class="cancel py-3 px-6 my-auto">Cancel</button>
-          <button class="primary py-3 px-6 my-auto">Confirm</button>
+          <button id="confirm" class="primary py-3 px-6 my-auto">Confirm</button>
         </div>
       </div>
     </div>
@@ -90,14 +91,58 @@
 
   <script>
     const checks = ["live-music", "stand-up", "arts-and-theater"]
+    let category = "live-music";
+
+    const formInputs = {
+      title: document.getElementById("title"),
+      description: document.getElementById("description"),
+      date: document.getElementById("date"),
+      time: document.getElementById("time"),
+    }
 
     function onCategoryChange(e) {
       checks.forEach((check) => {
         if (check !== e.id) {
           document.getElementById(check).checked = false
+        } else {
+          category = e.id
         }
       })
     }
+
+    const confirm = document.getElementById("confirm");
+
+    Object.values(formInputs).forEach((input) => {
+      input.addEventListener("input", () => {
+        input.classList.remove("error")
+      })
+    });
+
+    confirm.addEventListener("click", () => {
+      let validated = true;
+
+      Object.values(formInputs).forEach((input) => {
+        if (input.value.length === 0) {
+          validated = false;
+          input.classList.add("error");
+        }
+      });
+
+      if (!validated) return;
+
+      axios.post("controller.php", {
+        title: formInputs.title.value,
+        description: formInputs.description.value,
+        date: formInputs.date.value,
+        time: formInputs.time.value,
+        category: category,
+      }).then(function(response) {
+        console.log(response)
+      }).catch(function(error) {
+        console.log(error)
+      })
+
+    })
   </script>
 
   <script type="module" src="./js/index.js"></script>
