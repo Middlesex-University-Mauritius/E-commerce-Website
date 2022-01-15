@@ -1,5 +1,4 @@
 import { Venue, Section } from "../../includes/js/view/venue.view.js";
-import { data } from "../js/mocks/vip.js";
 
 const parent = document.getElementById("reservation");
 
@@ -16,11 +15,14 @@ venue.container.classList.add("flex-1");
 stage.render(venue.container, "STAGE");
 
 vip.render(venue.container);
-vip.getAvailability(data);
-vip.populateSeats();
-
 premium.render(venue.container);
-premium.populateSeats();
-
 regular.render(venue.container);
-regular.populateSeats();
+
+window.onload = async () => {
+  const response = await axios.get("./api/bookings.php")
+  vip.getAvailability(data);
+  vip.populateSeats();
+
+  premium.populateSeats();
+  regular.populateSeats();
+}
