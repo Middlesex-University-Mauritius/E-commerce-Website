@@ -1,4 +1,5 @@
 import { Venue, Section } from "../../includes/js/view/venue.view.js";
+import { Storage } from "../../includes/js/scripts/storage.js";
 
 const parent = document.getElementById("reservation");
 
@@ -30,6 +31,21 @@ window.onload = async () => {
 const cartButton = document.getElementById("cart-button");
 
 cartButton.addEventListener("click", () => {
-  console.log(venue.getSubtotal())
-  console.log(venue.getSelections())
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlSearchParams.entries());
+
+  if (!params.id) return;
+
+  let storage = new Storage("cart", {});
+
+  const cart = storage.get();
+  cart[params.id] = {
+    title: "wdwdwdwdwd",
+    seats: venue.getSelections(),
+    subtotal: venue.getSubtotal()
+  };
+  
+  storage.set(cart)
+
+  console.log(cart);
 })

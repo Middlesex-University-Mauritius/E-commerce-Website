@@ -56,8 +56,12 @@ export class Event {
     buttonContainer.className = "my-auto flex-none w-30";
 
     const button = document.createElement("button");
-    button.className = "primary px-4 py-2"
-    button.innerText = "See Tickets"
+    button.className = "primary"
+    const link = document.createElement("a");
+    link.className = "block py-2 px-4";
+    link.innerText = "See Tickets"
+    link.href = `/web/reservation?id=${this.id}`;
+    button.append(link);
 
     dateContainer.append(dateIcon, date)
     timeContainer.append(timeIcon, time)

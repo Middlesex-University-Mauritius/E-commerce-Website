@@ -13,7 +13,6 @@
 </head>
 
 <body id="body">
-
   <div class="flex flex-row-reverse" id="reservation">
     <div class="sidebar flex-1">
       <div class="tabs-container">
