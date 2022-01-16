@@ -33,12 +33,11 @@
           </div>
         </div>
         <p class="text-gray-700">The total will be calculated at the checkout page.</p>
-        <button class="primary py-3 mt-4 w-full">Add to cart</button>
+        <button id="cart-button" class="primary py-3 mt-4 w-full">Add to cart</button>
       </div>
     </div>
   </div>
 
-  <script type="module" src="./js/mocks/vip.js"></script>
   <script type="module" src="./js/index.js"></script>
   <script type="module" src="../includes/js/scripts/storage.js"></script>
   <script type="module" src="../includes/js/view/venue.view.js"></script>

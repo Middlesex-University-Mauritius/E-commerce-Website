@@ -1,6 +1,3 @@
-let selections = {};
-let subtotal = 0;
-
 const emptyMessage = (content) => {
   const message = document.createElement("p");
   message.innerText = "No tickets. click on seat to reserve."
@@ -11,6 +8,8 @@ const emptyMessage = (content) => {
 export class Venue {
   container = document.createElement("div");
   parent = null;
+  selections = {}
+  subtotal = 0
 
   constructor(parent) {
     this.container.className = "venue-container";
@@ -21,9 +20,15 @@ export class Venue {
   render() {
     this.parent.append(this.container);
   }
+
+  getSelections = (id) => id ? this.selections[id] : this.selections;
+  deleteSelection = (id) => delete this.selections[id]
+  setSelections = (id, data) => this.selections[id] = data;
+  getSubtotal = () => this.subtotal
+  setSubtotal = (total) => this.subtotal = this.subtotal + total
 }
 
-export class Section extends Venue {
+export class Section {
   section = document.createElement("div");
   height = 0;
   width = 0;
@@ -34,14 +39,15 @@ export class Section extends Venue {
   SEAT_SPACING = 23;
   seats = {};
   seatsContent = document.getElementById("tabs-content-seats");
+  venue = null;
 
-  constructor(type, width = 600, height = 220) {
-    super();
+  constructor(venue, type, width = 600, height = 220) {
     this.type = type;
     this.height = height;
     this.width = width;
     this.capacity =
       (this.width / this.SEAT_SIZE) * (this.height / this.SEAT_SIZE);
+    this.venue = venue;
   }
 
   render(parent, label=null) {
@@ -136,32 +142,34 @@ export class Section extends Venue {
             return;
           }
 
-          if (selections[id]) {
+          if (this.venue.getSelections(id)) {
             circle.classList.remove("active");
             circle.childNodes[0].remove();
-            delete selections[id];
-            subtotal -= this.getPrice();
+            this.venue.deleteSelection(id);
+            this.venue.setSubtotal(this.getPrice() * -1)
           } else {
             const icon = document.createElement("i");
             icon.className = "fas fa-check";
             circle.classList.add("active");
             circle.append(icon);
-            selections[id] = {
+
+            this.venue.setSelections(id, {
               row: y,
               col: x,
               type: this.type,
               price: this.getPrice(),
-            };
-            subtotal += this.getPrice();
+            })
+
+            this.venue.setSubtotal(this.getPrice())
           }
 
           content.innerHTML = null;
 
-          if (Object.keys(selections).length === 0) {
+          if (Object.keys(this.venue.getSelections()).length === 0) {
             emptyMessage(content);
           } else {
-            Object.keys(selections).map((id) => {
-              const s = selections[id];
+            Object.keys(this.venue.getSelections()).map((id) => {
+              const s = this.venue.getSelections(id);
 
               const card = document.createElement("div");
               card.className = "tickets-content-card"
@@ -182,15 +190,15 @@ export class Section extends Venue {
               deleteBtn.className = "my-auto underline cursor-pointer text-red-700 hover:text-red-600 select-none";
               deleteBtn.innerText = "Delete";
               deleteBtn.addEventListener("click", () => {
-                subtotal -= s.price;
+                this.venue.setSubtotal(s.price * -1)
                 card.remove();
-                delete selections[id];
+                this.venue.deleteSelection(id);
                 const seat = document.getElementById(id);
                 seat.classList.remove("active");
                 seat.childNodes[0].remove();
-                subtotalComponent.innerText = subtotal;
+                subtotalComponent.innerText = this.venue.getSubtotal();
 
-                if (Object.keys(selections).length === 0) {
+                if (Object.keys(this.venue.getSelections()).length === 0) {
                   emptyMessage(content);
                 }
               })
@@ -213,7 +221,7 @@ export class Section extends Venue {
           }
 
 
-          subtotalComponent.innerText = subtotal;
+          subtotalComponent.innerText = this.venue.getSubtotal();
         });
 
         this.section.append(parent);
@@ -221,3 +229,4 @@ export class Section extends Venue {
     }
   }
 }
+

@@ -4,10 +4,10 @@ const parent = document.getElementById("reservation");
 
 const venue = new Venue(parent);
 
-const stage = new Section("stage", 350, 100);
-const vip = new Section("vip", 600, 250);
-const premium = new Section("premium", 750, 300);
-const regular = new Section("regular", 850, 300);
+const stage = new Section(venue, "stage", 350, 100);
+const vip = new Section(venue, "vip", 600, 250);
+const premium = new Section(venue, "premium", 750, 300);
+const regular = new Section(venue, "regular", 850, 300);
 
 venue.render();
 venue.container.classList.add("flex-1");
@@ -20,9 +20,16 @@ regular.render(venue.container);
 
 window.onload = async () => {
   const response = await axios.get("./api/bookings.php")
-  vip.getAvailability(data);
+  vip.getAvailability(response.data);
   vip.populateSeats();
 
   premium.populateSeats();
   regular.populateSeats();
 }
+
+const cartButton = document.getElementById("cart-button");
+
+cartButton.addEventListener("click", () => {
+  console.log(venue.getSubtotal())
+  console.log(venue.getSelections())
+})
