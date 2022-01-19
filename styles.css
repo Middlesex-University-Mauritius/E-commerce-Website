@@ -12,11 +12,19 @@
 }
 
 body {
-  background: #F8FAFB;
+  background: #f8fafb;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   color: #414141;
+}
+
+.wrapper {
+  margin: 0px 140px;
 }
 
 .card {
@@ -103,6 +111,7 @@ p.error {
 .venue-container {
   background: none;
   overflow: scroll;
+  padding: 40px;
 }
 .venue-container .section {
   background: white;
@@ -183,6 +192,171 @@ p.error {
   padding-top: 10px;
   margin-top: 10px;
   border-top: 1px solid #DEDEDE;
+}
+
+.nav {
+  display: flex;
+  background-color: #0a1626;
+  text-align: right;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  padding: 10px 30px;
+}
+.nav .search-box {
+  display: flex;
+  height: 40px;
+  margin: auto 0px;
+  width: 700px;
+}
+@media only screen and (max-width: 1095px) {
+  .nav .search-box {
+    width: 500px;
+  }
+}
+@media only screen and (max-width: 915px) {
+  .nav .search-box {
+    width: 400px;
+  }
+}
+.nav .search-box button {
+  background-color: #dadada;
+  border-radius: 0px 4px 4px 0px;
+  padding: 0px 30px;
+  border: 1px solid #e2e2e2;
+  border-left: 0px;
+}
+.nav .search-box button:hover {
+  background-color: #ebebeb;
+}
+.nav .search-box button i {
+  color: #3c4044;
+}
+.nav .search-box input {
+  border-radius: 4px 0px 0px 4px;
+}
+.nav .logo {
+  display: block;
+  height: 100%;
+}
+.nav ul.nav-links {
+  display: flex;
+  margin: auto 0px;
+}
+.nav ul.nav-links > * + * {
+  margin-left: 30px;
+}
+.nav ul.nav-links li {
+  text-align: center;
+  display: flex;
+}
+.nav ul.nav-links li i {
+  width: 100%;
+  padding: 8px 0px;
+  font-size: 20px;
+}
+.nav ul.nav-links li span {
+  display: block;
+  margin-top: -5px;
+}
+
+.container {
+  max-width: 1170px;
+  margin: auto;
+}
+.container .row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.container ul {
+  list-style: none;
+}
+
+.footer {
+  margin-top: 90px;
+  background-color: #24262b;
+  padding: 70px 0;
+}
+
+.footer-col {
+  width: 25%;
+  padding: 0 15px;
+}
+.footer-col h4 {
+  font-size: 18px;
+  color: #ffffff;
+  text-transform: capitalize;
+  margin-bottom: 35px;
+  position: relative;
+}
+
+.footer-col ul li:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+  font-size: 16px;
+  text-transform: capitalize;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 300;
+  color: #bbbbbb;
+  display: block;
+  transition: all 0.3s ease;
+}
+.footer-col ul li a:hover {
+  color: #ffffff;
+  padding-left: 8px;
+}
+
+.footer-col .social-links a {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0 10px 10px 0;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  color: #ffffff;
+  transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover {
+  color: #24262b;
+  background-color: #ffffff;
+}
+
+/*responsive*/
+@media (max-width: 767px) {
+  .footer-col {
+    width: 50%;
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 574px) {
+  .footer-col {
+    width: 100%;
+  }
+}
+#banner {
+  height: 55vh;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-image: url("./includes/img/concert.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#banner .fas fa-th {
+  position: absolute;
+  top: 900px;
+  left: 40px;
+}
+#banner .fas fa-sort {
+  position: absolute;
+  top: 900px;
+  left: 60px;
 }
 
 /*# sourceMappingURL=styles.css.map */

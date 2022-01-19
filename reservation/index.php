@@ -13,6 +13,11 @@
 </head>
 
 <body id="body">
+  <?php
+    include_once "../includes/navbar.php";
+    navbar();
+  ?>
+
   <div class="flex flex-row-reverse" id="reservation">
     <div class="sidebar flex-1">
       <div class="tabs-container">

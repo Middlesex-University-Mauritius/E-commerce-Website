@@ -6,11 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../styles.css">
+  <script src="https://kit.fontawesome.com/f2f51db1ed.js" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Login</title>
 </head>
 
 <body id="body">
+  <?php
+    include_once "../includes/navbar.php";
+    navbar();
+  ?>
 
   <div class="w-[400px] mx-auto mt-20">
     <p class="text-2xl mb-4 text-gray-800">Sign-In</p>
@@ -31,10 +36,15 @@
 
       <div class="flex place-content-center mt-4 space-x-1">
         <p>Don't have an account?</p>
-        <p class="text-blue-800 underline cursor-pointer">Register</p>
+        <a href="/web/register" class="text-blue-800 underline cursor-pointer">Register</a>
       </div>
     </form>
   </div>
+
+  <?php
+    include_once "../includes/footer.php";
+    footer();
+  ?>
 
   <script type="module" src="../includes/js/scripts/authentication.js"></script>
   <script type="module" src="../includes/js/view/message.view.js"></script>

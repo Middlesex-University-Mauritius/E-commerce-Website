@@ -8,19 +8,33 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/f2f51db1ed.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../styles.css">
 
   <title>Document</title>
 </head>
 
-<body class="mx-56">
-  <div id="events" class="py-10 space-y-3">
+<body>
+  <?php
+    include_once "../includes/navbar.php";
+    navbar();
+  ?>
+
+  <div id="banner"></div>
+
+  <div class="wrapper">
+    <div id="events" class="py-10 space-y-3">
+    </div>
   </div>
+
+  <?php
+    include_once "../includes/footer.php";
+    footer();
+  ?>
 
   <script type="module">
     import {
       Event
-    } from "./includes/js/view/event.view.js"
+    } from "../includes/js/view/event.view.js"
     const events = document.getElementById("events");
 
     window.onload = async function() {

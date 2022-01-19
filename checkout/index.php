@@ -12,73 +12,84 @@
   <title>Document</title>
 </head>
 
-<body class="mx-56">
+<body>
+  <?php
+    include_once "../includes/navbar.php";
+    navbar();
+  ?>
 
-  <div class="my-8">
+  <div class="wrapper">
+    <div class="my-8">
 
-    <p class="text-2xl mb-4">Card</p>
+      <p class="text-2xl mb-4">Cart</p>
 
-    <div class="flex space-x-10">
-      <div class="flex-1 space-y-8">
+      <div class="flex space-x-10">
+        <div class="flex-1 space-y-8">
 
-        <!-- <div class="card">
-          <div>
-            <p class="text-gray-700">Street Address</p>
-            <input class="my-2 w-full" type="text" id="street-address" name="street-address">
-          </div>
-
-          <div class="grid grid-cols-3 gap-4">
+          <!-- <div class="card">
             <div>
-              <p class="text-gray-700">District</p>
-              <input class="my-2 w-full" type="text" id="district" name="district">
+              <p class="text-gray-700">Street Address</p>
+              <input class="my-2 w-full" type="text" id="street-address" name="street-address">
             </div>
-            <div>
-              <p class="text-gray-700">Zip code</p>
-              <input class="my-2 w-full" type="text" id="zip-code" name="zip-code">
-            </div>
-            <div>
-              <p class="text-gray-700">House Number</p>
-              <input class="my-2 w-full" type="text" id="house-number" name="house-number">
-            </div>
-          </div>
-        </div> -->
 
-        <div class="card">
-          <div id="cart">
-          </div>
-        </div>
-
-      </div>
-
-      <div class="w-[500px]">
-        <div class="card">
-          <div class="mb-10">
-            <p class="text-xl mb-5">Payment Details</p>
-
-            <div class="space-y-3 text-gray-600">
-              <div class="flex justify-between">
-                <p>Subtotal</p>
-                <p>Rs 7,200</p>
+            <div class="grid grid-cols-3 gap-4">
+              <div>
+                <p class="text-gray-700">District</p>
+                <input class="my-2 w-full" type="text" id="district" name="district">
               </div>
-
-              <div class="flex justify-between">
-                <p>VAT</p>
-                <p>25%</p>
+              <div>
+                <p class="text-gray-700">Zip code</p>
+                <input class="my-2 w-full" type="text" id="zip-code" name="zip-code">
+              </div>
+              <div>
+                <p class="text-gray-700">House Number</p>
+                <input class="my-2 w-full" type="text" id="house-number" name="house-number">
               </div>
             </div>
+          </div> -->
+
+          <div class="card">
+            <div id="cart">
+            </div>
           </div>
 
-          <div class="flex justify-between border-t py-4">
-            <p class="text-xl">Total</p>
-            <p class="text-xl">Rs 9,000</p>
-          </div>
+        </div>
 
-          <button class="primary py-3 mt-4 w-full">Place order</button>
+        <div class="w-[500px]">
+          <div class="card">
+            <div class="mb-10">
+              <p class="text-xl mb-5">Payment Details</p>
+
+              <div class="space-y-3 text-gray-600">
+                <div class="flex justify-between">
+                  <p>Subtotal</p>
+                  <p>Rs 7,200</p>
+                </div>
+
+                <div class="flex justify-between">
+                  <p>VAT</p>
+                  <p>25%</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex justify-between border-t py-4">
+              <p class="text-xl">Total</p>
+              <p class="text-xl">Rs 9,000</p>
+            </div>
+
+            <button class="primary py-3 mt-4 w-full">Place order</button>
+          </div>
         </div>
       </div>
+
     </div>
-
   </div>
+
+  <?php
+    include_once "../includes/footer.php";
+    footer();
+  ?>
 
   <script type="module" src="../includes/js/scripts/storage.js"></script>
   <script type="module" src="./js/index.js"></script>
