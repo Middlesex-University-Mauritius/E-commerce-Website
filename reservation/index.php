@@ -14,12 +14,12 @@
 
 <body id="body">
   <?php
-    include_once "../includes/navbar.php";
-    navbar();
+  include_once "../includes/navbar.php";
+  navbar();
   ?>
 
   <div class="flex flex-row-reverse" id="reservation">
-    <div class="sidebar flex-1">
+    <div class="sidebar">
       <div class="tabs-container">
         <p class="header">Your Tickets</p>
       </div>
@@ -43,8 +43,6 @@
   </div>
 
   <script type="module" src="./js/index.js"></script>
-  <script type="module" src="../includes/js/scripts/storage.js"></script>
-  <script type="module" src="../includes/js/view/venue.view.js"></script>
 </body>
 
 </html>

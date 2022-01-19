@@ -14,8 +14,8 @@
 
 <body>
   <?php
-    include_once "../includes/navbar.php";
-    navbar();
+  include_once "../includes/navbar.php";
+  navbar();
   ?>
 
   <div class="wrapper">
@@ -87,8 +87,8 @@
   </div>
 
   <?php
-    include_once "../includes/footer.php";
-    footer();
+  include_once "../includes/footer.php";
+  footer();
   ?>
 
   <script type="module" src="../includes/js/scripts/storage.js"></script>

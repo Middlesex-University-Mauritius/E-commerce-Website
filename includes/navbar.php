@@ -1,6 +1,7 @@
 <?php
 
-function navbar() {
+function navbar()
+{
   echo <<<DEV
   <div class="nav">
     <div class="logo">
@@ -14,7 +15,7 @@ function navbar() {
 
     <ul class="nav-links">
       <li>
-        <a href="#">
+        <a href="/web/events">
           <i class="far fa-star"></i>
           <span>Events</span>
         </a>
@@ -27,7 +28,12 @@ function navbar() {
       </li>
       <li>
         <a href="/web/checkout">
-          <i class="fas fa-shopping-cart"></i>
+          <div class="relative">
+            <p id="cart-count" class="absolute m-0 -top-2 -right-2 p-1 rounded-full h-7 leading-none text-sm text-yellow-200 my-auto font-semibold">
+              0
+            </p>
+            <i class="fas fa-shopping-cart"></i>
+          </div>
           <span>Cart</span>
         </a>
       </li>

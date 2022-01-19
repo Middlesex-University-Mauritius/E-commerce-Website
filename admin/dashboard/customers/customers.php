@@ -26,7 +26,25 @@
       <div class="flex-1 py-6 px-10">
 
         <div class='flex space-x-10'>
-          <p>Hello world</p>
+          <table>
+            <tr>
+              <th>Date</th>
+              <th>Customer Name</th>
+              <th>Event ID</th>
+              <th>Category</th>
+              <th>Tickets</th>
+              <th>Change</th>
+            </tr>
+
+            <tr>
+              <td>22/02/2022</td>
+              <td>James Gordon</td>
+              <td>001</td>
+              <td>Concert</td>
+              <td>x3</td>
+              <td>Rs 3,500</td>
+            </tr>
+          </table>
         </div>
 
       </div>

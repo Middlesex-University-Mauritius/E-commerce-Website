@@ -4,59 +4,69 @@ export class Event {
   description = null;
   date = null;
   time = null;
+  shrinked = false;
 
-  constructor(id, title, description, date, time) {
+  constructor(shrinked, id, title, description, date, time) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.date = date;
     this.time = time;
+    this.shrinked = shrinked;
   }
 
   render(parent) {
 
     const card = document.createElement("div");
-    card.className = "bg-white border flex p-4 space-x-4 rounded";
+    card.className = "events-card bg-white border flex p-4 space-x-4 rounded";
+    if (this.shrinked) card.classList.add("shrinked")
+
+    const image = document.createElement("img");
+    image.src = "https://generative-placeholders.glitch.me/image?width=1200&height=400&style=cellular-automata&cells=80";
+    if (!this.shrinked) {
+      image.className = "w-40"
+    }
+    image.classList.add("event-img");
 
     const content = document.createElement("div");
-    content.className = "flex-1 space-y-4"
+    content.className = "flex-1 space-y-4 event-content"
 
     const title = document.createElement("p");
-    title.className = "text-md font-semibold"
+    title.className = "text-md font-semibold event-title"
     title.innerText = this.title;
 
     const description = document.createElement("p");
-    description.className = "text-gray-800";
-    description.innerText = this.description;
+    description.className = "text-gray-800 event-description";
+    description.innerText = this.description.length >= 120 ? this.description.substring(0, 120) + "..." : this.description;
 
     const informationContainer = document.createElement("div");
-    informationContainer.className = "flex space-x-6";
+    informationContainer.className = "flex space-x-6 event-information-container";
 
     const dateContainer = document.createElement("div");
-    dateContainer.className = "flex space-x-1";
+    dateContainer.className = "flex space-x-1 event-date-container";
 
     const dateIcon = document.createElement("i");
-    dateIcon.className = "far fa-calendar-alt text-xl block";
+    dateIcon.className = "far fa-calendar-alt text-xl block event-date-icon";
 
     const timeContainer = document.createElement("div");
-    timeContainer.className = "flex space-x-1";
+    timeContainer.className = "flex space-x-1 event-time-container";
 
     const timeIcon = document.createElement("i");
     timeIcon.className = "far fa-clock text-xl block"
 
     const date = document.createElement("p");
-    date.className = "my-auto text-sm";
+    date.className = "my-auto text-sm event-date";
     date.innerText = this.date;
 
     const time = document.createElement("p");
-    time.className = "my-auto text-sm";
+    time.className = "my-auto text-sm event-time";
     time.innerText = this.time;
 
     const buttonContainer = document.createElement("div");
-    buttonContainer.className = "my-auto flex-none w-30";
+    buttonContainer.className = "my-auto flex-none w-30 event-button-container";
 
     const button = document.createElement("button");
-    button.className = "primary"
+    button.className = "primary event-button"
     const link = document.createElement("a");
     link.className = "block py-2 px-4";
     link.innerText = "See Tickets"
@@ -68,7 +78,7 @@ export class Event {
     informationContainer.append(dateContainer, timeContainer);
     buttonContainer.append(button);
     content.append(title, description, informationContainer)
-    card.append(content, buttonContainer)
+    card.append(image, content, buttonContainer)
 
     parent.append(card);
 

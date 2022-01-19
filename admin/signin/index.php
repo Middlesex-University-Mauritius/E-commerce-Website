@@ -22,7 +22,7 @@
     if ($username !== "admin" && $password !== "password") {
       $ERROR = true;
     } else {
-      header("Location: /web/admin/dashboard");
+      header("Location: /web/admin/dashboard/customers/customers.php");
       exit;
     }
   }
@@ -47,11 +47,11 @@
 
       <?php
       if ($ERROR) {
-        echo '<p class="text-red-800 my-4">Invalid username or password</p>';
+        echo '<p class="text-red-800 mt-4 mb-0">Invalid username or password</p>';
       }
       ?>
 
-      <input class="py-3 mt-4 w-full" type="submit" name="submit" value="Submit">
+      <input class="primary py-3 mt-4 w-full cursor-pointer" type="submit" name="submit" value="Submit">
     </form>
   </div>
 

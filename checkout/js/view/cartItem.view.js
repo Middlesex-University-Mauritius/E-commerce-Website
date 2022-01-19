@@ -31,7 +31,7 @@ export class CartItem {
 
     parent.append(container);
 
-    container.className = "flex justify-between";
+    container.className = "flex justify-between border-b py-4 last:border-b-0";
     content.className = "space-y-2"
     title.className = "text-md font-semibold"
     subtotal.className = "text-green-700";

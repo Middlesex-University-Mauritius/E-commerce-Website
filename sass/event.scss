@@ -1,0 +1,29 @@
+.events-card {
+  &.shrinked {
+    flex-direction: column;
+
+    .event-title {
+      width: 100%;
+    }
+    
+    .event-content {
+      margin: 0px !important;
+    }
+
+    .event-img {
+      height: 300px;
+      object-fit: cover;
+      background-color: white;
+      margin-bottom: 20px;
+    }
+
+    .event-button-container {
+      margin: 0px !important;
+      margin-top: 20px !important;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

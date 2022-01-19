@@ -1,7 +1,7 @@
 .venue-container {
   background: none;
   overflow: scroll;
-  padding: 40px;
+  padding: 40px; 
 
   .section {
     background: white;
@@ -29,7 +29,7 @@
         cursor: pointer;
 
         &.active {
-          background-color: #7f90a3;
+          background-color: #0f1d30;
         }
 
         i {

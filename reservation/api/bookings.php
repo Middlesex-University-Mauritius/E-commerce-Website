@@ -19,13 +19,6 @@ echo '
     "customer": {
       "name": "Sam"
     }
-  },
-  {
-    "row": 0,
-    "col": 2,
-    "type": "vip",
-    "price": 600,
-    "customer": null
   }
 ]
 ';

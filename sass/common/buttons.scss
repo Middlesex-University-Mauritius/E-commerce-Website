@@ -12,6 +12,14 @@ button {
     }
   }
 
+  &.warning {
+    color: white;
+    background-color: #e03232;
+    &:hover:enabled {
+      background-color: #fd3e3e;
+    }
+  }
+
   &.cancel {
     color: rgb(124, 124, 124);
     background-color: #f0f0f0;

@@ -82,20 +82,98 @@ export class Section {
     }
   }
 
-  getAvailability(data) {
+  getAvailability(data, local=false) {
     data.forEach((seat) => {
-      const id = `${seat.type}${seat.col}${seat.row}`;
+      const id = `${seat.type.toUpperCase()}-R${seat.row}C${seat.col}`;
 
       this.seats[id] = {
         ...seat,
         disabled: seat.customer ? true : false,
+        local
       };
     });
   }
 
-  populateSeats() {
+  updateSidebar() {
+    const content = document.getElementById("content");
     const subtotalComponent = document.getElementById("subtotal")
+    content.innerHTML = null;
 
+    if (Object.keys(this.venue.getSelections()).length === 0) {
+      emptyMessage(content);
+    } else {
+      Object.keys(this.venue.getSelections()).map((id) => {
+        const s = this.venue.getSelections(id);
+
+        const card = document.createElement("div");
+        card.className = "tickets-content-card"
+
+        const titleContainer = document.createElement("div");
+        titleContainer.className = "flex justify-between";
+
+        const header = document.createElement("div");
+        const title = document.createElement("p");
+        title.className = "text-md font-bold";
+        title.innerText = s.type.toUpperCase();
+        const seatNo = document.createElement("p");
+        seatNo.className = "seat-no";
+        seatNo.innerText = `${this.type.toUpperCase()}-R${s.row}C${s.col}`;
+        header.append(title, seatNo)
+
+        const deleteBtn = document.createElement("p");
+        deleteBtn.className = "my-auto underline cursor-pointer text-red-700 hover:text-red-600 select-none";
+        deleteBtn.innerText = "Delete";
+        deleteBtn.addEventListener("click", () => {
+          this.venue.setSubtotal(s.price * -1)
+          card.remove();
+          this.venue.deleteSelection(id);
+          const seat = document.getElementById(id);
+          seat.classList.remove("active");
+          seat.childNodes[0].remove();
+          subtotalComponent.innerText = this.venue.getSubtotal();
+
+          if (Object.keys(this.venue.getSelections()).length === 0) {
+            emptyMessage(content);
+          }
+        })
+
+        titleContainer.append(header, deleteBtn);
+
+        const more = document.createElement("div");
+        more.className = "more";
+        const abbreviated = document.createElement("p");
+        abbreviated.className = "abbrevated";
+        abbreviated.innerText = `row ${s.row} column ${s.col}`;
+        const price = document.createElement("p");
+        price.innerText = `Rs ${s.price}`;
+        more.append(abbreviated, price);
+
+        card.append(titleContainer, more);
+
+        content.append(card);
+      })
+    }
+
+    subtotalComponent.innerText = this.venue.getSubtotal();
+  }
+
+  setSeat(circle, id, x, y) {
+    const icon = document.createElement("i");
+    icon.className = "fas fa-check";
+    circle.classList.add("active");
+    circle.append(icon);
+
+    this.venue.setSelections(id, {
+      row: y,
+      col: x,
+      type: this.type,
+      price: this.getPrice(),
+    })
+
+    this.venue.setSubtotal(this.getPrice());
+  }
+
+  populateSeats() {
     for (let i = 0; i <= this.width - this.SEAT_SIZE; i += this.SEAT_SIZE) {
       for (let j = 0; j <= this.height - this.SEAT_SIZE; j += this.SEAT_SIZE) {
         const [x, y] = [
@@ -103,7 +181,7 @@ export class Section {
           Math.floor(j / this.SEAT_SIZE),
         ];
 
-        const id = `${this.type}${x}${y}`;
+        const id = `${this.type.toUpperCase()}-R${y}C${x}`;
 
         if (!this.seats[id]) {
           this.seats[id] = {
@@ -131,13 +209,16 @@ export class Section {
 
         parent.append(circle);
 
+        if (this.seats[id].local) {
+          this.setSeat(circle, id, x, y);
+          this.updateSidebar();
+        }
+
         if (this.seats[id] && this.seats[id].customer) {
           circle.classList.add("active");
         }
 
         circle.addEventListener("click", () => {
-          const content = document.getElementById("content");
-
           if (this.seats[id] && this.seats[id].disabled) {
             return;
           }
@@ -148,80 +229,11 @@ export class Section {
             this.venue.deleteSelection(id);
             this.venue.setSubtotal(this.getPrice() * -1)
           } else {
-            const icon = document.createElement("i");
-            icon.className = "fas fa-check";
-            circle.classList.add("active");
-            circle.append(icon);
-
-            this.venue.setSelections(id, {
-              row: y,
-              col: x,
-              type: this.type,
-              price: this.getPrice(),
-            })
-
+            this.setSeat(circle, id, x, y);
             this.venue.setSubtotal(this.getPrice())
           }
 
-          content.innerHTML = null;
-
-          if (Object.keys(this.venue.getSelections()).length === 0) {
-            emptyMessage(content);
-          } else {
-            Object.keys(this.venue.getSelections()).map((id) => {
-              const s = this.venue.getSelections(id);
-
-              const card = document.createElement("div");
-              card.className = "tickets-content-card"
-
-              const titleContainer = document.createElement("div");
-              titleContainer.className = "flex justify-between";
-
-              const header = document.createElement("div");
-              const title = document.createElement("p");
-              title.className = "text-md font-bold";
-              title.innerText = s.type.toUpperCase();
-              const seatNo = document.createElement("p");
-              seatNo.className = "seat-no";
-              seatNo.innerText = `R${s.row}C${s.col}`;
-              header.append(title, seatNo)
-
-              const deleteBtn = document.createElement("p");
-              deleteBtn.className = "my-auto underline cursor-pointer text-red-700 hover:text-red-600 select-none";
-              deleteBtn.innerText = "Delete";
-              deleteBtn.addEventListener("click", () => {
-                this.venue.setSubtotal(s.price * -1)
-                card.remove();
-                this.venue.deleteSelection(id);
-                const seat = document.getElementById(id);
-                seat.classList.remove("active");
-                seat.childNodes[0].remove();
-                subtotalComponent.innerText = this.venue.getSubtotal();
-
-                if (Object.keys(this.venue.getSelections()).length === 0) {
-                  emptyMessage(content);
-                }
-              })
-
-              titleContainer.append(header, deleteBtn);
-
-              const more = document.createElement("div");
-              more.className = "more";
-              const abbreviated = document.createElement("p");
-              abbreviated.className = "abbrevated";
-              abbreviated.innerText = `row ${s.row} column ${s.col}`;
-              const price = document.createElement("p");
-              price.innerText = `Rs ${s.price}`;
-              more.append(abbreviated, price);
-
-              card.append(titleContainer, more);
-
-              content.append(card);
-            })
-          }
-
-
-          subtotalComponent.innerText = this.venue.getSubtotal();
+          this.updateSidebar();
         });
 
         this.section.append(parent);

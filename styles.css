@@ -24,7 +24,44 @@ h5 {
 }
 
 .wrapper {
-  margin: 0px 140px;
+  margin: 0px 100px;
+}
+@media only screen and (min-width: 372px) {
+  .wrapper {
+    margin: 0px 10px;
+  }
+}
+@media only screen and (min-width: 700px) {
+  .wrapper {
+    margin: 0px 20px;
+  }
+}
+@media only screen and (min-width: 900px) {
+  .wrapper {
+    margin: 0px 20px;
+  }
+}
+@media only screen and (min-width: 1366px) {
+  .wrapper {
+    margin: 0px 100px;
+  }
+}
+
+table {
+  width: 100%;
+}
+table tr th {
+  font-weight: 600;
+  color: #2e2e2e;
+}
+table tr th, table tr td {
+  text-align: left;
+  padding: 8px 20px;
+}
+table tr:nth-child(even) {
+  background-color: #ebf5ff;
+  border-top: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
 }
 
 .card {
@@ -35,7 +72,7 @@ h5 {
   border-radius: 4px;
 }
 
-input[type=text], input[type=password], input[type=number], input[type=email], input[type=date], input[type=time], textarea {
+input[type=text], input[type=password], input[type=number], input[type=email], input[type=date], input[type=time], input[type=submit], textarea {
   border: 1px solid #E2E2E2;
   border-radius: 4px;
   padding: 12px 18px;
@@ -43,12 +80,19 @@ input[type=text], input[type=password], input[type=number], input[type=email], i
   transition: all 0.18s;
   width: 100%;
 }
-input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, input[type=date]:focus, input[type=time]:focus, textarea:focus {
+input[type=text].primary, input[type=password].primary, input[type=number].primary, input[type=email].primary, input[type=date].primary, input[type=time].primary, input[type=submit].primary, textarea.primary {
+  color: white;
+  background-color: #7F90A3;
+}
+input[type=text].primary:hover:enabled, input[type=password].primary:hover:enabled, input[type=number].primary:hover:enabled, input[type=email].primary:hover:enabled, input[type=date].primary:hover:enabled, input[type=time].primary:hover:enabled, input[type=submit].primary:hover:enabled, textarea.primary:hover:enabled {
+  background-color: #879cb3;
+}
+input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, input[type=date]:focus, input[type=time]:focus, input[type=submit]:focus, textarea:focus {
   outline: none !important;
   border: 1px solid #9ec3fc;
   box-shadow: 0 0 4px #719ece;
 }
-input[type=text].error, input[type=password].error, input[type=number].error, input[type=email].error, input[type=date].error, input[type=time].error, textarea.error {
+input[type=text].error, input[type=password].error, input[type=number].error, input[type=email].error, input[type=date].error, input[type=time].error, input[type=submit].error, textarea.error {
   border: 1px solid #f02929;
   box-shadow: 0 0 4px #ce7171;
 }
@@ -71,6 +115,13 @@ button.primary {
 }
 button.primary:hover:enabled {
   background-color: #879cb3;
+}
+button.warning {
+  color: white;
+  background-color: #e03232;
+}
+button.warning:hover:enabled {
+  background-color: #fd3e3e;
 }
 button.cancel {
   color: #7c7c7c;
@@ -137,7 +188,7 @@ p.error {
   cursor: pointer;
 }
 .venue-container .section .seat-parent .seat.active {
-  background-color: #7f90a3;
+  background-color: #0f1d30;
 }
 .venue-container .section .seat-parent .seat i {
   color: white;
@@ -149,7 +200,7 @@ p.error {
   max-width: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  max-height: calc(100vh - 77px);
 }
 .sidebar .tabs-container {
   display: flex;
@@ -167,10 +218,10 @@ p.error {
 }
 .sidebar #content {
   padding: 0px 10px;
-  max-height: 700px;
-  overflow-y: auto;
   flex-direction: column;
-  height: 700px;
+  overflow-y: auto;
+  max-height: 700px;
+  height: 100%;
 }
 .sidebar #content .tickets-content-card {
   border: 1px solid #DEDEDE;
@@ -209,6 +260,7 @@ p.error {
   height: 40px;
   margin: auto 0px;
   width: 700px;
+  color: black;
 }
 @media only screen and (max-width: 1095px) {
   .nav .search-box {
@@ -357,6 +409,29 @@ p.error {
   position: absolute;
   top: 900px;
   left: 60px;
+}
+
+.events-card.shrinked {
+  flex-direction: column;
+}
+.events-card.shrinked .event-title {
+  width: 100%;
+}
+.events-card.shrinked .event-content {
+  margin: 0px !important;
+}
+.events-card.shrinked .event-img {
+  height: 300px;
+  object-fit: cover;
+  background-color: white;
+  margin-bottom: 20px;
+}
+.events-card.shrinked .event-button-container {
+  margin: 0px !important;
+  margin-top: 20px !important;
+}
+.events-card.shrinked .event-button-container button {
+  width: 100%;
 }
 
 /*# sourceMappingURL=styles.css.map */

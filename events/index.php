@@ -19,10 +19,12 @@
   navbar();
   ?>
 
-  <div id="banner"></div>
-
   <div class="wrapper">
-    <div id="events" class="py-10 space-y-3">
+    <div class="mt-10 mb-5 flex justify-between">
+      <p class="text-3xl text-gray-700">Events</p>
+    </div>
+
+    <div id="events" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     </div>
   </div>
 
@@ -50,10 +52,7 @@
           time
         } = row;
 
-        console.log(id, title)
-
-        // console.log(id, title, description, date, time)
-        const event = new Event(false, id, title, description, date, time);
+        const event = new Event(true, id, title, description, date, time);
         event.render(events);
       })
     }

@@ -1,6 +1,9 @@
 import { Venue, Section } from "../../includes/js/view/venue.view.js";
 import { Storage } from "../../includes/js/scripts/storage.js";
 
+const urlSearchParams = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlSearchParams.entries());
+
 const parent = document.getElementById("reservation");
 
 const venue = new Venue(parent);
@@ -12,6 +15,7 @@ const regular = new Section(venue, "regular", 850, 300);
 
 venue.render();
 venue.container.classList.add("flex-1");
+venue.container.style.maxHeight = "calc(100vh - 77px)";
 
 stage.render(venue.container, "STAGE");
 
@@ -21,7 +25,17 @@ regular.render(venue.container);
 
 window.onload = async () => {
   const response = await axios.get("./api/bookings.php")
-  vip.getAvailability(response.data);
+
+  let storage = new Storage("cart", {});
+  const cart = storage.get();
+
+  if (response.data) {
+    vip.getAvailability(response.data);
+  }
+
+  if (cart[params.id]) {
+    vip.getAvailability(Object.values(cart[params.id].seats), true);
+  }
   vip.populateSeats();
 
   premium.populateSeats();
@@ -31,9 +45,6 @@ window.onload = async () => {
 const cartButton = document.getElementById("cart-button");
 
 cartButton.addEventListener("click", () => {
-  const urlSearchParams = new URLSearchParams(window.location.search);
-  const params = Object.fromEntries(urlSearchParams.entries());
-
   if (!params.id) return;
 
   let storage = new Storage("cart", {});
@@ -46,6 +57,4 @@ cartButton.addEventListener("click", () => {
   };
   
   storage.set(cart)
-
-  console.log(cart);
 })
