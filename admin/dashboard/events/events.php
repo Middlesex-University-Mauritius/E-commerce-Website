@@ -17,7 +17,7 @@
     include_once "../../includes/sidebar.inc.php";
     ?>
 
-    <div class="w-full">
+    <div class="w-full dashboard-content">
 
       <p class="text-3xl px-10 py-6 border-b w-full bg-white">
         <?php echo ucfirst(basename($_SERVER['PHP_SELF'], ".php")) ?>
@@ -35,12 +35,12 @@
 
           <tr>
             <td>
-              <div class="flex space-x-4 w-[800px] h-40">
+              <div class="flex space-x-4 h-40 md:max-w-[450px] lg:max-w-[800px]">
                 <img class="h-40 w-40 rounded" src="https://generative-placeholders.glitch.me/image?width=1200&height=400&style=cellular-automata&cells=80" alt="" srcset="">
                 <div class="space-y-3">
                   <div>
                     <p class="font-bold">This is a simple title</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus facilis quia, pariatur maxime nisi blanditiis, neque aliquid dolorum, possimus ea repudiandae! Odit delectus voluptate amet! Itaque ullam libero labore vel!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus facilis quia, pariatur maxime nisi.</p>
                   </div>
                   <div class="flex space-x-2">
                     <a class="tag" href="#">Concert</a>
@@ -49,7 +49,7 @@
                 </div>
               </div>
             </td>
-            <td>Rs 700-1800</td>
+            <td class="whitespace-nowrap">Rs 700-1800</td>
             <td>
               <div class="flex space-x-2">
                 <i class="fas fa-users text-lg"></i>
@@ -57,7 +57,7 @@
               </div>
             </td>
             <td>
-              <button class="edit py-2 px-4">Edit Product</button>
+              <button class="edit py-2 px-4 whitespace-nowrap">Edit Product</button>
             </td>
           </tr>
         </table>

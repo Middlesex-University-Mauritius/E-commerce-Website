@@ -18,7 +18,7 @@
     include_once "../../includes/sidebar.inc.php";
     ?>
 
-    <div class="w-full">
+    <div class="w-full dashboard-content">
 
       <p class="text-3xl px-10 py-6 border-b w-full bg-white">
         <?php echo ucfirst(basename($_SERVER['PHP_SELF'], ".php")) ?>
@@ -37,7 +37,7 @@
           <div class="p-5">
             <p class="text-xl mb-4">John's recommendations</p>
 
-            <div id="recommended-events" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div id="recommended-events" class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
             </div>
           </div>
         </div>

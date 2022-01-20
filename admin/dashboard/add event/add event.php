@@ -18,7 +18,7 @@
     include_once "../../includes/sidebar.inc.php";
     ?>
 
-    <div class="w-full h-screen flex flex-col justify-between">
+    <div class="dashboard-content w-full h-screen flex flex-col justify-between ml-40">
 
       <div>
         <p class="text-3xl px-10 py-6 border-b w-full bg-white">
@@ -76,24 +76,21 @@
               </div>
 
               <p class='text-lg mb-4 mt-6'>Pricing</p>
-              <div class='card space-y-2'>
+              <div class="card">
+                <div class="flex flex-col 2xl:flex-row 2xl:space-x-4">
+                  <div>
+                    <p class='text-gray-700 whitespace-nowrap'>Price (Regular)</p>
+                    <input class='my-2 w-full' type='number' step="100">
+                  </div>
 
-                <div class='flex flex-col space-y-2'>
-                  <div class="flex space-x-4">
-                    <div>
-                      <p class='text-gray-700'>Price (Regular)</p>
-                      <input class='my-2 w-full' type='number' step="100">
-                    </div>
+                  <div>
+                    <p class='text-gray-700 whitespace-nowrap'>Price (Premium)</p>
+                    <input class='my-2 w-full' type='number' step="100">
+                  </div>
 
-                    <div>
-                      <p class='text-gray-700'>Price (Premium)</p>
-                      <input class='my-2 w-full' type='number' step="100">
-                    </div>
-
-                    <div>
-                      <p class='text-gray-700'>Price (VIP)</p>
-                      <input class='my-2 w-full' type='number' step="100">
-                    </div>
+                  <div>
+                    <p class='text-gray-700 whitespace-nowrap'>Price (VIP)</p>
+                    <input class='my-2 w-full' type='number' step="100">
                   </div>
                 </div>
 

@@ -17,15 +17,13 @@
     include_once "../../includes/sidebar.inc.php";
     ?>
 
-    <div class="w-full">
+    <div class="w-full dashboard-content">
 
       <p class="text-3xl px-10 py-6 border-b w-full bg-white">
         <?php echo ucfirst(basename($_SERVER['PHP_SELF'], ".php")) ?>
       </p>
 
       <div class="flex-1 py-6 px-10">
-
-        <div class='flex space-x-10'>
           <table>
             <tr>
               <th>Date</th>
@@ -50,7 +48,6 @@
               <td>Rs 3,500</td>
             </tr>
           </table>
-        </div>
 
       </div>
     </div>
