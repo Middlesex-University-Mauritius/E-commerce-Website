@@ -123,7 +123,7 @@ export class Section {
         title.innerText = s.type.toUpperCase();
         const seatNo = document.createElement("p");
         seatNo.className = "seat-no";
-        seatNo.innerText = `${this.type.toUpperCase()}-R${s.row}C${s.col}`;
+        seatNo.innerText = `${s.type.toUpperCase()}-R${s.row}C${s.col}`;
         header.append(title, seatNo)
 
         const deleteBtn = document.createElement("p");
