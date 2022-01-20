@@ -8,5 +8,3 @@ $description = $data['description'];
 $date = $data['date'];
 $time = $data['time'];
 $category = $data['category'];
-
-// write mongodb operations here
