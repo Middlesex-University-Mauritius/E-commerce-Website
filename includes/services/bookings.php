@@ -8,7 +8,7 @@ echo '
     "type": "vip",
     "price": 600,
     "customer": {
-      "name": "Sam"
+      "name": "sam"
     }
   },
   {
@@ -17,7 +17,7 @@ echo '
     "type": "vip",
     "price": 600,
     "customer": {
-      "name": "Sam"
+      "name": "sam"
     }
   }
 ]

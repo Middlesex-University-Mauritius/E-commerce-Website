@@ -3,6 +3,7 @@ import { CartItem } from "./view/cartItem.view.js";
 
 const storage = new Storage("cart", {});
 const items = storage.get();
+const cartCount = document.getElementById("checkout-count");
 
 const cart = document.getElementById("cart");
 
@@ -12,6 +13,8 @@ if (Object.keys(items).length == 0) {
   emptyMessage.className = "text-gray-600";
   cart.append(emptyMessage);
 } else {
+  cartCount.innerText = `(${Object.keys(items).length})`
+
   Object.keys(items).map((id) => {
     const title = items[id].title;
     const seats = items[id].seats;

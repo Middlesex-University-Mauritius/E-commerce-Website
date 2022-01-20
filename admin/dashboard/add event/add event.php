@@ -74,6 +74,30 @@
                 </div>
 
               </div>
+
+              <p class='text-lg mb-4 mt-6'>Pricing</p>
+              <div class='card space-y-2'>
+
+                <div class='flex flex-col space-y-2'>
+                  <div class="flex space-x-4">
+                    <div>
+                      <p class='text-gray-700'>Price (Regular)</p>
+                      <input class='my-2 w-full' type='number' step="100">
+                    </div>
+
+                    <div>
+                      <p class='text-gray-700'>Price (Premium)</p>
+                      <input class='my-2 w-full' type='number' step="100">
+                    </div>
+
+                    <div>
+                      <p class='text-gray-700'>Price (VIP)</p>
+                      <input class='my-2 w-full' type='number' step="100">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
 

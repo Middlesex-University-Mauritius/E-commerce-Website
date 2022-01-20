@@ -24,7 +24,7 @@ premium.render(venue.container);
 regular.render(venue.container);
 
 window.onload = async () => {
-  const response = await axios.get("./api/bookings.php")
+  const response = await axios.get("/web/includes/services/bookings.php")
 
   let storage = new Storage("cart", {});
   const cart = storage.get();

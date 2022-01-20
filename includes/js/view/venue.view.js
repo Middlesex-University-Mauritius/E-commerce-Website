@@ -9,12 +9,16 @@ export class Venue {
   container = document.createElement("div");
   parent = null;
   selections = {}
-  subtotal = 0
+  subtotal = 0;
+  disabled = false;
+  ratio = 1;
 
-  constructor(parent) {
+  constructor(parent, ratio = 1, disabled = false) {
     this.container.className = "venue-container";
     this.container.id = "venue-container"
     this.parent = parent;
+    this.ratio = ratio;
+    this.disabled = disabled;
   }
 
   render() {
@@ -43,8 +47,10 @@ export class Section {
 
   constructor(venue, type, width = 600, height = 220) {
     this.type = type;
-    this.height = height;
-    this.width = width;
+    this.height = height / venue.ratio;
+    this.width = width / venue.ratio;
+    this.SEAT_SIZE = this.SEAT_SIZE / venue.ratio;
+    this.SEAT_SPACING = this.SEAT_SPACING / venue.ratio;
     this.capacity =
       (this.width / this.SEAT_SIZE) * (this.height / this.SEAT_SIZE);
     this.venue = venue;
@@ -207,6 +213,8 @@ export class Section {
         circle.style.height = this.SEAT_SIZE - this.SEAT_SPACING + "px";
         circle.style.width = this.SEAT_SIZE - this.SEAT_SPACING + "px";
 
+        if (!this.venue.disabled) circle.style.cursor = "pointer";
+
         parent.append(circle);
 
         if (this.seats[id].local) {
@@ -218,23 +226,25 @@ export class Section {
           circle.classList.add("active");
         }
 
-        circle.addEventListener("click", () => {
-          if (this.seats[id] && this.seats[id].disabled) {
-            return;
-          }
+        if (!this.venue.disabled) {
+          circle.addEventListener("click", () => {
+            if (this.seats[id] && this.seats[id].disabled) {
+              return;
+            }
 
-          if (this.venue.getSelections(id)) {
-            circle.classList.remove("active");
-            circle.childNodes[0].remove();
-            this.venue.deleteSelection(id);
-            this.venue.setSubtotal(this.getPrice() * -1)
-          } else {
-            this.setSeat(circle, id, x, y);
-            this.venue.setSubtotal(this.getPrice())
-          }
+            if (this.venue.getSelections(id)) {
+              circle.classList.remove("active");
+              circle.childNodes[0].remove();
+              this.venue.deleteSelection(id);
+              this.venue.setSubtotal(this.getPrice() * -1)
+            } else {
+              this.setSeat(circle, id, x, y);
+              this.venue.setSubtotal(this.getPrice())
+            }
 
-          this.updateSidebar();
-        });
+            this.updateSidebar();
+          });
+        }
 
         this.section.append(parent);
       }

@@ -19,7 +19,7 @@
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    if ($username !== "admin" && $password !== "password") {
+    if ($username !== "admin" || $password !== "password") {
       $ERROR = true;
     } else {
       header("Location: /web/admin/dashboard/customers/customers.php");
@@ -32,27 +32,33 @@
   <div class="w-[400px] mx-auto mt-20">
     <p class="text-2xl text-gray-800 mb-2">Sign-In (CMS)</p>
     <p class="mb-4 text-sm text-gray-700">Manage customers, orders and events</p>
-    <form id="login" class="card" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-      <div class="space-y-2">
-        <div>
-          <p class="text-gray-700">Username</p>
-          <input class="my-2 w-full" type="text" id="username" name="username">
+    <form id="login" class="card p-0" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+      <div class="p-5">
+        <div class="space-y-2">
+          <div>
+            <p class="text-gray-700">Username</p>
+            <input class="my-2 w-full" type="text" id="username" name="username">
+          </div>
+
+          <div>
+            <p class="text-gray-700">Password</p>
+            <input class="my-2 w-full" type="password" id="password" name="password">
+          </div>
         </div>
 
-        <div>
-          <p class="text-gray-700">Password</p>
-          <input class="my-2 w-full" type="password" id="password" name="password">
-        </div>
+        <?php
+        if ($ERROR) {
+          echo '<p id="admin-error" class="text-red-800 mt-4 mb-0">Invalid username or password</p>';
+        }
+        ?>
+
+        <input id="admin-submit" class="primary py-3 mt-4 w-full cursor-pointer" type="submit" name="submit" value="Submit">
       </div>
 
-      <?php
-      if ($ERROR) {
-        echo '<p class="text-red-800 mt-4 mb-0">Invalid username or password</p>';
-      }
-      ?>
-
-      <input class="primary py-3 mt-4 w-full cursor-pointer" type="submit" name="submit" value="Submit">
+      <p class="p-5 bg-gray-50 border-t text-gray-600">For development purposes, use <span class="text-green-600">admin</span> and <span class="text-green-600">password</span> as credentials</p>
     </form>
+
+    <a href="/web/home" class="block transition ease-in-out delay-50 py-3 px-4 mt-4 text-center rounded text-gray-600 hover:text-blue-600">Go back to main website</a>
   </div>
 
   <script type="module" src="../../includes/js/scripts/authentication.js"></script>

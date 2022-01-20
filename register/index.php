@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../styles.css">
-  <script src="https://kit.fontawesome.com/f2f51db1ed.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <title>Register</title>
-</head>
+<?php
+include_once "../includes/head.php";
+head();
+?>
 
 <body id="body">
   <?php
-    include_once "../includes/navbar.php";
-    navbar();
+  include_once "../includes/navbar.php";
+  navbar();
   ?>
 
   <div class="w-[400px] mx-auto mt-20">
@@ -69,8 +64,8 @@
   </div>
 
   <?php
-    include_once "../includes/footer.php";
-    footer();
+  include_once "../includes/footer.php";
+  footer();
   ?>
 
   <script type="module" src="../includes/js/scripts/authentication.js"></script>

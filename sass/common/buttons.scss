@@ -20,6 +20,14 @@ button {
     }
   }
 
+  &.edit {
+    color: white;
+    background-color: #108816;
+    &:hover:enabled {
+      background-color: #17a71e;
+    }
+  }
+
   &.cancel {
     color: rgb(124, 124, 124);
     background-color: #f0f0f0;

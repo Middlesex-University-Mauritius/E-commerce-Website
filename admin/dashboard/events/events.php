@@ -25,11 +25,44 @@
 
       <div class="flex-1 py-6 px-10">
 
-        <div class='flex space-x-10'>
-          <p>Hello world</p>
-        </div>
+        <table>
+          <tr>
+            <th>Product</th>
+            <th>List Price</th>
+            <th>Bookings</th>
+            <th></th>
+          </tr>
 
+          <tr>
+            <td>
+              <div class="flex space-x-4 w-[800px] h-40">
+                <img class="h-40 w-40 rounded" src="https://generative-placeholders.glitch.me/image?width=1200&height=400&style=cellular-automata&cells=80" alt="" srcset="">
+                <div class="space-y-3">
+                  <div>
+                    <p class="font-bold">This is a simple title</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus facilis quia, pariatur maxime nisi blanditiis, neque aliquid dolorum, possimus ea repudiandae! Odit delectus voluptate amet! Itaque ullam libero labore vel!</p>
+                  </div>
+                  <div class="flex space-x-2">
+                    <a class="tag" href="#">Concert</a>
+                    <a class="tag" href="#">Live music</a>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>Rs 700-1800</td>
+            <td>
+              <div class="flex space-x-2">
+                <i class="fas fa-users text-lg"></i>
+                <p class="my-auto">12</p>
+              </div>
+            </td>
+            <td>
+              <button class="edit py-2 px-4">Edit Product</button>
+            </td>
+          </tr>
+        </table>
       </div>
+
     </div>
   </div>
 </body>
