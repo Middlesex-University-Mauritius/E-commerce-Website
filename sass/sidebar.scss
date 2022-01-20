@@ -1,10 +1,10 @@
 .sidebar {
   background: #f6f7f9;
   border: 1px solid #e7e7e7;
-  max-width: 400px;
+  max-width: 400px; // Sidebar max width
   display: flex;
   flex-direction: column;
-  max-height: calc(100vh - 77px);
+  max-height: calc(100vh - 77px); // Max height of sidebar minus the navbar height
 
   .tabs-container {
     display: flex;
@@ -22,6 +22,7 @@
     }
   }
 
+  // Reservation page sidebar content
   #content {
     padding: 0px 10px;
     flex-direction: column;
@@ -29,6 +30,7 @@
     max-height: 700px;
     height: 100%;
 
+    // sidebar item
     .tickets-content-card {
       border: 1px solid #dedede;
       padding: 10px;
@@ -56,6 +58,7 @@
   }
 }
 
+// CMS admin sidebar
 #admin-sidebar {
-  position: fixed;
+  position: fixed; // Fixed
 }

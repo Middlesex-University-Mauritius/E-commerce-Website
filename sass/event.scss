@@ -1,3 +1,4 @@
+// Event card styling when list is shrinked
 .events-card {
   &.shrinked {
     flex-direction: column;
@@ -11,7 +12,7 @@
     }
 
     .event-img {
-      height: 300px;
+      height: 300px; // Image height
       object-fit: cover;
       background-color: white;
       margin-bottom: 20px;

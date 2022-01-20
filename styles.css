@@ -410,16 +410,6 @@ p.error {
   background-repeat: no-repeat;
   background-size: cover;
 }
-#banner .fas fa-th {
-  position: absolute;
-  top: 900px;
-  left: 40px;
-}
-#banner .fas fa-sort {
-  position: absolute;
-  top: 900px;
-  left: 60px;
-}
 
 .events-card.shrinked {
   flex-direction: column;

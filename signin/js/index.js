@@ -14,8 +14,10 @@ const parent = document.getElementById("body");
 
 const notification = new Notification(parent);
 
+// Validate the fields
 validateFields(fields);
 
+// Show errors when login fails
 button.addEventListener("click", (event) => {
   event.preventDefault();
   if (!validate(email) || !validate(password)) {

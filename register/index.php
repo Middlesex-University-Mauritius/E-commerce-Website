@@ -12,6 +12,7 @@ head();
   navbar();
   ?>
 
+  <!-- Registration card -->
   <div class="w-[400px] mx-auto mt-20">
     <p class="text-2xl mb-4 text-gray-800">Create an account</p>
     <form id="register" class="card" action="user.controller.php" method="post">
@@ -56,6 +57,7 @@ head();
 
       <button id="register-btn" class="primary py-3 mt-4 w-full">Register</button>
 
+      <!-- Login redirection link -->
       <div class="flex place-content-center mt-4 space-x-1">
         <p>Already have an account?</p>
         <a href="/web/signin" class="text-blue-800 underline cursor-pointer">Login</a>

@@ -15,19 +15,23 @@ head();
   <div class="wrapper">
     <div class="my-8">
 
+      <!-- Checkout page page -->
       <div class="flex mb-4 space-x-2">
         <p class="text-2xl">Cart</p>
+        <!-- Cart counter -->
         <p class="text-2xl" id="checkout-count">(0)</p>
       </div>
 
       <div class="flex space-x-10">
         <div class="flex-1 space-y-8">
+          <!-- Items in cart -->
           <div class="card">
             <div id="cart">
             </div>
           </div>
 
           <div>
+            <!-- Customer information card -->
             <p class="text-2xl mb-4">Customer Information</p>
             <div class="card">
               <div>
@@ -53,6 +57,7 @@ head();
           </div>
         </div>
 
+        <!-- Payment cart -->
         <div class="w-[500px]">
           <div class="card">
             <div class="mb-10">
@@ -71,6 +76,7 @@ head();
               </div>
             </div>
 
+            <!-- Finance stuff -->
             <div class="flex justify-between border-t py-4">
               <p class="text-xl">Total</p>
               <p class="text-xl">Rs 9,000</p>

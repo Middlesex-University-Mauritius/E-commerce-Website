@@ -1,5 +1,6 @@
 <?php
 
+// Save customer in a class for mongodb later
 class User
 {
   public $firstName;

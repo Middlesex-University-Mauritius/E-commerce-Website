@@ -1,3 +1,9 @@
+/**
+ * file: notification.view.js
+ * description: Show a popup notification
+ */
+
+
 class Notification {
 
   parent = null;
@@ -17,6 +23,7 @@ class Notification {
       parent.removeChild(this);
     }
 
+    // Clear the notification after 5 seconds
     if (this.parent.querySelector("#notification")) {
       try {
         this.parent.removeChild(notification)

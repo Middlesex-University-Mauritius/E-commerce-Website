@@ -14,6 +14,7 @@ head();
 
   <div id="banner"></div>
 
+  <!-- Display events in extended view -->
   <div class="wrapper">
     <div id="events" class="py-10 space-y-3">
     </div>
@@ -30,10 +31,15 @@ head();
     } from "../includes/js/view/event.view.js"
     const events = document.getElementById("events");
 
+    // Display events in extended view 
+    const SHRINKED = false;
+
     window.onload = async function() {
+      // Test fetch from events service
       const response = await axios.get("/web/includes/services/events.php");
       if (!response.data) return;
 
+      // Render the events cards on the page
       response.data.map((row) => {
         const {
           id,
@@ -43,7 +49,7 @@ head();
           time
         } = row;
 
-        const event = new Event(false, id, title, description, date, time);
+        const event = new Event(SHRINKED, id, title, description, date, time);
         event.render(events);
       })
     }

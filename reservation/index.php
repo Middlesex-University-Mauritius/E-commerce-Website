@@ -12,12 +12,17 @@ head();
   navbar();
   ?>
 
+  <!-- Reservation page -->
   <div class="flex flex-row-reverse" id="reservation">
+    <!-- Venue preview -->
+
+    <!-- Sidebar -->
     <div class="sidebar">
       <div class="tabs-container">
         <p class="header">Your Tickets</p>
       </div>
 
+      <!-- Empty message when no seats selected -->
       <div id="content">
         <p class="text-center text-gray-700 py-10">No tickets. click on seat to reserve.</p>
       </div>

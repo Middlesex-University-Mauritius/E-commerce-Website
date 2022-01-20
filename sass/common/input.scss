@@ -1,5 +1,6 @@
 @import "../palette.scss";
 
+// Default styling for common field inputs
 input[type="text"], input[type="password"], input[type="number"], input[type="email"], input[type="date"], input[type="time"], input[type="submit"], textarea {
   border: 1px solid #E2E2E2;
   border-radius: 4px;
@@ -8,6 +9,7 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
   transition: all 0.18s;
   width: 100%;
 
+  // Deault input background color to match overall theme of the website
   &.primary {
     color: white;
     background-color: #7F90A3;
@@ -19,7 +21,7 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
   &:focus {
     outline: none !important;
     border: 1px solid rgb(158, 195, 252);
-    box-shadow: 0 0 4px #719ece;
+    box-shadow: 0 0 4px #719ece; // Show shadow on input focus
   }
 
   &.error {
@@ -28,6 +30,7 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
   }
 }
 
+// Make input checkbox bigger
 input[type="checkbox"] {
   height: 20px;
   width: 20px;

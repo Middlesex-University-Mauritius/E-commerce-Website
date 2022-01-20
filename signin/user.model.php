@@ -1,5 +1,6 @@
 <?php
 
+// Store user for mongodb later
 class User
 {
   public $firstName;

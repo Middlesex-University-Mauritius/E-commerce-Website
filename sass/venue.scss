@@ -9,6 +9,7 @@
     margin: 0 auto;
     position: relative;
 
+    // Disable double line borders in some sections
     &:not(:last-child),
     &:not(:first-child) {
       margin-top: -2px;
@@ -17,16 +18,18 @@
     .seat-parent {
       position: absolute;
 
+      // Seat styling
       .seat {
         position: absolute;
         background-color: #a4a5a7;
         border-radius: 100%;
         text-align: center;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%); // center everything
         margin-top: 50%;
         margin-left: 50%;
         transition: 0.3s;
 
+        // When seat is clicked / active
         &.active {
           background-color: #0f1d30;
         }

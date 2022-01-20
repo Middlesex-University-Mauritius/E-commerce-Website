@@ -1,3 +1,8 @@
+/**
+ * file: message.view.js
+ * description: Show a message box in authentication, etc...
+ */
+
 class Message {
   message = null;
 

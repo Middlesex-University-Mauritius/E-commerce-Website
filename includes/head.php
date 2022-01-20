@@ -1,3 +1,7 @@
+<!-- HTML head section that loads some javascript libraries -->
+<!-- Load stylesheet -->
+<!-- Libraries used: Tailwindcss for some styling, Fontawesome for icons, Axios for http request -->
+
 <?php
 
 function head()
@@ -12,7 +16,7 @@ function head()
       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
       <link rel="stylesheet" href="../styles.css">
 
-      <title>Home</title>
+      <title>Tixx | Event booking</title>
     </head>
   DEV;
 }

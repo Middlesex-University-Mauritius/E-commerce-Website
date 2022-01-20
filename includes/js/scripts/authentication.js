@@ -1,5 +1,11 @@
+/**
+ * file: authentication.js
+ * description: Validate input fields when doing authentication
+ */
+
 import Message from "../view/message.view.js";
 
+// Clear error messages
 const reset = function(target) {
   const lastElement = target.parentNode.lastElementChild;
   target.classList.remove("error");
@@ -7,6 +13,7 @@ const reset = function(target) {
     target.parentNode.removeChild(lastElement);
 }
 
+// Validate inputs
 export const validate = (target) => {
   const { id, value } = target;
   let error = false;

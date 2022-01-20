@@ -4,7 +4,7 @@
   text-align: right;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; // Add spaces between navbar elements
   color: white;
   padding: 10px 30px;
 
@@ -12,9 +12,10 @@
     display: flex;
     height: 40px;
     margin: auto 0px;
-    width: 700px;
+    width: 700px; // Search box initial width
     color: black;
 
+    // Make search box responsive
     @media only screen and (max-width: 1095px) {
       width: 500px;
     }
@@ -53,6 +54,7 @@
     display: flex;
     margin: auto 0px;
 
+    // Add margin before each link
     & > * + * {
       margin-left: 30px;
     }

@@ -12,8 +12,10 @@ head();
   navbar();
   ?>
 
+  <!-- Event details page -->
   <div class="wrapper my-10">
     <div class="flex space-x-10">
+      <!-- Event details card -->
       <div class="flex-1 space-y-10">
         <div>
           <p class="text-2xl mb-4">Event title</p>
@@ -25,6 +27,7 @@ head();
           </div>
         </div>
 
+        <!-- Line up card -->
         <div>
           <p class="text-2xl mb-4">Line-Up</p>
           <div class="card">
@@ -43,10 +46,12 @@ head();
         </div>
       </div>
 
+      <!-- Venue preview card -->
       <div class="flex-1">
         <p class="text-2xl mb-4">Venue details</p>
         <div class="card">
           <div id="card-venue"></div>
+          <!-- Other details -->
           <div class="flex flex-col space-y-2 mt-8">
             <div>
               <i class="fas fa-map-marker-alt"></i>

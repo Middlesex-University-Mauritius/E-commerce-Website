@@ -1,3 +1,5 @@
+<!-- Navbar section -->
+
 <?php
 
 function navbar()

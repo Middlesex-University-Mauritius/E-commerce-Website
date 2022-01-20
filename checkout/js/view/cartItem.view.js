@@ -1,3 +1,8 @@
+/**
+ * file: cartItem.view.js
+ * description: Checkout cart item
+ */
+
 export class CartItem {
 
   title = null;

@@ -1,14 +1,14 @@
 .container {
-  max-width: 1170px;
+  max-width: 1170px; // Container max width
   margin: auto;
 
   .row {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; // Enable wrap after each row
   }
 
   ul {
-    list-style: none;
+    list-style: none; // Disable list styling
   }
 }
 

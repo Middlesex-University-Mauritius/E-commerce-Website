@@ -1,7 +1,7 @@
 .dashboard-content {
-  margin-left: 250px !important;
+  margin-left: 250px !important; // Push the dashboard content to the right relative to the sidebar
   width: auto;
-  position: relative;
+  position: relative; // Show scroll bar
   overflow: auto;
-  z-index: 1;
+  z-index: 1; // Make sure content is on top of everything
 }

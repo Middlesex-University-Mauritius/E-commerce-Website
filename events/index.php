@@ -17,6 +17,7 @@ head();
       <p class="text-3xl text-gray-700">Events</p>
     </div>
 
+    <!-- Display events in shrinked mode -->
     <div id="events" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     </div>
   </div>
@@ -32,10 +33,14 @@ head();
     } from "../includes/js/view/event.view.js"
     const events = document.getElementById("events");
 
+    const SHRINKED = true;
+
     window.onload = async function() {
+      // Simple fetch request to get all events
       const response = await axios.get("../includes/services/events.php");
       if (!response.data) return;
 
+      // Render the events on the page in shrinked mode
       response.data.map((row) => {
         const {
           id,
@@ -45,7 +50,7 @@ head();
           time
         } = row;
 
-        const event = new Event(true, id, title, description, date, time);
+        const event = new Event(SHRINKED, id, title, description, date, time);
         event.render(events);
       })
     }

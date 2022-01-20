@@ -1,6 +1,7 @@
 import { validate, validateFields } from "../../includes/js/scripts/authentication.js";
 import Notification from "../../includes/js/view/notification.view.js";
 
+// Get fields from form
 const email           = document.getElementById("email");
 const firstName       = document.getElementById("firstName");
 const lastName        = document.getElementById("lastName");
@@ -22,13 +23,17 @@ const fields = {
 
 const parent = document.getElementById("body");
 
+// Initialize notification
 const notification = new Notification(parent);
 
+// Validate the fields
 validateFields(fields);
 
+// Handle click on register
 button.addEventListener("click", (event) => {
   event.preventDefault();
   if (!validate(email) || !validate(firstName) || !validate(lastName) || !validate(age) || !validate(phone) || !validate(password) || !validate(confirmPassword)) {
+    // Show notifications if there are any errors
     return notification.render("There are some errors in your form", "error");
   }
 })

@@ -4,6 +4,7 @@ button {
   border-radius: 4px;
   cursor: pointer;
 
+  // pale blue
   &.primary {
     color: white;
     background-color: #7F90A3;
@@ -12,6 +13,7 @@ button {
     }
   }
 
+  // red
   &.warning {
     color: white;
     background-color: #e03232;
@@ -20,6 +22,7 @@ button {
     }
   }
 
+  // green
   &.edit {
     color: white;
     background-color: #108816;
@@ -28,6 +31,7 @@ button {
     }
   }
 
+  // cancel
   &.cancel {
     color: rgb(124, 124, 124);
     background-color: #f0f0f0;

@@ -1,3 +1,8 @@
+/**
+ * file: event.view.js
+ * description: event card view
+ */
+
 export class Event {
   id = null;
   title = null;
@@ -15,6 +20,7 @@ export class Event {
     this.shrinked = shrinked;
   }
 
+  // Cards are displayed in shrinked mode by default
   render(parent) {
 
     const card = document.createElement("div");
