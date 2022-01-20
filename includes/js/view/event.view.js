@@ -31,12 +31,13 @@ export class Event {
     const content = document.createElement("div");
     content.className = "flex-1 space-y-4 event-content"
 
-    const title = document.createElement("p");
-    title.className = "text-md font-semibold event-title"
+    const title = document.createElement("a");
+    title.className = "text-blue-500 text-md font-medium event-title hover:font-blue-700 hover:underline"
     title.innerText = this.title;
+    title.href = "/web/details"
 
     const description = document.createElement("p");
-    description.className = "text-gray-800 event-description";
+    description.className = "text-gray-700 event-description";
     description.innerText = this.description.length >= 120 ? this.description.substring(0, 120) + "..." : this.description;
 
     const informationContainer = document.createElement("div");
