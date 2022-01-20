@@ -52,6 +52,70 @@
                 <button class="warning px-4 py-2">Delete Order</button>
               </td>
             </tr>
+            <tr>
+              <td>22/02/2022</td>
+              <td>
+                <div class="flex space-x-3">
+                  <img class="rounded-full w-8 h-8 border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSEuKKwqIqbJH-NRiDHluGbuC9ysMW99BPA&usqp=CAU" alt="" srcset="">
+                  <p class="my-auto">James Gordon</p>
+                </div>
+              </td>
+              <td>#001</td>
+              <td>Concert</td>
+              <td>x3</td>
+              <td>Rs 3,500</td>
+              <td>
+                <button class="warning px-4 py-2">Delete Order</button>
+              </td>
+            </tr>
+            <tr>
+              <td>22/02/2022</td>
+              <td>
+                <div class="flex space-x-3">
+                  <img class="rounded-full w-8 h-8 border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSEuKKwqIqbJH-NRiDHluGbuC9ysMW99BPA&usqp=CAU" alt="" srcset="">
+                  <p class="my-auto">James Gordon</p>
+                </div>
+              </td>
+              <td>#001</td>
+              <td>Concert</td>
+              <td>x3</td>
+              <td>Rs 3,500</td>
+              <td>
+                <button class="warning px-4 py-2">Delete Order</button>
+              </td>
+            </tr>
+            <tr>
+              <td>22/02/2022</td>
+              <td>
+                <div class="flex space-x-3">
+                  <img class="rounded-full w-8 h-8 border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSEuKKwqIqbJH-NRiDHluGbuC9ysMW99BPA&usqp=CAU" alt="" srcset="">
+                  <p class="my-auto">James Gordon</p>
+                </div>
+              </td>
+              <td>#001</td>
+              <td>Concert</td>
+              <td>x3</td>
+              <td>Rs 3,500</td>
+              <td>
+                <button class="warning px-4 py-2">Delete Order</button>
+              </td>
+            </tr>
+            <tr>
+              <td>22/02/2022</td>
+              <td>
+                <div class="flex space-x-3">
+                  <img class="rounded-full w-8 h-8 border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSEuKKwqIqbJH-NRiDHluGbuC9ysMW99BPA&usqp=CAU" alt="" srcset="">
+                  <p class="my-auto">James Gordon</p>
+                </div>
+              </td>
+              <td>#001</td>
+              <td>Concert</td>
+              <td>x3</td>
+              <td>Rs 3,500</td>
+              <td>
+                <button class="warning px-4 py-2">Delete Order</button>
+              </td>
+            </tr>
           </table>
         </div>
 

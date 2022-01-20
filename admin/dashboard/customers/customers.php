@@ -24,30 +24,69 @@
       </p>
 
       <div class="flex-1 py-6 px-10">
-          <table>
-            <tr>
-              <th>Date</th>
-              <th>Customer Name</th>
-              <th>Event ID</th>
-              <th>Category</th>
-              <th>Tickets</th>
-              <th>Charge</th>
-            </tr>
+        <table>
+          <tr>
+            <th>Date</th>
+            <th>Customer Name</th>
+            <th>Event ID</th>
+            <th>Category</th>
+            <th>Tickets</th>
+            <th>Charge</th>
+          </tr>
 
-            <tr>
-              <td>22/02/2022</td>
-              <td>
-                <div class="flex space-x-3">
-                  <img class="rounded-full w-8 h-8 border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSEuKKwqIqbJH-NRiDHluGbuC9ysMW99BPA&usqp=CAU" alt="" srcset="">
-                  <p class="my-auto">James Gordon</p>
-                </div>
-              </td>
-              <td>#001</td>
-              <td>Concert</td>
-              <td>x3</td>
-              <td>Rs 3,500</td>
-            </tr>
-          </table>
+          <tr>
+            <td>22/02/2022</td>
+            <td>
+              <div class="flex space-x-3">
+                <img class="rounded-full w-8 h-8 border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSEuKKwqIqbJH-NRiDHluGbuC9ysMW99BPA&usqp=CAU" alt="" srcset="">
+                <p class="my-auto">Joe Rogan</p>
+              </div>
+            </td>
+            <td>#001</td>
+            <td>Concert</td>
+            <td>x3</td>
+            <td>Rs 3,500</td>
+          </tr>
+          <tr>
+            <td>22/02/2022</td>
+            <td>
+              <div class="flex space-x-3">
+                <img class="rounded-full w-8 h-8 border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSEuKKwqIqbJH-NRiDHluGbuC9ysMW99BPA&usqp=CAU" alt="" srcset="">
+                <p class="my-auto">Will Smith</p>
+              </div>
+            </td>
+            <td>#001</td>
+            <td>Concert</td>
+            <td>x3</td>
+            <td>Rs 3,500</td>
+          </tr>
+          <tr>
+            <td>22/02/2022</td>
+            <td>
+              <div class="flex space-x-3">
+                <img class="rounded-full w-8 h-8 border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSEuKKwqIqbJH-NRiDHluGbuC9ysMW99BPA&usqp=CAU" alt="" srcset="">
+                <p class="my-auto">James Gordon</p>
+              </div>
+            </td>
+            <td>#001</td>
+            <td>Concert</td>
+            <td>x3</td>
+            <td>Rs 3,500</td>
+          </tr>
+          <tr>
+            <td>22/02/2022</td>
+            <td>
+              <div class="flex space-x-3">
+                <img class="rounded-full w-8 h-8 border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSEuKKwqIqbJH-NRiDHluGbuC9ysMW99BPA&usqp=CAU" alt="" srcset="">
+                <p class="my-auto">James Gordon</p>
+              </div>
+            </td>
+            <td>#001</td>
+            <td>Concert</td>
+            <td>x3</td>
+            <td>Rs 3,500</td>
+          </tr>
+        </table>
 
       </div>
     </div>
