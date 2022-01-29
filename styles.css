@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,6 +10,7 @@
 
 * {
   font-size: 16px;
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
@@ -146,6 +148,14 @@ p.error {
   color: red;
 }
 
+.error-list li {
+  border-radius: 5px;
+  background-color: #FCEDE9;
+  border: 1px solid #F2E0DD;
+  color: #ff2c2c;
+  padding: 12px 20px;
+}
+
 #notification {
   position: absolute;
   top: 20px;
@@ -164,6 +174,11 @@ p.error {
   background-color: #FCEDE9;
   border: 1px solid #F2E0DD;
   color: #ff2c2c;
+}
+#notification.success {
+  background-color: #edfce9;
+  border: 1px solid #ddf2df;
+  color: #149e20;
 }
 
 .venue-container {

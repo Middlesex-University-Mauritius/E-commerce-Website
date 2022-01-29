@@ -1,9 +1,11 @@
 import { validateFields, validate } from "../../includes/js/scripts/authentication.js";
 import Notification from "../../includes/js/view/notification.view.js"
+import { Storage } from "../../includes/js/scripts/storage.js";
 
 const email    = document.getElementById("email");
 const password = document.getElementById("password");
 const button = document.getElementById("login-btn");
+const errors = document.getElementById("errors");
 
 const fields = {
   email,
@@ -19,8 +21,36 @@ validateFields(fields);
 
 // Show errors when login fails
 button.addEventListener("click", (event) => {
+  errors.innerHTML = null;
   event.preventDefault();
+  button.disabled = true;
   if (!validate(email) || !validate(password)) {
     return notification.render("There are some errors in your form", "error");
+  } else {
+    axios.post("/web/includes/services/login.php", {
+      email: email.value,
+      password: password.value,
+    }).then((response) => {
+      console.log(response)
+      const storage = new Storage("user", {})
+
+      const { data } = response;
+
+      if (!data.authenticated) {
+        const errorList = document.createElement("ul");
+        errorList.className = "error-list";
+        const error = document.createElement("li");
+        error.innerText = data.message;
+        errorList.append(error);
+
+        errors.append(errorList);
+
+      } else {
+        storage.set(data.user)
+        window.location.href = "/web/profile"
+      }
+      
+      button.disabled = false;
+    })
   }
 })

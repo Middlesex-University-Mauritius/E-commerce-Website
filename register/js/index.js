@@ -1,5 +1,6 @@
 import { validate, validateFields } from "../../includes/js/scripts/authentication.js";
 import Notification from "../../includes/js/view/notification.view.js";
+import { Storage } from "../../includes/js/scripts/storage.js";
 
 // Get fields from form
 const email           = document.getElementById("email");
@@ -32,8 +33,33 @@ validateFields(fields);
 // Handle click on register
 button.addEventListener("click", (event) => {
   event.preventDefault();
+  button.disabled = true;
   if (!validate(email) || !validate(firstName) || !validate(lastName) || !validate(age) || !validate(phone) || !validate(password) || !validate(confirmPassword)) {
     // Show notifications if there are any errors
     return notification.render("There are some errors in your form", "error");
+  } else {
+    axios.post("/web/includes/services/register.php", {
+      email: email.value,
+      firstName: firstName.value,
+      lastName: lastName.value,
+      age: age.value,
+      phone: phone.value,
+      password: password.value,
+      confirmPassword: confirmPassword.value,
+    }).then((response) => {
+      const storage = new Storage("user", {})
+
+      const { data } = response;
+
+      if (data.success) {
+        console.log(data);
+        notification.render("Account successfully created!", "success");
+        storage.set(data.user);
+
+        // setTimeout(() => {
+        //   window.location.href = "/"
+        // }, 1000)
+      }
+    })
   }
 })

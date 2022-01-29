@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php
-include_once "../includes/head.php";
-head();
-?>
+<head>
+  <?php
+  include_once "../includes/head.php";
+  head();
+  ?>
+</head>
 
 <body id="body">
   <?php
@@ -30,6 +32,9 @@ head();
         </div>
 
         <button id="login-btn" class="primary py-3 mt-4 w-full">Sign In</button>
+
+        <div id="errors" class="my-4">
+        </div>
 
         <!-- Registration page redirection link -->
         <div class="flex place-content-center mt-4 space-x-1">

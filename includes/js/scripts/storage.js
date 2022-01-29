@@ -22,4 +22,9 @@ export class Storage {
   set(data) {
     localStorage.setItem(this.path, JSON.stringify(data))
   }
+
+  // clear storage
+  delete() {
+    localStorage.removeItem(this.path);
+  }
 }
