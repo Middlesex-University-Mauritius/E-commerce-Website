@@ -211,6 +211,9 @@ p.error {
 .venue-container .section .seat-parent .seat.active {
   background-color: #0f1d30;
 }
+.venue-container .section .seat-parent .seat.reserved {
+  background-color: #19af32;
+}
 .venue-container .section .seat-parent .seat i {
   color: white;
 }

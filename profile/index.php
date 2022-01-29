@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
 <?php
 include_once "../includes/head.php";
 head();
 ?>
+</head>
 
 <body id="body">
   <?php
   include_once "../includes/navbar.php";
   navbar();
+  ?>
+
+  <?php
+  if (isset($_SESSION["user"]) && json_decode($_SESSION["user"])->authenticated) {
+  } else {
+    header("Location: /web/home");
+    exit();
+  }
   ?>
 
   <div class="wrapper my-10">
@@ -59,8 +69,6 @@ head();
       </div>
     </div>
   </div>
-
-  <script type="module" src="./js/index.js"></script>
 
   <?php
   include_once "../includes/footer.php";

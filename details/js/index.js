@@ -5,8 +5,14 @@ const DISABLED = true;
 
 const parent = document.getElementById("card-venue");
 
+const prices = {
+  vip: 0,
+  regular: 0,
+  premium: 0
+}
+
 // Reduce the size of the preview venue by 2 using ratio parameter and disabling mouse events
-const venue = new Venue(parent, RATIO, DISABLED);
+const venue = new Venue(parent, prices, RATIO, DISABLED);
 
 // Show stage, vip, premium and regular
 const stage = new Section(venue, "stage", 350, 100);

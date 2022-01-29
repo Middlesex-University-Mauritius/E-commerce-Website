@@ -73,6 +73,15 @@
                   </div>
                 </div>
 
+                <br>
+                <div>
+                  <p>Tags</p>
+                  <input id="tag" class='my-2 w-full' type='text'>
+
+                  <div id="tags-container" class="flex flex-wrap">
+                  </div>
+                </div>
+
               </div>
 
               <p class='text-lg mb-4 mt-6'>Pricing</p>
@@ -80,17 +89,17 @@
                 <div class="flex flex-col 2xl:flex-row 2xl:space-x-4">
                   <div>
                     <p class='text-gray-700 whitespace-nowrap'>Price (Regular)</p>
-                    <input class='my-2 w-full' type='number' step="100">
+                    <input id="regular" class='my-2 w-full' type='number' step="100">
                   </div>
 
                   <div>
                     <p class='text-gray-700 whitespace-nowrap'>Price (Premium)</p>
-                    <input class='my-2 w-full' type='number' step="100">
+                    <input id="premium" class='my-2 w-full' type='number' step="100">
                   </div>
 
                   <div>
                     <p class='text-gray-700 whitespace-nowrap'>Price (VIP)</p>
-                    <input class='my-2 w-full' type='number' step="100">
+                    <input id="vip" class='my-2 w-full' type='number' step="100">
                   </div>
                 </div>
 
@@ -111,6 +120,26 @@
   </div>
 
   <script>
+    const parent = document.getElementById("body");
+    const tag = document.getElementById("tag");
+    const notification = new Notification(parent);
+    const tagsContainer = document.getElementById("tags-container");
+    let tags = [];
+
+    tag.addEventListener("keydown", (e) => {
+      if (e.key === 'Enter') {
+        const tagInput = document.createElement("div");
+        tagInput.innerText = e.target.value;
+        tagInput.className = "bg-blue-200 rounded-md px-3 py-2 text-sm m-1 first:ml-0 flex cursor-pointer hover:bg-blue-300";
+        tagInput.addEventListener("click", () => {
+          tagInput.remove();
+        })
+        tagsContainer.appendChild(tagInput);
+      }
+    })
+
+    const tagsNodes = tagsContainer.childNodes;
+
     const checks = ["live-music", "stand-up", "arts-and-theater"]
     let category = "live-music";
 
@@ -119,9 +148,12 @@
       description: document.getElementById("description"),
       date: document.getElementById("date"),
       time: document.getElementById("time"),
+      regular: document.getElementById("regular"),
+      premium: document.getElementById("premium"),
+      vip: document.getElementById("vip"),
     }
 
-    function onCategoryChange(e) {
+    window.onCategoryChange = function(e) {
       checks.forEach((check) => {
         if (check !== e.id) {
           document.getElementById(check).checked = false
@@ -133,13 +165,17 @@
 
     const confirm = document.getElementById("confirm");
 
-    Object.values(formInputs).forEach((input) => {
-      input.addEventListener("input", () => {
-        input.classList.remove("error")
-      })
-    });
+    Object.values(formInputs).forEach((input) => input.addEventListener("input", () => input.classList.remove("error")));
 
     confirm.addEventListener("click", () => {
+      if (tagsNodes.length >= 1) {
+        tagsNodes.forEach((tag) => {
+          if (tag.innerText) {
+            tags.push(tag.innerText)
+          }
+        });
+      }
+
       let validated = true;
 
       Object.values(formInputs).forEach((input) => {
@@ -151,22 +187,45 @@
 
       if (!validated) return;
 
-      axios.post("controller.php", {
+      console.log({
         title: formInputs.title.value,
         description: formInputs.description.value,
         date: formInputs.date.value,
         time: formInputs.time.value,
         category: category,
-      }).then(function(response) {
-        console.log(response)
+        tags,
+        prices: {
+          regular: regular.value,
+          premium: premium.value,
+          vip: vip.value,
+        }
+
+      })
+
+      axios.post("/web/admin/includes/services/addEvent.php", {
+        title: formInputs.title.value,
+        description: formInputs.description.value,
+        date: formInputs.date.value,
+        time: formInputs.time.value,
+        category: category,
+        tags,
+        prices: {
+          regular: regular.value,
+          premium: premium.value,
+          vip: vip.value,
+        }
+      }).then((response) => {
+        const { data } = response;
+
+        if (data.success) {
+        } else {
+        }
+
       }).catch(function(error) {
-        console.log(error)
       })
 
     })
   </script>
-
-  <script type="module" src="./js/index.js"></script>
 </body>
 
 </html>

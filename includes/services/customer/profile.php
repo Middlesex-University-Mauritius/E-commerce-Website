@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require '../../../vendor/autoload.php';
 
 $customerId = $_GET["customer_id"] ?? null;
@@ -21,14 +23,21 @@ $customer = $collection->findOne([
 
 $payload = array();
 
-if ($customer) {
-  $payload = array(
-    "success" => true,
-    "user" => $customer
-  );
+if (isset($_SESSION["user"]) && json_decode($_SESSION["user"])->authenticated) {
+  if ($customer && json_decode($_SESSION["user"])->id === $customerId) {
+    $payload = array(
+      "success" => true,
+      "user" => $customer
+    );
+  } else {
+    $payload = array(
+      "success" => true,
+      "user" => null
+    );
+  }
 } else {
   $payload = array(
-    "success" => true,
+    "success" => false,
     "user" => null
   );
 }

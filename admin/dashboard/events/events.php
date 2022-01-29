@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../../../styles.css">
   <script src="https://kit.fontawesome.com/f2f51db1ed.js" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <title>Dashboard</title>
 </head>
 
@@ -25,46 +26,20 @@
 
       <div class="flex-1 py-6 px-10">
 
-        <table>
+        <table id="event-data">
           <tr>
             <th>Product</th>
             <th>List Price</th>
             <th>Bookings</th>
             <th></th>
           </tr>
-
-          <tr>
-            <td>
-              <div class="flex space-x-4 h-40 md:max-w-[450px] lg:max-w-[800px]">
-                <img class="h-40 w-40 rounded" src="https://generative-placeholders.glitch.me/image?width=1200&height=400&style=cellular-automata&cells=80" alt="" srcset="">
-                <div class="space-y-3">
-                  <div>
-                    <p class="font-bold">This is a simple title</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus facilis quia, pariatur maxime nisi.</p>
-                  </div>
-                  <div class="flex space-x-2">
-                    <a class="tag" href="#">Concert</a>
-                    <a class="tag" href="#">Live music</a>
-                  </div>
-                </div>
-              </div>
-            </td>
-            <td class="whitespace-nowrap">Rs 700-1800</td>
-            <td>
-              <div class="flex space-x-2">
-                <i class="fas fa-users text-lg"></i>
-                <p class="my-auto">12</p>
-              </div>
-            </td>
-            <td>
-              <button class="edit py-2 px-4 whitespace-nowrap">Edit Product</button>
-            </td>
-          </tr>
         </table>
       </div>
 
     </div>
   </div>
+
+  <script type="module" src="./js/index.js"></script>
 </body>
 
 </html>

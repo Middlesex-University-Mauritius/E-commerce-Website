@@ -15,6 +15,11 @@ echo <<<DEV
     <i class="my-auto text-center min-w-[18px] text-left fas fa-home"></i>
     <p>Main Page</p>
   </a>
+
+  <a href="/web/admin/logout" class="text-left text-gray-200 px-4 py-2 rounded-lg hover:text-white flex space-x-3">
+    <i class="my-auto text-center min-w-[18px] text-left fas fa-sign-out-alt"></i>
+    <p>Log out</p>
+  </a>
 </div>
 DEV;
 echo "<div class='space-y-2 flex flex-col text-left'>";

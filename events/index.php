@@ -43,14 +43,14 @@ head();
       // Render the events on the page in shrinked mode
       response.data.map((row) => {
         const {
-          id,
+          _id: { $oid },
           title,
           description,
           date,
           time
         } = row;
 
-        const event = new Event(SHRINKED, id, title, description, date, time);
+        const event = new Event(SHRINKED, $oid, title, description, date, time);
         event.render(events);
       })
     }

@@ -1,3 +1,13 @@
+<?php
+  session_start();
+
+  $authenticated = isset($_SESSION["admin-authenticated"]);
+
+  if ($authenticated) {
+    header("Location: /web/admin/dashboard/customers/customers.php");
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,6 +32,10 @@
     if ($username !== "admin" || $password !== "password") {
       $ERROR = true;
     } else {
+      session_start();
+
+      $_SESSION["admin-authenticated"] = true;
+
       header("Location: /web/admin/dashboard/customers/customers.php");
       exit;
     }
@@ -55,7 +69,10 @@
         <input id="admin-submit" class="primary py-3 mt-4 w-full cursor-pointer" type="submit" name="submit" value="Submit">
       </div>
 
-      <p class="p-5 bg-gray-50 border-t text-gray-600">For development purposes, use <span class="text-green-600">admin</span> and <span class="text-green-600">password</span> as credentials</p>
+      <div class="p-5 bg-gray-50 border-t">
+        <p class="text-gray-600">For development purposes, use <span class="text-green-600">admin</span> and <span class="text-green-600">password</span> as credentials</p>
+        <a href="/web/home" class="text-gray-600 text-blue-700 block mt-3">Go back to main page</a>
+      </div>
     </form>
 
     <a href="/web/home" class="block transition ease-in-out delay-50 py-3 px-4 mt-4 text-center rounded text-gray-600 hover:text-blue-600">Go back to main website</a>

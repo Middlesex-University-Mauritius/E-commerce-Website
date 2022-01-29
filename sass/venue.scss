@@ -34,6 +34,11 @@
           background-color: #0f1d30;
         }
 
+        // seat reserved by current user
+        &.reserved {
+          background-color: #19af32;
+        }
+
         i {
           color: white;
         }

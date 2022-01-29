@@ -19,19 +19,39 @@ export class Venue {
   subtotal = 0;
   disabled = false;
   ratio = 1;
+  prices = {};
+  seats = {};
 
   // Can be initialized with a ratio and mouse events disabled
   // Ratio is the actual size of the preview. eg. 1 is full size, 2 is half the size
-  constructor(parent, ratio = 1, disabled = false) {
+  constructor(parent, prices, ratio = 1, disabled = false) {
     this.container.className = "venue-container";
     this.container.id = "venue-container"
     this.parent = parent;
     this.ratio = ratio;
     this.disabled = disabled;
+    this.prices = prices;
   }
 
   render() {
     this.parent.append(this.container);
+  }
+
+  // Compare with database to check if seat is already booked
+  getAvailability(data, local=false) {
+    data.forEach((seat) => {
+      const id = `${seat.type.toUpperCase()}-R${seat.row}C${seat.col}`;
+
+      this.seats[id] = {
+        ...seat,
+        disabled: true,
+        local
+      };
+    });
+  }
+
+  getSeats() {
+    return this.seats;
   }
 
   // Get all tickets selection
@@ -61,7 +81,6 @@ export class Section {
 
   SEAT_SIZE = 50;
   SEAT_SPACING = 23;
-  seats = {};
   seatsContent = document.getElementById("tabs-content-seats");
   venue = null;
 
@@ -93,35 +112,18 @@ export class Section {
     parent.append(this.section);
   }
 
-  getSeats() {
-    return this.seats;
-  }
-
   // Get price for section type
   getPrice() {
     switch (this.type) {
       case "vip":
-        return 900;
+        return Number(this.venue.prices.vip);
       case "premium":
-        return 700;
+        return Number(this.venue.prices.premium);
       case "regular":
-        return 300;
+        return Number(this.venue.prices.regular);
       default:
         return 0;
     }
-  }
-
-  // Compare with database to check if seat is already booked
-  getAvailability(data, local=false) {
-    data.forEach((seat) => {
-      const id = `${seat.type.toUpperCase()}-R${seat.row}C${seat.col}`;
-
-      this.seats[id] = {
-        ...seat,
-        disabled: seat.customer ? true : false,
-        local
-      };
-    });
   }
 
   // Update sidebar when new seat is clicked
@@ -218,14 +220,14 @@ export class Section {
         const id = `${this.type.toUpperCase()}-R${y}C${x}`;
 
         // If the seat hasn't already been booked by a person, make it disabled
-        if (!this.seats[id]) {
-          this.seats[id] = {
+        if (!this.venue.seats[id]) {
+          this.venue.seats[id] = {
             row: y,
             col: x,
             type: this.type,
             price: this.getPrice(),
+            disabled: false,
             customer: null,
-            disabled: false
           }
         }
 
@@ -246,21 +248,28 @@ export class Section {
 
         parent.append(circle);
 
+        if (this.venue.seats[id].customer && this.venue.seats[id].customer._id.$oid === "61f4fabeba0e2e3f8f2f7348") {
+          const icon = document.createElement("i");
+          icon.className = "fas fa-check";
+          circle.classList.add("reserved");
+          circle.append(icon);
+        }
+
         // If Seat has been added to cart, add a check to the seat and update sidebar
-        if (this.seats[id].local) {
+        if (this.venue.seats[id].local) {
           this.setSeat(circle, id, x, y);
           this.updateSidebar();
         }
 
         // Seat clicked
-        if (this.seats[id] && this.seats[id].customer) {
+        if (this.venue.seats[id] && this.venue.seats[id].customer) {
           circle.classList.add("active");
         }
 
         // If mouse events enabled, handle selection when seat is clicked
         if (!this.venue.disabled) {
           circle.addEventListener("click", () => {
-            if (this.seats[id] && this.seats[id].disabled) {
+            if (this.venue.seats[id] && this.venue.seats[id].disabled) {
               return;
             }
 

@@ -2,7 +2,7 @@
 
 <?php
 
-function links($authenticated) {
+function links($authenticated, $id) {
   if ($authenticated === true) {
     echo <<<DEV
       <li>
@@ -21,7 +21,10 @@ function links($authenticated) {
         <div id="dropdownDivider" class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
           <ul class="py-1" aria-labelledby="dropdownDividerButton">
             <li>
-              <a href="/web/profile" class="block w-full text-left py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</a>
+              <a href="/web/profile?id=$id" class="block w-full text-left py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</a>
+            </li>
+            <li>
+              <a href="/web/admin/signin" class="block w-full text-left py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
             </li>
             <li>
               <a href="/web/profile" class="block w-full text-left py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Orders</a>
@@ -67,6 +70,9 @@ function links($authenticated) {
             <li>
               <a href="/web/register" class="block w-full text-left py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Register</a>
             </li>
+            <li>
+              <a href="/web/admin/signin" class="block w-full text-left py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+            </li>
           </ul>
         </div>
       </li>
@@ -103,9 +109,19 @@ function navbar()
 
   session_start();
 
-  $authenticated = isset($_SESSION["authenticated"]);
-  
-  echo links($authenticated);
+
+  if (isset($_SESSION["user"])) {
+    $user = json_decode($_SESSION["user"]);
+
+    if (isset($user) && $user->authenticated) {
+      echo links(true, $user->id);
+    } else {
+      echo links(false, null);
+    }
+  } else {
+    echo links(false, null);
+  }
+
 
   echo <<<DEV
     </ul>

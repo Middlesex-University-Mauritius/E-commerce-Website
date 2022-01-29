@@ -33,15 +33,18 @@ $payload = array();
 
 if ($insertResult->getInsertedCount() == 1) {
   session_start();
-  $_SESSION["authenticated"] = true;
+  $_SESSION["user"] = json_encode(array(
+    "authenticated" => true,
+    "id" => (string)$insertResult->getInsertedId()
+  ));
   $payload = array(
     'success' => true,
     'message' => 'customer added',
-    'user' => $insertResult->getInsertedId()
+    'user' => (string)$insertResult->getInsertedId()
   );
 } else {
   session_start();
-  $_SESSION["authenticated"] = false;
+  $_SESSION["user"] = null;
   $payload = array(
     'success' => false,
     'message' => 'customer not added',

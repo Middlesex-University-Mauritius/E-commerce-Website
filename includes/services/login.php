@@ -25,10 +25,13 @@ if ($customer) {
 
   if ($authenticated) {
     session_start();
-    $_SESSION["authenticated"] = true;
+    $_SESSION["user"] = json_encode(array(
+      "authenticated" => true,
+      "id" => (string)$customer->_id
+    ));
     $payload = array(
       "authenticated" => true,
-      "user" => $customer->_id,
+      "user" => (string)$customer->_id,
       "message" => "user logged in successfully"
     );
   } else {

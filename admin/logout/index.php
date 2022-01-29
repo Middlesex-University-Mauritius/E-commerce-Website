@@ -7,10 +7,10 @@
   <title>Document</title>
 </head>
 <body>
-  <script type="module" src="./js/index.js"></script>
   <?php
     session_start();
-    unset($_SESSION["user"])
+    unset($_SESSION["admin-authenticated"]);
+    header("Location: /web/admin/signin");
   ?>
 </body>
 </html>

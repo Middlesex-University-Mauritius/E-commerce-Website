@@ -66,12 +66,15 @@ head();
               <div class="space-y-3 text-gray-600">
                 <div class="flex justify-between">
                   <p>Subtotal</p>
-                  <p>Rs 7,200</p>
+                  <div class="flex space-x-1">
+                    <span>$</span>
+                    <p id="subtotal">0</p>
+                  </div>
                 </div>
 
                 <div class="flex justify-between">
                   <p>VAT</p>
-                  <p>25%</p>
+                  <p>15%</p>
                 </div>
               </div>
             </div>
@@ -79,10 +82,16 @@ head();
             <!-- Finance stuff -->
             <div class="flex justify-between border-t py-4">
               <p class="text-xl">Total</p>
-              <p class="text-xl">Rs 9,000</p>
+              <div class="flex space-x-1">
+                <span class="text-xl">$</span>
+                <p id="total" class="text-xl">0</p>
+              </div>
             </div>
 
-            <button class="primary py-3 mt-4 w-full">Place order</button>
+            <button id="place-order" class="primary py-3 mt-4 w-full flex justify-center space-x-2">
+              <div id="place-order-loader"></div>
+              <p class="text-center">Place order</p>
+            </button>
           </div>
         </div>
       </div>
