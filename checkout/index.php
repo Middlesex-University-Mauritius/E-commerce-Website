@@ -36,7 +36,7 @@ head();
             <div class="card">
               <div>
                 <p class="text-gray-700">Street Address</p>
-                <input class="my-2 w-full" type="text" id="street-address" name="street-address">
+                <input class="my-2 w-full" type="text" id="streetAddress" name="streetAddress">
               </div>
 
               <div class="grid grid-cols-3 gap-4">
@@ -46,11 +46,11 @@ head();
                 </div>
                 <div>
                   <p class="text-gray-700">Zip code</p>
-                  <input class="my-2 w-full" type="text" id="zip-code" name="zip-code">
+                  <input class="my-2 w-full" type="text" id="zipCode" name="zipCode">
                 </div>
                 <div>
                   <p class="text-gray-700">House Number</p>
-                  <input class="my-2 w-full" type="text" id="house-number" name="house-number">
+                  <input class="my-2 w-full" type="text" id="houseNumber" name="houseNumber">
                 </div>
               </div>
             </div>

@@ -4,14 +4,7 @@
  */
 
 import Message from "../view/message.view.js";
-
-// Clear error messages
-const reset = function(target) {
-  const lastElement = target.parentNode.lastElementChild;
-  target.classList.remove("error");
-  if (lastElement.className === "error")
-    target.parentNode.removeChild(lastElement);
-}
+import { resetField } from "./resetField.js";
 
 // Validate inputs
 export const validate = (target) => {
@@ -20,7 +13,7 @@ export const validate = (target) => {
   let message = null;
 
   if (value.length <= 0)
-    return reset(target);
+    return resetField(target);
 
   if (id === "email") {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -59,7 +52,7 @@ export const validate = (target) => {
 
     return false
   } else {
-    reset(target);
+    resetField(target);
   }
   return true
 }

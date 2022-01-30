@@ -16,13 +16,15 @@ $data = json_decode($request_body, true);
 $eventId = $data["eventId"] ?? null;
 $seats = $data["seats"] ?? null;
 $subtotal = $data["subtotal"] ?? null;
+$address = $data["address"] ?? null;
 $user = json_decode($_SESSION["user"]);
 
 $dataArray = [
   "customer_id" => new MongoDB\BSON\ObjectID($user->id),
   "event_id" => new MongoDB\BSON\ObjectID($eventId),
   "seats" => $seats,
-  "subtotal" => $subtotal
+  "subtotal" => $subtotal,
+  "address" => $address
 ];
 
 $payload = array();
@@ -37,7 +39,7 @@ if ($insertResult->getInsertedCount() == 1) {
 } else {
   $payload = array(
     "success" => false,
-    "booking_id" => false
+    "booking_id" => null
   );
 }
 

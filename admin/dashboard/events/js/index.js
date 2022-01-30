@@ -1,4 +1,4 @@
-import { Event } from "../../../includes/view/event.js";
+import { Event } from "../../../includes/view/event.view.js";
 
 const parent = document.getElementById("event-data");
 
