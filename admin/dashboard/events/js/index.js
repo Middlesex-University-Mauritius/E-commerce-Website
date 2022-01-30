@@ -6,7 +6,6 @@ window.onload = () => {
   axios
     .get("/web/admin/includes/services/events.php")
     .then((response) => {
-      console.log(response.data)
       const events = response.data;
       events.forEach((item) => {
 

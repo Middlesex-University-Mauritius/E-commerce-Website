@@ -168,6 +168,8 @@
     Object.values(formInputs).forEach((input) => input.addEventListener("input", () => input.classList.remove("error")));
 
     confirm.addEventListener("click", () => {
+      confirm.disabled = true;
+
       if (tagsNodes.length >= 1) {
         tagsNodes.forEach((tag) => {
           if (tag.innerText) {
@@ -218,10 +220,14 @@
         const { data } = response;
 
         if (data.success) {
+          window.location.href = "/web/admin/dashboard/events/events.php"
         } else {
+          window.location.href = "/web/admin/dashboard/events/events.php"
         }
+        confirm.disabled = false;
 
       }).catch(function(error) {
+        confirm.disabled = false;
       })
 
     })

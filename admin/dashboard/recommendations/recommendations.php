@@ -50,23 +50,23 @@
     import {
       Event
     } from "/web/includes/js/view/event.view.js"
-    const events = document.getElementById("recommended-events");
+    const parent = document.getElementById("recommended-events");
 
     window.onload = async function() {
-      const response = await axios.get("../../../includes/services/events.php");
+      const response = await axios.get("/web/admin/includes/services/events.php");
       if (!response.data) return;
 
       response.data.map((row) => {
         const {
-          id,
+          _id: { $oid },
           title,
           description,
           date,
           time
         } = row;
 
-        const event = new Event(true, id, title, description, date, time);
-        event.render(events);
+        const event = new Event(true, $oid, title, description, date, time);
+        event.render(parent);
       })
     }
   </script>

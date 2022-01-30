@@ -2,13 +2,17 @@
 
 require '../../vendor/autoload.php';
 
+$category = $_GET["category"] ?? null;
+
 $mongoClient = (new MongoDB\Client());
 
 $db = $mongoClient->ecommerce;
 
 $collection = $db->events;
 
-$events = $collection->find([]);
+$events = $collection->find([
+  'category' => $category
+]);
 
 $json_str = '[';
 
