@@ -1,24 +1,21 @@
 class Customer {
+  id = null;
   date = null;
   name = null;
-  eventId = null;
-  category = null;
-  tickets = null;
-  charge = null;
 
-  constructor(date, name, eventId, category, tickets, charge) {
+  constructor(id, date, name) {
+    this.id = id;
     this.date = date;
     this.name = name;
-    this.eventId = eventId;
-    this.category = category;
-    this.tickets = tickets;
-    this.charge = charge;
   }
 
   render(parent) {
 
     const tr = document.createElement("tr");
+
+    const idData = document.createElement("td");
     const dateData = document.createElement("td");
+
     const customerData = document.createElement("td");
     const customerContainer = document.createElement("div")
     customerContainer.className = "flex space-x-3";
@@ -30,19 +27,13 @@ class Customer {
     customerName.innerText = this.name;
     customerData.append(customerContainer);
 
-    const eventData = document.createElement("td");
-    eventData.innerText = this.eventId;
+    const idData = document.createElement("td");
+    idData.innerText = this.id;
 
-    const categoryData = document.createElement("td");
-    categoryData.innerText = this.category;
+    const dateData = document.createElement("td");
+    dateData.innerText = this.date;
 
-    const ticketCountData = document.createElement("td");
-    ticketCountData.innerText = this.tickets;
-
-    const chargeData = document.createElement("td");
-    chargeData.innerText = this.charge;
-
-    tr.append(dateData, customerData, eventData, categoryData, ticketCountData, chargeData);
+    tr.append(idData, dateData, customerData);
     parent.append(tr);
   }
 
