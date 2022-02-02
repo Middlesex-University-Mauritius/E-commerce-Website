@@ -4,8 +4,17 @@
 
 <?php
 
-function head()
+function head($verifyUser=false)
 {
+  if ($verifyUser) {
+    $user = $_SESSION["user"] ?? null;
+
+    if (!$user && !$user->authenticated) {
+      header("Location: /web/home");
+      exit();
+    }
+  }
+
   echo <<<DEV
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

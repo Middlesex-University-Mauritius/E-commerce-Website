@@ -10,7 +10,13 @@ let currentEvent = null;
 let venue = null;
 
 window.onload = async () => {
-  const response = await axios.get("../includes/services/event.php", { params: { id: params.id } })
+  const response = await axios.get(
+    "../includes/controllers/eventById.controller.php",
+    {
+      params: { id: params.id },
+    }
+  );
+
   const { data } = response;
 
   currentEvent = data.length <= 0 ? null : data[0];
@@ -21,7 +27,13 @@ window.onload = async () => {
 
   let seats = [];
 
-  data.map((d) => Object.values(d.bookings.seats).map((seat) => seats.push({...seat, customer: d.bookings.customer})))
+  data.map((d) => {
+    if (Object.keys(d.bookings).length === 0) return;
+
+    Object.values(d.bookings.seats).map((seat) =>
+      seats.push({ ...seat, customer: d.bookings.customer })
+    );
+  });
 
   venue.getAvailability(seats);
 
@@ -50,7 +62,7 @@ window.onload = async () => {
   vip.populateSeats();
   premium.populateSeats();
   regular.populateSeats();
-}
+};
 
 const cartButton = document.getElementById("cart-button");
 
@@ -64,10 +76,10 @@ cartButton.addEventListener("click", () => {
     event_id: currentEvent._id.$oid,
     title: currentEvent.title,
     seats: venue.getSelections(),
-    subtotal: venue.getSubtotal()
+    subtotal: venue.getSubtotal(),
   };
-  
+
   storage.set(cart);
 
-  window.location.href = "/web/checkout"
-})
+  window.location.href = "/web/checkout";
+});

@@ -1,5 +1,8 @@
 <?php
-require '../../vendor/autoload.php';
+
+session_start();
+
+require_once '../services/authentication.service.php';
 
 $request_body = file_get_contents('php://input');
 $data = json_decode($request_body, true);
@@ -12,12 +15,6 @@ $phone = $data["phone"] ?? null;
 $password = $data["password"] ?? null;
 $confirmPassword = $data["confirmPassword"] ?? null;
 
-$mongoClient = (new MongoDB\Client());
-
-$db = $mongoClient->ecommerce;
-
-$collection = $db->customers;
-
 $dataArray = [
   "email" => $email,
   "firstName" => $firstName,
@@ -27,12 +24,12 @@ $dataArray = [
   "password" => $password
 ];
 
-$insertResult = $collection->insertOne($dataArray);
+$customerService = new Authentication();
+$success = $customerService->register($dataArray);
 
 $payload = array();
 
-if ($insertResult->getInsertedCount() == 1) {
-  session_start();
+if ($success) {
   $_SESSION["user"] = json_encode(array(
     "authenticated" => true,
     "id" => (string)$insertResult->getInsertedId()
@@ -43,7 +40,6 @@ if ($insertResult->getInsertedCount() == 1) {
     'user' => (string)$insertResult->getInsertedId()
   );
 } else {
-  session_start();
   $_SESSION["user"] = null;
   $payload = array(
     'success' => false,

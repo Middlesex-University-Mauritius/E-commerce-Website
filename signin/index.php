@@ -4,7 +4,8 @@
 <head>
   <?php
   include_once "../includes/head.php";
-  head();
+  $validateUser = false;
+  head($validateUser);
   ?>
 </head>
 

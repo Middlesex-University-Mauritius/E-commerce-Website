@@ -17,21 +17,21 @@ const district = document.getElementById("district");
 const zipCode = document.getElementById("zipCode");
 const houseNumber = document.getElementById("houseNumber");
 
-let errors = false; 
+let errors = false;
 
 const customerInformation = {
   streetAddress,
   district,
   zipCode,
-  houseNumber
-}
+  houseNumber,
+};
 
 const address = {
-  "streetAddress": null,
-  "district": null,
-  "zipCode": null,
-  "houseNumber": null
-}
+  streetAddress: null,
+  district: null,
+  zipCode: null,
+  houseNumber: null,
+};
 
 const cart = document.getElementById("cart");
 
@@ -44,7 +44,7 @@ if (Object.keys(items).length == 0) {
   placeOrder.disabled = true;
 } else {
   // Update cart count when there are items in cart
-  cartCount.innerText = `(${Object.keys(items).length})`
+  cartCount.innerText = `(${Object.keys(items).length})`;
 
   let total = 0;
 
@@ -60,29 +60,27 @@ if (Object.keys(items).length == 0) {
   });
 
   subtotalElement.innerText = total;
-  totalElement.innerText = total + (0.15 * total);
+  totalElement.innerText = total + 0.15 * total;
 }
 
 placeOrder.addEventListener("click", () => {
-  Object
-    .values(customerInformation)
-    .forEach((field) => {
-        if (field.value <= 0) {
-          errors = true;
+  Object.values(customerInformation).forEach((field) => {
+    if (field.value <= 0) {
+      errors = true;
 
-          field.classList.add("error");
-          const message = "This field cannot be empty"
+      field.classList.add("error");
+      const message = "This field cannot be empty";
 
-          const messageView = new Message(message)
+      const messageView = new Message(message);
 
-          const parent = field.parentNode
+      const parent = field.parentNode;
 
-          if (parent.lastElementChild.className !== "error")
-            messageView.render(parent, "error");
-        } else {
-          errors = false;
-        }
-  })
+      if (parent.lastElementChild.className !== "error")
+        messageView.render(parent, "error");
+    } else {
+      errors = false;
+    }
+  });
 
   if (errors) return;
 
@@ -95,38 +93,39 @@ placeOrder.addEventListener("click", () => {
 
   Object.keys(items).map((eventId) => {
     const { event_id, seats, subtotal, title } = items[eventId];
-    axios.post("../includes/services/addBooking.php", {
-      eventId,
-      seats,
-      subtotal,
-      address
-    }).then((response) => {
-      const { data } = response;
-      console.log(data);
-      loader.unset();
-      placeOrder.disabled = false;
-      storage.delete();
-
-      if (data.success && data.booking_id) {
-        window.location.href = `/web/messages/checkout.php?id=${data.booking_id}`
-      } else {
-        window.location.href = "/web/home"
-      }
-    }).catch((error) => {
-      if (error) {
+    axios
+      .post("../includes/controllers/addBooking.controller.php", {
+        eventId,
+        seats,
+        subtotal,
+        address,
+      })
+      .then((response) => {
+        const { data } = response;
+        console.log(data);
         loader.unset();
         placeOrder.disabled = false;
-      }
-    }) 
-  })
-})
+        storage.delete();
 
-Object
-  .values(customerInformation)
-  .forEach((field) => {
-    field.addEventListener("input", (event) => {
-      resetField(event.target)
-      errors = false;
-      address[event.target.id] = event.target.value
-    })
-})
+        if (data.success && data.booking_id) {
+          window.location.href = `/web/messages/checkout.php?id=${data.booking_id}`;
+        } else {
+          window.location.href = "/web/home";
+        }
+      })
+      .catch((error) => {
+        if (error) {
+          loader.unset();
+          placeOrder.disabled = false;
+        }
+      });
+  });
+});
+
+Object.values(customerInformation).forEach((field) => {
+  field.addEventListener("input", (event) => {
+    resetField(event.target);
+    errors = false;
+    address[event.target.id] = event.target.value;
+  });
+});

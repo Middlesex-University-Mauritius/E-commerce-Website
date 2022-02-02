@@ -6,24 +6,23 @@ const email = document.getElementById("email");
 const age = document.getElementById("age");
 const phone = document.getElementById("phone");
 
-window.onload = function() {
-  axios.get("/web/includes/services/customer/profile.php", {
-    params: {
-      customer_id: params.id
-    }
-  }).then((response) => {
-    console.log(response.data)
+window.onload = function () {
+  axios
+    .get("/web/includes/controllers/getProfile.controller.php", {
+      params: {
+        customer_id: params.id,
+      },
+    })
+    .then((response) => {
+      const { success, user } = response.data;
 
-    const { success, user } = response.data;
-
-    if (success) {
-      fullName.innerText = `${user.firstName} ${user.lastName}`;
-      email.innerText = user.email;
-      age.innerText = user.age;
-      phone.innerText = user.phone;
-    } else {
-      window.location.href = "/web/signin"
-    }
-
-  })
-}
+      if (success) {
+        fullName.innerText = `${user.firstName} ${user.lastName}`;
+        email.innerText = user.email;
+        age.innerText = user.age;
+        phone.innerText = user.phone;
+      } else {
+        window.location.href = "/web/signin";
+      }
+    });
+};

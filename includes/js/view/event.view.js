@@ -22,32 +22,37 @@ export class Event {
 
   // Cards are displayed in shrinked mode by default
   render(parent) {
-
     const card = document.createElement("div");
     card.className = "events-card bg-white border flex p-4 space-x-4 rounded";
-    if (this.shrinked) card.classList.add("shrinked")
+    if (this.shrinked) card.classList.add("shrinked");
 
     const image = document.createElement("img");
-    image.src = "https://generative-placeholders.glitch.me/image?width=1200&height=400&style=cellular-automata&cells=80";
+    image.src =
+      "https://generative-placeholders.glitch.me/image?width=1200&height=400&style=cellular-automata&cells=80";
     if (!this.shrinked) {
-      image.className = "w-40"
+      image.className = "w-40";
     }
     image.classList.add("event-img");
 
     const content = document.createElement("div");
-    content.className = "flex-1 space-y-4 event-content"
+    content.className = "flex-1 space-y-4 event-content";
 
     const title = document.createElement("a");
-    title.className = "text-blue-500 text-md font-medium event-title hover:font-blue-700 hover:underline"
+    title.className =
+      "text-blue-500 text-md font-medium event-title hover:font-blue-700 hover:underline";
     title.innerText = this.title;
-    title.href = "/web/details"
+    title.href = `/web/details?id=${this.id}`;
 
     const description = document.createElement("p");
     description.className = "text-gray-700 event-description";
-    description.innerText = this.description.length >= 120 ? this.description.substring(0, 120) + "..." : this.description;
+    description.innerText =
+      this.description.length >= 120
+        ? this.description.substring(0, 120) + "..."
+        : this.description;
 
     const informationContainer = document.createElement("div");
-    informationContainer.className = "flex space-x-6 event-information-container";
+    informationContainer.className =
+      "flex space-x-6 event-information-container";
 
     const dateContainer = document.createElement("div");
     dateContainer.className = "flex space-x-1 event-date-container";
@@ -59,7 +64,7 @@ export class Event {
     timeContainer.className = "flex space-x-1 event-time-container";
 
     const timeIcon = document.createElement("i");
-    timeIcon.className = "far fa-clock text-xl block"
+    timeIcon.className = "far fa-clock text-xl block";
 
     const date = document.createElement("p");
     date.className = "my-auto text-sm event-date";
@@ -73,22 +78,20 @@ export class Event {
     buttonContainer.className = "my-auto flex-none w-30 event-button-container";
 
     const button = document.createElement("button");
-    button.className = "primary event-button"
+    button.className = "primary event-button";
     const link = document.createElement("a");
     link.className = "block py-2 px-4";
-    link.innerText = "See Tickets"
+    link.innerText = "See Tickets";
     link.href = `/web/reservation?id=${this.id}`;
     button.append(link);
 
-    dateContainer.append(dateIcon, date)
-    timeContainer.append(timeIcon, time)
+    dateContainer.append(dateIcon, date);
+    timeContainer.append(timeIcon, time);
     informationContainer.append(dateContainer, timeContainer);
     buttonContainer.append(button);
-    content.append(title, description, informationContainer)
-    card.append(image, content, buttonContainer)
+    content.append(title, description, informationContainer);
+    card.append(image, content, buttonContainer);
 
     parent.append(card);
-
   }
-
 }

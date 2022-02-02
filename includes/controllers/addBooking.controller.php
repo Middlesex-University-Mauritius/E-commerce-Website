@@ -1,14 +1,8 @@
 <?php
 
-require '../../vendor/autoload.php';
-
 session_start();
 
-$mongoClient = (new MongoDB\Client());
-
-$db = $mongoClient->ecommerce;
-
-$collection = $db->bookings;
+require_once '../services/booking.service.php';
 
 $request_body = file_get_contents('php://input');
 $data = json_decode($request_body, true);
@@ -29,9 +23,11 @@ $dataArray = [
 
 $payload = array();
 
-$insertResult = $collection->insertOne($dataArray);
+$bookingService = new Booking();
 
-if ($insertResult->getInsertedCount() == 1) {
+$success = $bookingService->addBooking($dataArray);
+
+if ($success) {
   $payload = array(
     "success" => true,
     "booking_id" => (string)$insertResult->getInsertedId()
@@ -44,3 +40,5 @@ if ($insertResult->getInsertedCount() == 1) {
 }
 
 echo json_encode($payload);
+
+?>
