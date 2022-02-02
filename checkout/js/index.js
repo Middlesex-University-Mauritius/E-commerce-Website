@@ -44,7 +44,8 @@ if (Object.keys(items).length == 0) {
   placeOrder.disabled = true;
 } else {
   // Update cart count when there are items in cart
-  cartCount.innerText = `(${Object.keys(items).length})`;
+  const count = Object.keys(items).length;
+  cartCount.innerText = `(${count} ${count === 1 ? "event" : "events"})`;
 
   let total = 0;
 
