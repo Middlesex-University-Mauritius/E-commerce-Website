@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 require_once '../services/customer.service.php';
 
 $customerId = $_GET["customer_id"] ?? null;
@@ -16,8 +14,8 @@ $customer = $customerService->getProfile($customerId);
 
 $payload = array();
 
-if (isset($_SESSION["user"]) && json_decode($_SESSION["user"])->authenticated) {
-  if ($customer && json_decode($_SESSION["user"])->id === $customerId) {
+if (isset($_COOKIE["userId"])) {
+  if ($customer && $_COOKIE["userId"] === $customerId) {
     $payload = array(
       "success" => true,
       "user" => $customer

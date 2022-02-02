@@ -74,27 +74,61 @@ table tr:nth-child(even) {
   border-radius: 4px;
 }
 
-input[type=text], input[type=password], input[type=number], input[type=email], input[type=date], input[type=time], input[type=submit], textarea {
-  border: 1px solid #E2E2E2;
+input[type=text],
+input[type=password],
+input[type=number],
+input[type=email],
+input[type=date],
+input[type=time],
+input[type=submit],
+textarea {
+  border: 1px solid #e2e2e2;
   border-radius: 4px;
   padding: 12px 18px;
   font-size: 16px;
   transition: all 0.18s;
   width: 100%;
 }
-input[type=text].primary, input[type=password].primary, input[type=number].primary, input[type=email].primary, input[type=date].primary, input[type=time].primary, input[type=submit].primary, textarea.primary {
+input[type=text].primary,
+input[type=password].primary,
+input[type=number].primary,
+input[type=email].primary,
+input[type=date].primary,
+input[type=time].primary,
+input[type=submit].primary,
+textarea.primary {
   color: white;
-  background-color: #7F90A3;
+  background-color: #7f90a3;
 }
-input[type=text].primary:hover:enabled, input[type=password].primary:hover:enabled, input[type=number].primary:hover:enabled, input[type=email].primary:hover:enabled, input[type=date].primary:hover:enabled, input[type=time].primary:hover:enabled, input[type=submit].primary:hover:enabled, textarea.primary:hover:enabled {
+input[type=text].primary:hover:enabled,
+input[type=password].primary:hover:enabled,
+input[type=number].primary:hover:enabled,
+input[type=email].primary:hover:enabled,
+input[type=date].primary:hover:enabled,
+input[type=time].primary:hover:enabled,
+input[type=submit].primary:hover:enabled,
+textarea.primary:hover:enabled {
   background-color: #879cb3;
 }
-input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, input[type=date]:focus, input[type=time]:focus, input[type=submit]:focus, textarea:focus {
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=number]:focus,
+input[type=email]:focus,
+input[type=date]:focus,
+input[type=time]:focus,
+input[type=submit]:focus,
+textarea:focus {
   outline: none !important;
-  border: 1px solid #9ec3fc;
-  box-shadow: 0 0 4px #719ece;
+  border: 1px solid #f0f9ff;
 }
-input[type=text].error, input[type=password].error, input[type=number].error, input[type=email].error, input[type=date].error, input[type=time].error, input[type=submit].error, textarea.error {
+input[type=text].error,
+input[type=password].error,
+input[type=number].error,
+input[type=email].error,
+input[type=date].error,
+input[type=time].error,
+input[type=submit].error,
+textarea.error {
   border: 1px solid #f02929;
   box-shadow: 0 0 4px #ce7171;
 }
@@ -103,6 +137,11 @@ input[type=checkbox] {
   height: 20px;
   width: 20px;
   vertical-align: text-top;
+}
+
+input[type=file].error {
+  border: 1px solid #f02929;
+  box-shadow: 0 0 4px #ce7171;
 }
 
 button {

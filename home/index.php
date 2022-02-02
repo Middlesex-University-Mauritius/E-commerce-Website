@@ -48,10 +48,11 @@
           title,
           description,
           date,
-          time
+          time,
+          image
         } = row;
 
-        const event = new Event(SHRINKED, $oid, title, description, date, time);
+        const event = new Event(SHRINKED, $oid, title, description, date, time, image);
         event.render(events);
       })
     }

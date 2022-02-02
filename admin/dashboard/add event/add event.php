@@ -9,6 +9,9 @@
   <script src="https://kit.fontawesome.com/f2f51db1ed.js" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js" integrity="sha512-BCMqEPl2dokU3T/EFba7jrfL4FxgY6ryUh4rRC9feZw4yWUslZ3Uf/lPZ5/5UlEjn4prlQTRfIPYQkDrLCZJXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.min.css" />
   <title>Dashboard</title>
 </head>
 
@@ -27,36 +30,64 @@
 
         <div class="flex-1 py-6 px-10">
           <div class='flex space-x-10'>
-            <div class='flex-1'>
-              <p class='text-lg mb-4'>Main Information</p>
-              <div class='card space-y-2'>
-                <div>
-                  <p class='text-gray-700'>Title</p>
-                  <input class='my-2 w-full' type='text' id='title' name='title'>
+            <div class='flex-1 space-y-8'>
+              <!-- Main Information -->
+              <div class='card p-0 space-y-2'>
+                <div class="bg-gray-50 border-b p-5 flex space-x-2">
+                  <p class="font-semibold">Main Information</p>
                 </div>
 
-                <div>
-                  <p class='text-gray-700'>Description</p>
-                  <textarea class='my-2 w-full p-4 h-[200px] resize-none' id='description' name='description'></textarea>
-                </div>
+                <div class="p-5">
+                  <div>
+                    <p class='text-gray-700'>Title</p>
+                    <input class='my-2 w-full' type='text' id='title' name='title'>
+                  </div>
 
-                <div>
-                  <p class='text-gray-700 mb-2 mt-[-8px]'>Date</p>
-                  <input type='date' id='date' name='date'>
-                </div>
+                  <div>
+                    <p class='text-gray-700'>Description</p>
+                    <textarea class='my-2 w-full p-4 h-[200px] resize-none rounded border-gray-300 focus:border-sky-50' id='description' name='description'></textarea>
+                  </div>
 
-                <div>
-                  <p class='text-gray-700 mb-2 mt-5'>Time</p>
-                  <input type='time' id='time' name='time'>
+                  <div>
+                    <p class='text-gray-700 mb-2 mt-[-8px]'>Date</p>
+                    <input type='date' id='date' name='date'>
+                  </div>
+
+                  <div>
+                    <p class='text-gray-700 mb-2 mt-5'>Time</p>
+                    <input type='time' id='time' name='time'>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Image Upload -->
+              <div class='card space-y-2 p-0'>
+                <div class="bg-gray-50 border-b p-5 flex space-x-2">
+                  <p class="font-semibold">Image Upload</p>
+                </div>
+                <div class='p-5'>
+                  <input
+                    class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer white:text-gray-400 focus:outline-none focus:border-transparent white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400"
+                    id="event-image"
+                    type="file"
+                    accept="image/png, image/gif, image/jpeg"
+                  >
+                  <div class="mt-1 text-sm text-gray-500 white:text-gray-300">A profile picture is useful to confirm your are logged into your account</div>
+                  <br>
+
+                  <img hidden id="preview" class="w-full h-60 object-contain" src="/web/images/eacb61df-906b-4376-9d0e-f2b9f2ab01b5/image.jpeg" alt="" />
                 </div>
               </div>
             </div>
 
-            <div class='flex-1'>
-              <p class='text-lg mb-4'>SEO</p>
-              <div class='card space-y-2'>
+            <div class='flex-1 space-y-8'>
+              <!-- SEO -->
+              <div class='card space-y-2 p-0'>
+                <div class="bg-gray-50 border-b p-5 flex space-x-2">
+                  <p class="font-semibold">SEO</p>
+                </div>
 
-                <div class='flex flex-col space-y-2'>
+                <div class='p-5 flex flex-col space-y-2'>
                   <div>
                     <input checked onchange="onCategoryChange(this)" type='checkbox' id='live-music' />
                     <label class='ml-1 select-none cursor-pointer' for='live-music'>Live music</label>
@@ -71,22 +102,27 @@
                     <input onchange="onCategoryChange(this)" type='checkbox' id='arts-and-theater' />
                     <label class='ml-1 select-none cursor-pointer' for='arts-and-theater'>Arts & Theater</label>
                   </div>
-                </div>
 
-                <br>
-                <div>
-                  <p>Tags</p>
-                  <input id="tag" class='my-2 w-full' type='text'>
+                  <br>
+                  <!-- Tags -->
+                  <div>
+                    <p>Tags</p>
+                    <input id="tag" class='my-2 w-full' type='text'>
 
-                  <div id="tags-container" class="flex flex-wrap">
+                    <div id="tags-container" class="flex flex-wrap">
+                    </div>
                   </div>
                 </div>
 
               </div>
 
-              <p class='text-lg mb-4 mt-6'>Pricing</p>
-              <div class="card">
-                <div class="flex flex-col 2xl:flex-row 2xl:space-x-4">
+              <!-- Pricing -->
+              <div class="card p-0">
+                <div class="bg-gray-50 border-b p-5 flex space-x-2">
+                  <p class="font-semibold">Pricing</p>
+                </div>
+
+                <div class="flex flex-col p-5 2xl:flex-row 2xl:space-x-4">
                   <div>
                     <p class='text-gray-700 whitespace-nowrap'>Price (Regular)</p>
                     <input id="regular" class='my-2 w-full' type='number' step="100">
@@ -119,119 +155,7 @@
     </div>
   </div>
 
-  <script>
-    const parent = document.getElementById("body");
-    const tag = document.getElementById("tag");
-    const notification = new Notification(parent);
-    const tagsContainer = document.getElementById("tags-container");
-    let tags = [];
-
-    tag.addEventListener("keydown", (e) => {
-      if (e.key === 'Enter') {
-        const tagInput = document.createElement("div");
-        tagInput.innerText = e.target.value;
-        tagInput.className = "bg-blue-200 rounded-md px-3 py-2 text-sm m-1 first:ml-0 flex cursor-pointer hover:bg-blue-300";
-        tagInput.addEventListener("click", () => {
-          tagInput.remove();
-        })
-        tagsContainer.appendChild(tagInput);
-      }
-    })
-
-    const tagsNodes = tagsContainer.childNodes;
-
-    const checks = ["live-music", "stand-up", "arts-and-theater"]
-    let category = "live-music";
-
-    const formInputs = {
-      title: document.getElementById("title"),
-      description: document.getElementById("description"),
-      date: document.getElementById("date"),
-      time: document.getElementById("time"),
-      regular: document.getElementById("regular"),
-      premium: document.getElementById("premium"),
-      vip: document.getElementById("vip"),
-    }
-
-    window.onCategoryChange = function(e) {
-      checks.forEach((check) => {
-        if (check !== e.id) {
-          document.getElementById(check).checked = false
-        } else {
-          category = e.id
-        }
-      })
-    }
-
-    const confirm = document.getElementById("confirm");
-
-    Object.values(formInputs).forEach((input) => input.addEventListener("input", () => input.classList.remove("error")));
-
-    confirm.addEventListener("click", () => {
-      confirm.disabled = true;
-
-      if (tagsNodes.length >= 1) {
-        tagsNodes.forEach((tag) => {
-          if (tag.innerText) {
-            tags.push(tag.innerText)
-          }
-        });
-      }
-
-      let validated = true;
-
-      Object.values(formInputs).forEach((input) => {
-        if (input.value.length === 0) {
-          validated = false;
-          input.classList.add("error");
-        }
-      });
-
-      if (!validated) return;
-
-      console.log({
-        title: formInputs.title.value,
-        description: formInputs.description.value,
-        date: formInputs.date.value,
-        time: formInputs.time.value,
-        category: category,
-        tags,
-        prices: {
-          regular: regular.value,
-          premium: premium.value,
-          vip: vip.value,
-        }
-
-      })
-
-      axios.post("/web/admin/includes/services/addEvent.php", {
-        title: formInputs.title.value,
-        description: formInputs.description.value,
-        date: formInputs.date.value,
-        time: formInputs.time.value,
-        category: category,
-        tags,
-        prices: {
-          regular: regular.value,
-          premium: premium.value,
-          vip: vip.value,
-        }
-      }).then((response) => {
-        const { data } = response;
-
-        if (data.success) {
-          window.location.href = "/web/admin/dashboard/events/events.php"
-        } else {
-          window.location.href = "/web/admin/dashboard/events/events.php"
-        }
-        confirm.disabled = false;
-
-      }).catch(function(error) {
-        confirm.disabled = false;
-      })
-
-    })
-  </script>
+  <script type="module" src="./js/index.js"></script>
 </body>
 
 </html>

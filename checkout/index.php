@@ -67,7 +67,7 @@ head();
                 <div class="flex justify-between">
                   <p>Subtotal</p>
                   <div class="flex space-x-1">
-                    <span>$</span>
+                    <span>Rs</span>
                     <p id="subtotal">0</p>
                   </div>
                 </div>
@@ -83,7 +83,7 @@ head();
             <div class="flex justify-between border-t py-4">
               <p class="text-xl">Total</p>
               <div class="flex space-x-1">
-                <span class="text-xl">$</span>
+                <span class="text-xl">Rs</span>
                 <p id="total" class="text-xl">0</p>
               </div>
             </div>

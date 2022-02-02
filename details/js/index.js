@@ -11,6 +11,8 @@ const title = document.getElementById("title");
 const description = document.getElementById("description");
 const time = document.getElementById("time");
 const date = document.getElementById("date");
+const image = document.getElementById("image");
+const link = document.getElementById("link");
 
 const prices = {
   vip: 0,
@@ -62,8 +64,10 @@ window.onload = async () => {
 
   const event = data[0];
 
+  image.src = event.image;
   title.innerText = event.title;
   description.innerText = event.description;
   date.innerText = event.date;
   time.innerText = event.time;
+  link.href = `/web/reservation/?id=${event._id.$oid}`;
 };

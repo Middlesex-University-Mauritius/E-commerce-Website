@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 require_once '../services/authentication.service.php';
 
 $request_body = file_get_contents('php://input');
@@ -20,10 +18,7 @@ if ($customer) {
   $authenticated = $customer->password === $password;
 
   if ($authenticated) {
-    $_SESSION["user"] = json_encode(array(
-      "authenticated" => true,
-      "id" => (string)$customer->_id
-    ));
+    setcookie('userId', (string)$customer->_id, time()+99999999999, '/');
     $payload = array(
       "authenticated" => true,
       "user" => (string)$customer->_id,

@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 require_once '../services/booking.service.php';
 
 $request_body = file_get_contents('php://input');
@@ -11,10 +9,15 @@ $eventId = $data["eventId"] ?? null;
 $seats = $data["seats"] ?? null;
 $subtotal = $data["subtotal"] ?? null;
 $address = $data["address"] ?? null;
-$user = json_decode($_SESSION["user"]);
+
+$userId = $_COOKIE['userId'];
+
+if (!$userId) {
+  return null;
+}
 
 $dataArray = [
-  "customer_id" => new MongoDB\BSON\ObjectID($user->id),
+  "customer_id" => new MongoDB\BSON\ObjectID($userId),
   "event_id" => new MongoDB\BSON\ObjectID($eventId),
   "seats" => $seats,
   "subtotal" => $subtotal,

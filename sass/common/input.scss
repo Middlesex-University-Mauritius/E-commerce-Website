@@ -1,8 +1,15 @@
 @import "../palette.scss";
 
 // Default styling for common field inputs
-input[type="text"], input[type="password"], input[type="number"], input[type="email"], input[type="date"], input[type="time"], input[type="submit"], textarea {
-  border: 1px solid #E2E2E2;
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="date"],
+input[type="time"],
+input[type="submit"],
+textarea {
+  border: 1px solid #e2e2e2;
   border-radius: 4px;
   padding: 12px 18px;
   font-size: 16px;
@@ -12,7 +19,7 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
   // Deault input background color to match overall theme of the website
   &.primary {
     color: white;
-    background-color: #7F90A3;
+    background-color: #7f90a3;
     &:hover:enabled {
       background-color: #879cb3;
     }
@@ -20,8 +27,7 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
 
   &:focus {
     outline: none !important;
-    border: 1px solid rgb(158, 195, 252);
-    box-shadow: 0 0 4px #719ece; // Show shadow on input focus
+    border: 1px solid rgb(240 249 255);
   }
 
   &.error {
@@ -35,4 +41,11 @@ input[type="checkbox"] {
   height: 20px;
   width: 20px;
   vertical-align: text-top;
+}
+
+input[type="file"] {
+  &.error {
+    border: 1px solid #f02929;
+    box-shadow: 0 0 4px #ce7171;
+  }
 }

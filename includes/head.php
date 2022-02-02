@@ -7,9 +7,9 @@
 function head($verifyUser=false)
 {
   if ($verifyUser) {
-    $user = $_SESSION["user"] ?? null;
+    $user = $_COOKIE["userId"] ?? null;
 
-    if (!$user && !$user->authenticated) {
+    if (!$user) {
       header("Location: /web/home");
       exit();
     }

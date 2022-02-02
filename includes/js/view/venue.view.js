@@ -3,19 +3,21 @@
  * description: Render venue and seat selections
  */
 
+import { getCookie } from "../scripts/cookie.js";
+
 // Message when sidebar is empty
 const emptyMessage = (content) => {
   const message = document.createElement("p");
-  message.innerText = "No tickets. click on seat to reserve."
+  message.innerText = "No tickets. click on seat to reserve.";
   message.className = "text-center text-gray-700 py-10 select-none";
   content.append(message);
-}
+};
 
 // Venue main class
 export class Venue {
   container = document.createElement("div");
   parent = null;
-  selections = {}
+  selections = {};
   subtotal = 0;
   disabled = false;
   ratio = 1;
@@ -26,7 +28,7 @@ export class Venue {
   // Ratio is the actual size of the preview. eg. 1 is full size, 2 is half the size
   constructor(parent, prices, ratio = 1, disabled = false) {
     this.container.className = "venue-container";
-    this.container.id = "venue-container"
+    this.container.id = "venue-container";
     this.parent = parent;
     this.ratio = ratio;
     this.disabled = disabled;
@@ -38,14 +40,14 @@ export class Venue {
   }
 
   // Compare with database to check if seat is already booked
-  getAvailability(data, local=false) {
+  getAvailability(data, local = false) {
     data.forEach((seat) => {
       const id = `${seat.type.toUpperCase()}-R${seat.row}C${seat.col}`;
 
       this.seats[id] = {
         ...seat,
         disabled: true,
-        local
+        local,
       };
     });
   }
@@ -55,17 +57,17 @@ export class Venue {
   }
 
   // Get all tickets selection
-  getSelections = (id) => id ? this.selections[id] : this.selections;
+  getSelections = (id) => (id ? this.selections[id] : this.selections);
 
   // delete a ticket
-  deleteSelection = (id) => delete this.selections[id]
+  deleteSelection = (id) => delete this.selections[id];
 
   // set a ticket
-  setSelections = (id, data) => this.selections[id] = data;
+  setSelections = (id, data) => (this.selections[id] = data);
 
   // Getter and setter methods for subtotal
-  getSubtotal = () => this.subtotal
-  setSubtotal = (total) => this.subtotal = this.subtotal + total
+  getSubtotal = () => this.subtotal;
+  setSubtotal = (total) => (this.subtotal = this.subtotal + total);
 }
 
 /**
@@ -95,7 +97,7 @@ export class Section {
     this.venue = venue;
   }
 
-  render(parent, label=null) {
+  render(parent, label = null) {
     // Render section with a default height and width
     this.section.style.height = `${this.height}px`;
     this.section.style.width = `${this.width}px`;
@@ -106,7 +108,9 @@ export class Section {
       this.section.style.background = "#727272";
       const text = document.createElement("p");
       text.innerText = label;
-      text.className = `text-center text-4xl mt-[${(this.height / 2) - 22}px] text-white`
+      text.className = `text-center text-4xl mt-[${
+        this.height / 2 - 22
+      }px] text-white`;
       this.section.append(text);
     }
     parent.append(this.section);
@@ -129,7 +133,7 @@ export class Section {
   // Update sidebar when new seat is clicked
   updateSidebar() {
     const content = document.getElementById("content");
-    const subtotalComponent = document.getElementById("subtotal")
+    const subtotalComponent = document.getElementById("subtotal");
     content.innerHTML = null;
 
     // Display empty message when seats are not selected
@@ -140,7 +144,7 @@ export class Section {
         const s = this.venue.getSelections(id);
 
         const card = document.createElement("div");
-        card.className = "tickets-content-card"
+        card.className = "tickets-content-card";
 
         const titleContainer = document.createElement("div");
         titleContainer.className = "flex justify-between";
@@ -152,13 +156,14 @@ export class Section {
         const seatNo = document.createElement("p");
         seatNo.className = "seat-no";
         seatNo.innerText = `${s.type.toUpperCase()}-R${s.row}C${s.col}`;
-        header.append(title, seatNo)
+        header.append(title, seatNo);
 
         const deleteBtn = document.createElement("p");
-        deleteBtn.className = "my-auto underline cursor-pointer text-red-700 hover:text-red-600 select-none";
+        deleteBtn.className =
+          "my-auto underline cursor-pointer text-red-700 hover:text-red-600 select-none";
         deleteBtn.innerText = "Delete";
         deleteBtn.addEventListener("click", () => {
-          this.venue.setSubtotal(s.price * -1)
+          this.venue.setSubtotal(s.price * -1);
           card.remove();
           this.venue.deleteSelection(id);
           const seat = document.getElementById(id);
@@ -169,7 +174,7 @@ export class Section {
           if (Object.keys(this.venue.getSelections()).length === 0) {
             emptyMessage(content);
           }
-        })
+        });
 
         titleContainer.append(header, deleteBtn);
 
@@ -185,7 +190,7 @@ export class Section {
         card.append(titleContainer, more);
 
         content.append(card);
-      })
+      });
     }
 
     subtotalComponent.innerText = this.venue.getSubtotal();
@@ -203,7 +208,7 @@ export class Section {
       col: x,
       type: this.type,
       price: this.getPrice(),
-    })
+    });
 
     this.venue.setSubtotal(this.getPrice());
   }
@@ -228,7 +233,7 @@ export class Section {
             price: this.getPrice(),
             disabled: false,
             customer: null,
-          }
+          };
         }
 
         const parent = document.createElement("div");
@@ -248,7 +253,10 @@ export class Section {
 
         parent.append(circle);
 
-        if (this.venue.seats[id].customer && this.venue.seats[id].customer._id.$oid === "61f4fabeba0e2e3f8f2f7348") {
+        if (
+          this.venue.seats[id].customer &&
+          this.venue.seats[id].customer._id.$oid === getCookie("userId")
+        ) {
           const icon = document.createElement("i");
           icon.className = "fas fa-check";
           circle.classList.add("reserved");
@@ -278,11 +286,11 @@ export class Section {
               circle.classList.remove("active");
               circle.childNodes[0].remove();
               this.venue.deleteSelection(id);
-              this.venue.setSubtotal(this.getPrice() * -1)
+              this.venue.setSubtotal(this.getPrice() * -1);
             } else {
               // Update subtotal and seat
               this.setSeat(circle, id, x, y);
-              this.venue.setSubtotal(this.getPrice())
+              this.venue.setSubtotal(this.getPrice());
             }
 
             this.updateSidebar();
@@ -294,4 +302,3 @@ export class Section {
     }
   }
 }
-

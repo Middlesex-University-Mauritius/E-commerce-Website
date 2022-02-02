@@ -16,7 +16,6 @@ const renderEvents = async () => {
   events.innerHTML = null;
 
   // Simple fetch request to get all events
-  // const response = await axios.get("../includes/services/events.php", {
   const response = await axios.get(
     "../includes/controllers/eventsByCategory.controller.php",
     {
@@ -25,8 +24,6 @@ const renderEvents = async () => {
       },
     }
   );
-
-  console.log(response);
 
   if (!response.data) return;
 
@@ -40,9 +37,18 @@ const renderEvents = async () => {
       description,
       date,
       time,
+      image,
     } = row;
 
-    const event = new Event(SHRINKED, $oid, title, description, date, time);
+    const event = new Event(
+      SHRINKED,
+      $oid,
+      title,
+      description,
+      date,
+      time,
+      image
+    );
     event.render(events);
   });
 };

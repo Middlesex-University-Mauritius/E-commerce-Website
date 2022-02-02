@@ -1,17 +1,18 @@
 export class Event {
+  title = null;
+  description = null;
+  prices = null;
+  bookings = null;
+  tags = null;
+  image = null;
 
-  title = null
-  description = null
-  prices = null
-  bookings = null
-  tags = null
-
-  constructor(title, description, prices, bookings, tags) {
+  constructor(title, description, prices, bookings, tags, image) {
     this.title = title;
     this.description = description;
     this.prices = prices;
     this.bookings = bookings;
     this.tags = tags;
+    this.image = image;
   }
 
   render(parent) {
@@ -24,11 +25,12 @@ export class Event {
     priceData.className = "whitespace-nowrap";
 
     const productContainer = document.createElement("div");
-    productContainer.className = "flex space-x-4 h-40 md:max-w-[450px] lg:max-w-[800px]"
+    productContainer.className =
+      "flex space-x-4 h-40 md:max-w-[450px] lg:max-w-[800px]";
 
     const image = document.createElement("img");
-    image.className = "h-40 w-40 rounded"
-    image.src = "https://generative-placeholders.glitch.me/image?width=1200&height=400&style=cellular-automata&cells=80"
+    image.className = "h-40 w-40 rounded object-cover";
+    image.src = this.image;
 
     const productContent = document.createElement("div");
     productContent.className = "space-y-3";
@@ -39,7 +41,10 @@ export class Event {
     title.innerText = this.title;
 
     const description = document.createElement("p");
-    description.innerText = this.description.length >= 220 ? this.description.substring(0, 220) + "..." : this.description;
+    description.innerText =
+      this.description.length >= 220
+        ? this.description.substring(0, 220) + "..."
+        : this.description;
 
     descriptionContainer.append(title, description);
 
@@ -50,10 +55,10 @@ export class Event {
       tag.className = "tag";
       tag.href = "#";
       tag.innerText = t;
-      tagsContainer.append(tag)
-    })
+      tagsContainer.append(tag);
+    });
 
-    priceData.innerText = `Rs ${this.prices.regular} - ${this.prices.vip}`
+    priceData.innerText = `Rs ${this.prices.regular} - ${this.prices.vip}`;
 
     const bookingsContainer = document.createElement("div");
     bookingsContainer.className = "flex space-x-2";
@@ -71,7 +76,7 @@ export class Event {
     bookingsContainer.append(icon, count);
 
     productContent.append(descriptionContainer, tagsContainer);
-    productContainer.append(image, productContent)
+    productContainer.append(image, productContent);
 
     productData.append(productContainer);
     bookingsData.append(bookingsContainer);
@@ -81,5 +86,4 @@ export class Event {
 
     parent.append(tr);
   }
-
 }

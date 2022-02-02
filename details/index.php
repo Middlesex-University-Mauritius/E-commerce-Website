@@ -20,7 +20,7 @@ head();
         <div>
           <p id="title" class="text-2xl mb-4">Event title</p>
           <div class="card">
-            <img class="h-64 w-full" src="https://generative-placeholders.glitch.me/image?width=1200&height=400&style=cellular-automata&cells=80" alt="" srcset="">
+            <img id="image" class="h-96 w-full object-cover" src="" alt="" srcset="">
             <p id="description" class="mt-4">
               Event description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget viverra sem. Maecenas cursus dui quis ornare consectetur. Nunc lobortis tempor ultricies. Donec quis lobortis sapien, in malesuada dolor. Event description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget viverra sem. Maecenas cursus dui quis ornare consectetur. Nunc lobortis tempor ultricies. Donec quis lobortis sapien, in malesuada dolor.Event description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget viverra sem. Maecenas cursus dui quis ornare consectetur. Nunc lobortis tempor ultricies. Donec quis lobortis sapien, in malesuada dolor.
             </p>
@@ -49,7 +49,7 @@ head();
             </div>
           </div>
 
-          <a href="/web/reservation/?id=0"><button class="primary mt-4 w-full py-3">Get tickets</button></a>
+          <a id="link" href="/web/home"><button class="primary mt-4 w-full py-3">Get tickets</button></a>
         </div>
       </div>
     </div>

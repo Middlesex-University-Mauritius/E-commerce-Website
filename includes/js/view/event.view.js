@@ -10,14 +10,16 @@ export class Event {
   date = null;
   time = null;
   shrinked = false;
+  image = null;
 
-  constructor(shrinked, id, title, description, date, time) {
+  constructor(shrinked, id, title, description, date, time, image) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.date = date;
     this.time = time;
     this.shrinked = shrinked;
+    this.image = image;
   }
 
   // Cards are displayed in shrinked mode by default
@@ -27,10 +29,9 @@ export class Event {
     if (this.shrinked) card.classList.add("shrinked");
 
     const image = document.createElement("img");
-    image.src =
-      "https://generative-placeholders.glitch.me/image?width=1200&height=400&style=cellular-automata&cells=80";
+    image.src = this.image;
     if (!this.shrinked) {
-      image.className = "w-40";
+      image.className = "w-40 h-32 object-cover";
     }
     image.classList.add("event-img");
 

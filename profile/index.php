@@ -15,7 +15,7 @@ head();
   ?>
 
   <?php
-  if (isset($_SESSION["user"]) && json_decode($_SESSION["user"])->authenticated) {
+  if (isset($_COOKIE["userId"])) {
   } else {
     header("Location: /web/home");
     exit();

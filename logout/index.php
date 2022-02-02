@@ -10,7 +10,7 @@
   <script type="module" src="./js/index.js"></script>
   <?php
     session_start();
-    unset($_SESSION["user"])
+    unset($_COOKIE["userId"])
   ?>
 </body>
 </html>

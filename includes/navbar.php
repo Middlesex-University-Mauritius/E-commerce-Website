@@ -107,17 +107,8 @@ function navbar()
     <ul class="nav-links">
   DEV;
 
-  session_start();
-
-
-  if (isset($_SESSION["user"])) {
-    $user = json_decode($_SESSION["user"]);
-
-    if (isset($user) && $user->authenticated) {
-      echo links(true, $user->id);
-    } else {
-      echo links(false, null);
-    }
+  if (isset($_COOKIE["userId"])) {
+    echo links(true, $_COOKIE["userId"]);
   } else {
     echo links(false, null);
   }

@@ -8,8 +8,17 @@ window.onload = () => {
     .then((response) => {
       const events = response.data;
       events.forEach((item) => {
-        const { category, date, description, prices, tags, time, title } = item;
-        const event = new Event(title, description, prices, 0, tags);
+        const {
+          category,
+          date,
+          description,
+          prices,
+          tags,
+          time,
+          title,
+          image,
+        } = item;
+        const event = new Event(title, description, prices, 0, tags, image);
         event.render(parent);
       });
     });
