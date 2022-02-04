@@ -4,8 +4,13 @@ require "../helpers/database.helper.php";
 
 class Booking extends DatabaseHelper {
 
-  function getManyBookings($category) {
+  function getManyBookings($customerId) {
     $bookings = $this->database->bookings->aggregate([
+      [
+        '$match' => [
+          'customer_id' => new MongoDB\BSON\ObjectID($customerId)
+        ]
+      ],
       [
         '$lookup' => [
           'from' => 'customers',
@@ -15,7 +20,10 @@ class Booking extends DatabaseHelper {
         ]
       ],
       [
-        '$unwind' => '$customer'
+        '$unwind' => [
+          'path' => '$customer',
+          'preserveNullAndEmptyArrays' => true,
+        ]
       ],
       [
         '$lookup' => [
@@ -26,8 +34,11 @@ class Booking extends DatabaseHelper {
         ]
       ],
       [
-        '$unwind' => '$event'
-      ]
+        '$unwind' => [
+          'path' => '$event',
+          'preserveNullAndEmptyArrays' => true,
+        ]
+      ],
     ]);
 
     return $this->prettifyList($bookings);

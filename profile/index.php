@@ -38,22 +38,22 @@ head();
         <div class="py-2 px-5 flex-auto">
           <div class="border-b flex justify-between py-3">
             <p class="font-medium">Full Name</p>
-            <p id="full-name" class="text-gray-700">Chu chu</p>
+            <p id="full-name" class="text-gray-700"></p>
           </div>
 
           <div class="border-b flex justify-between py-3">
             <p class="font-medium">Email Address</p>
-            <p id="email" class="text-gray-700">Chu chu</p>
+            <p id="email" class="text-gray-700"></p>
           </div>
 
           <div class="border-b flex justify-between py-3">
             <p class="font-medium">Age</p>
-            <p id="age" class="text-gray-700">12</p>
+            <p id="age" class="text-gray-700"></p>
           </div>
 
           <div class="flex justify-between py-3">
             <p class="font-medium">Phone</p>
-            <p id="phone" class="text-gray-700">45929123</p>
+            <p id="phone" class="text-gray-700"></p>
           </div>
         </div>
       </div>
@@ -61,11 +61,23 @@ head();
 
     <div class="card p-0">
       <div class="bg-gray-50 border-b p-5 flex space-x-2">
-        <p class="font-semibold">Your Orders</p>
+        <p class="font-semibold">Your Bookings</p>
       </div>
 
       <div class="p-5">
-        <p>You did not order anything yet</p>
+
+        <table hidden id="customer-bookings">
+          <tr>
+            <th>Event Id</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Tickets</th>
+            <th>Date</th>
+            <th>Total</th>
+          </tr>
+        </table>
+
+        <p id="customer-bookings-empty">You did not order anything yet</p>
       </div>
     </div>
   </div>

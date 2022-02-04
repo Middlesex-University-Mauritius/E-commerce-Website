@@ -35,8 +35,6 @@ window.onload = async () => {
     );
   });
 
-  console.log(seats);
-
   venue.getAvailability(seats);
 
   const stage = new Section(venue, "stage", 350, 100);

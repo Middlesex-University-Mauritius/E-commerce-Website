@@ -1,18 +1,21 @@
-const urlSearchParams = new URLSearchParams(window.location.search);
-const params = Object.fromEntries(urlSearchParams.entries());
+import { Booking } from "../view/booking.view.js";
 
+// Customer details
 const fullName = document.getElementById("full-name");
 const email = document.getElementById("email");
 const age = document.getElementById("age");
 const phone = document.getElementById("phone");
 
+// Customer bookings
+const customerBookings = document.getElementById("customer-bookings");
+
+// Empty bookings
+const emptyBookingsMessage = document.getElementById("customer-bookings-empty");
+
 window.onload = function () {
+  // Populate customer details
   axios
-    .get("/web/includes/controllers/getProfile.controller.php", {
-      params: {
-        customer_id: params.id,
-      },
-    })
+    .get("/web/includes/controllers/getProfile.controller.php")
     .then((response) => {
       const { success, user } = response.data;
 
@@ -24,5 +27,33 @@ window.onload = function () {
       } else {
         window.location.href = "/web/signin";
       }
+    });
+
+  axios
+    .get("/web/includes/controllers/customerBookings.controller.php")
+    .then((response) => {
+      const { data } = response;
+      if (!data) return;
+
+      const bookings = data;
+
+      if (bookings.length >= 1) {
+        customerBookings.hidden = false;
+        emptyBookingsMessage.hidden = true;
+      }
+
+      bookings.map((booking) => {
+        const { event_id, event, subtotal, seats } = booking;
+
+        const bookingView = new Booking(
+          event.date,
+          event.title,
+          event_id.$oid,
+          event.category,
+          Object.keys(seats).length,
+          subtotal
+        );
+        bookingView.render(customerBookings);
+      });
     });
 };

@@ -46,7 +46,7 @@ export class Venue {
 
       this.seats[id] = {
         ...seat,
-        disabled: true,
+        disabled: seat.customer,
         local,
       };
     });

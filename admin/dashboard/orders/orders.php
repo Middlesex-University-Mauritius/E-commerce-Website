@@ -33,7 +33,7 @@
               <th>Event ID</th>
               <th>Category</th>
               <th>Tickets</th>
-              <th>Change</th>
+              <th>Charge</th>
             </tr>
 
             <tr>

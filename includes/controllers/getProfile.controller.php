@@ -2,20 +2,20 @@
 
 require_once '../services/customer.service.php';
 
-$customerId = $_GET["customer_id"] ?? null;
+$userId = $_COOKIE['userId'];
 
-if (!$customerId) {
+if (!$userId) {
   header("Location: /web/signin");
   exit();
 }
 
 $customerService = new Customer();
-$customer = $customerService->getProfile($customerId);
+$customer = $customerService->getProfile($userId);
 
 $payload = array();
 
 if (isset($_COOKIE["userId"])) {
-  if ($customer && $_COOKIE["userId"] === $customerId) {
+  if ($customer && $_COOKIE["userId"] === $userId) {
     $payload = array(
       "success" => true,
       "user" => $customer

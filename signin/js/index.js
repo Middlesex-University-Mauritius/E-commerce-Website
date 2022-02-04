@@ -36,7 +36,6 @@ button.addEventListener("click", (event) => {
         password: password.value,
       })
       .then((response) => {
-        console.log(response);
         const storage = new Storage("user", {});
 
         const { data } = response;
