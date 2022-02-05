@@ -16,6 +16,14 @@ class Event extends DatabaseHelper {
     return $this->prettifyList($events);
   }
 
+  function getManyEventsByTitle($query) {
+    $events = $this->database->events->find([
+      'title' => new MongoDB\BSON\Regex("^watch", 'i')
+    ]);
+
+    return $this->prettifyList($events);
+  }
+
   function getOneEvent($id) {
     $event = $this->database->events->aggregate([
       [

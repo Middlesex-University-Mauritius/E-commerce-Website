@@ -25,6 +25,7 @@ function head($verifyUser=false)
     <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.min.css" />
     <script src="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.bundle.js"></script>
     <script type="module" src="/web/includes/js/scripts/cart.js"></script>
+    <script type="module" src="/web/includes/js/scripts/search.js"></script>
     <link rel="stylesheet" href="../styles.css">
 
     <title>Tixx | Event booking</title>

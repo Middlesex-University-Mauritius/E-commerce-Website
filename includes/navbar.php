@@ -99,10 +99,10 @@ function navbar()
       <a href="/web/home/index.php"><img src="../includes/img/logo.png" alt="Tixx logo"></a>
     </div>
 
-    <div class="search-box">
-      <input class="search-text" type="text" name="search-text" placeholder="Search for event">
-      <button><i class="fa fa-search"></i></button>
-    </div> 
+    <form id="search-box" class="search-box">
+      <input id="search-input" class="search-text" type="text" placeholder="Search for event">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form> 
 
     <ul class="nav-links">
   DEV;
