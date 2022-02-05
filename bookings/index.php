@@ -22,8 +22,8 @@ head();
   }
   ?>
 
-  <div class="wrapper my-10">
-    <p class="text-3xl mb-4">Your Bookings</p>
+    <div class="wrapper py-[77px]">
+    <p class="text-3xl mb-4 mt-8">Your Bookings</p>
 
     <!-- Bookings -->
     <ol id="bookings" class="relative border-l border-gray-200 white:border-gray-700">

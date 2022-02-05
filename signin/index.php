@@ -16,19 +16,19 @@
   ?>
 
   <!-- Main page sign in card -->
-  <div class="w-[400px] mx-auto mt-20">
-    <p class="text-2xl mb-4 text-gray-800">Sign-In</p>
+  <div class="w-[400px] mx-auto py-[77px]">
+    <p class="text-2xl mb-4 text-gray-800 mt-8">Sign-In</p>
     <form id="register" class="card p-0" action="user.controller.php" method="post">
       <div class="p-5">
         <div class="space-y-2">
           <div>
-            <p class="text-gray-700">Email</p>
-            <input class="my-2 w-full" type="email" id="email" name="email">
+            <p class="text-gray-900">Email</p>
+            <input class="my-2 w-full bg-gray-50 border border-gray-300 border border-gray-300" type="email" id="email" name="email">
           </div>
 
           <div>
-            <p class="text-gray-700">Password</p>
-            <input class="my-2 w-full" type="password" id="password" name="password">
+            <p class="text-gray-900">Password</p>
+            <input class="my-2 w-full bg-gray-50 border border-gray-300 border border-gray-300" type="password" id="password" name="password">
           </div>
         </div>
 

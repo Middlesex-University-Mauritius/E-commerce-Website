@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
 
 // Use colors from pre set variables
 @import "palette.scss";
@@ -11,11 +11,7 @@
 
 * {
   font-size: 16px;
-  font-family: 'Open Sans', sans-serif;
-}
-
-body {
-  background: #f8f9fa;
+  font-family: "Open Sans", sans-serif;
 }
 
 h1,
@@ -28,7 +24,7 @@ h5 {
 
 // Make content wrapper responsive (margins on two sides)
 .wrapper {
-  margin: 0px 100px;
+  margin: 77px 100px;
 
   @media only screen and (min-width: 372px) {
     margin: 0px 10px;
@@ -57,7 +53,8 @@ table {
       color: #2e2e2e;
     }
 
-    th, td {
+    th,
+    td {
       text-align: left;
       padding: 8px 20px; // Some spacing
     }

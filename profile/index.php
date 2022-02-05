@@ -22,11 +22,11 @@ head();
   }
   ?>
 
-  <div class="wrapper my-10">
-    <p class="text-3xl mb-4">Your Profile</p>
+  <div class="wrapper py-[77px]">
+    <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 mt-8">Your Profile</h5>
 
     <div class="card p-0 mb-8">
-      <div class="bg-gray-50 border-b p-5 flex space-x-2">
+      <div class="bg-gray-50 border-b p-5 flex space-x-2 rounded-t-md">
         <p class="font-semibold">Your Personal Details</p>
       </div>
 
@@ -60,7 +60,7 @@ head();
     </div>
 
     <div class="card p-0">
-      <div class="bg-gray-50 border-b p-5 flex space-x-2">
+      <div class="bg-gray-50 border-b p-5 flex space-x-2 rounded-t-md">
         <p class="font-semibold">Your Bookings</p>
       </div>
 

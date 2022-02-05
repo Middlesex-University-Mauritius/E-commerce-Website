@@ -1,24 +1,36 @@
 <?php
+header('Content-Type: application/json; charset=utf-8');
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: PUT, GET, POST");
 
 $sessionId = $_GET["sessionId"] ?? null;
 
-if(isset($_FILES['sample_image']))
-{
-	$extension = pathinfo($_FILES['sample_image']['name'], PATHINFO_EXTENSION);
+$response = array();
 
-  $path = $_SERVER['DOCUMENT_ROOT'] . '/web/images/' . $sessionId;
-  if (!file_exists($path)) {
-      mkdir($path, 0777, true);
+if($_FILES['file'])
+{
+  $root = $_SERVER['DOCUMENT_ROOT'] . '/web/images/' . $sessionId;
+  if (!file_exists($root)) {
+    mkdir($root, 0777, true);
   }
 
-	$new_name =  'image' . '.' . $extension;
-  $path = $_SERVER['DOCUMENT_ROOT'] . '/web/images/' . $sessionId . '/' . $new_name;
+  $count = count($_FILES['file']['name']);
+  for ($i = 0; $i < $count; $i++) {
 
-	move_uploaded_file($_FILES['sample_image']['tmp_name'], $path);
+    $extension = pathinfo($_FILES['file']['name'][$i], PATHINFO_EXTENSION);
+    $file_name = $_FILES["file"]["name"][$i];
+    $file_tmp_name = $_FILES["file"]["tmp_name"][$i];
+    $error = $_FILES["file"]["error"][$i];
 
-	$data = array(
-		'uploaded' => '/web/images/' . $sessionId . '/' . $new_name
-	);
+    $upload_name = 'image-'."$i.".$extension;
 
-	echo json_encode($data);
+    $file_path = '/web/images/' . $sessionId . '/' . $upload_name;
+
+    if(move_uploaded_file($file_tmp_name , $_SERVER['DOCUMENT_ROOT'].$file_path)) {
+      array_push($response, $file_path);
+    }
+  }
 }
+
+echo json_encode($response);
+?>

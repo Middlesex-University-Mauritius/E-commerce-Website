@@ -28,12 +28,12 @@ $payload = array();
 
 $bookingService = new Booking();
 
-$success = $bookingService->addBooking($dataArray);
+$response = $bookingService->addBooking($dataArray);
 
-if ($success) {
+if ($response["success"]) {
   $payload = array(
     "success" => true,
-    "booking_id" => (string)$insertResult->getInsertedId()
+    "booking_id" => $response["booking_id"]
   );
 } else {
   $payload = array(

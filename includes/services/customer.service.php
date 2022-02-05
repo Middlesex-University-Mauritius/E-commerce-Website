@@ -6,7 +6,7 @@ class Customer extends DatabaseHelper {
 
   function getAllCustomers() {
     $customers = $this->database->customers->find([]);
-    return $this->prettifyList($customers);
+    return $customers->toArray();
   }
 
   function getProfile($customerId) {

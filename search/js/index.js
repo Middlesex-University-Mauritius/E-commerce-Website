@@ -9,7 +9,7 @@ window.onload = async () => {
   const SHRINKED = true;
 
   axios
-    .get("/web/includes/controllers/searchEvent.controller.php", {
+    .get("/web/includes/controllers/search-event.controller.php", {
       params: {
         query: params.query,
       },
@@ -26,7 +26,7 @@ window.onload = async () => {
           description,
           date,
           time,
-          image,
+          images,
         } = row;
 
         const event = new Event(
@@ -36,7 +36,7 @@ window.onload = async () => {
           description,
           date,
           time,
-          image
+          images
         );
         event.render(events);
       });

@@ -5,13 +5,14 @@ const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 
 const parent = document.getElementById("reservation");
+const modalTitle = document.getElementById("modal-title");
 
 let currentEvent = null;
 let venue = null;
 
 window.onload = async () => {
   const response = await axios.get(
-    "../includes/controllers/eventById.controller.php",
+    "../includes/controllers/event-by-id.controller.php",
     {
       params: { id: params.id },
     }
@@ -64,22 +65,45 @@ window.onload = async () => {
   regular.populateSeats();
 };
 
+const continueButton = document.getElementById("continue");
+const returnButton = document.getElementById("return");
 const cartButton = document.getElementById("cart-button");
 
-cartButton.addEventListener("click", () => {
+let storage = new Storage("cart", {});
+const cart = storage.get();
+
+const addToCart = () => {
   if (!params.id || !venue || !currentEvent) return;
 
-  let storage = new Storage("cart", {});
-
-  const cart = storage.get();
-  cart[params.id] = {
-    event_id: currentEvent._id.$oid,
-    title: currentEvent.title,
-    seats: venue.getSelections(),
-    subtotal: venue.getSubtotal(),
-  };
+  if (venue.getSelections()) {
+    // Item exists in cart already
+    if (cart[params.id] && Object.keys(venue.getSelections()).length <= 0) {
+      // Delete if seats have been deleted
+      delete cart[params.id];
+    } else {
+      // Add to cart new selection
+      cart[params.id] = {
+        event_id: currentEvent._id.$oid,
+        title: currentEvent.title,
+        seats: venue.getSelections(),
+        subtotal: venue.getSubtotal(),
+      };
+    }
+  }
 
   storage.set(cart);
+};
 
+cartButton.addEventListener("click", () => {
+  modalTitle.innerText = `Updating your cart with x${
+    Object.keys(venue.selections).length
+  } tickets`;
+});
+continueButton.addEventListener("click", () => {
+  addToCart();
   window.location.href = "/web/checkout";
+});
+returnButton.addEventListener("click", () => {
+  addToCart();
+  window.location.href = "/web/events";
 });

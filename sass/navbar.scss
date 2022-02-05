@@ -1,49 +1,15 @@
 .nav {
   display: flex;
-  background-color: #0a1626;
+  background: #0a1626;
   text-align: right;
   width: 100%;
   display: flex;
   justify-content: space-between; // Add spaces between navbar elements
   color: white;
   padding: 10px 30px;
-
-  .search-box {
-    display: flex;
-    height: 40px;
-    margin: auto 0px;
-    width: 700px; // Search box initial width
-    color: black;
-
-    // Make search box responsive
-    @media only screen and (max-width: 1095px) {
-      width: 500px;
-    }
-
-    @media only screen and (max-width: 915px) {
-      width: 400px;
-    }
-
-    button {
-      background-color: #dadada;
-      border-radius: 0px 4px 4px 0px;
-      padding: 0px 30px;
-      border: 1px solid #e2e2e2;
-      border-left: 0px;
-
-      &:hover {
-        background-color: #ebebeb;
-      }
-
-      i {
-        color: #3c4044;
-      }
-    }
-
-    input {
-      border-radius: 4px 0px 0px 4px;
-    }
-  }
+  transition: background 0.3s;
+  position: fixed;
+  z-index: 999999999999;
 
   .logo {
     display: block;
@@ -63,16 +29,59 @@
       text-align: center;
       display: flex;
 
-      i {
-        width: 100%;
+      svg {
         padding: 8px 0px;
-        font-size: 20px;
+        text-align: center;
+        margin: 0 auto;
       }
 
       span {
         display: block;
         margin-top: -5px;
       }
+    }
+  }
+}
+
+.search-box {
+  display: flex;
+  height: 50px;
+  margin: auto 0px;
+  width: 700px; // Search box initial width
+  color: black;
+
+  // Make search box responsive
+  @media only screen and (max-width: 1095px) {
+    width: 500px;
+  }
+
+  @media only screen and (max-width: 915px) {
+    width: 400px;
+  }
+
+  button {
+    background-color: #1d4ed8;
+    border-radius: 0px 4px 4px 0px;
+    padding: 0px 30px;
+    border: 1px solid #1d4ed8;
+    border-left: 0px;
+    height: 50px;
+
+    &:hover {
+      background-color: #1e40b0;
+    }
+
+    i {
+      color: #e4e4e4;
+    }
+  }
+
+  input {
+    border-radius: 4px 0px 0px 4px;
+    height: 50px;
+
+    &::placeholder {
+      color: #5a5a5a;
     }
   }
 }

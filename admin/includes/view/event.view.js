@@ -4,15 +4,15 @@ export class Event {
   prices = null;
   bookings = null;
   tags = null;
-  image = null;
+  images = null;
 
-  constructor(title, description, prices, bookings, tags, image) {
+  constructor(title, description, prices, bookings, tags, images) {
     this.title = title;
     this.description = description;
     this.prices = prices;
     this.bookings = bookings;
     this.tags = tags;
-    this.image = image;
+    this.images = images;
   }
 
   render(parent) {
@@ -30,7 +30,7 @@ export class Event {
 
     const image = document.createElement("img");
     image.className = "h-40 w-40 rounded object-cover";
-    image.src = this.image;
+    image.src = this.images[0];
 
     const productContent = document.createElement("div");
     productContent.className = "space-y-3";
@@ -42,8 +42,8 @@ export class Event {
 
     const description = document.createElement("p");
     description.innerText =
-      this.description.length >= 220
-        ? this.description.substring(0, 220) + "..."
+      this.description.length >= 190
+        ? this.description.substring(0, 190) + "..."
         : this.description;
 
     descriptionContainer.append(title, description);

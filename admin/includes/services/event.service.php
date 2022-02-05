@@ -1,11 +1,13 @@
 <?php
 
 require "../helpers/database.helper.php";
+require "../../../vendor/autoload.php";
 
 class Event extends DatabaseHelper {
 
   function addEvent($data) {
-    $success = false;
+    $datePosted = (string)new \MongoDB\BSON\UTCDateTime();
+    $payload = array();
     try {
       $insertOneResult = $this->database->events->insertOne([
         "title" => $data['title'],
@@ -14,18 +16,27 @@ class Event extends DatabaseHelper {
         "time" => $data['time'],
         "category" => $data['category'],
         "tags" => $data['tags'],
-        "image" => $data['image'],
+        "images" => $data['images'],
+        "datePosted" => $datePosted,
         "prices" => array(
           "regular" => intval($data['prices']['regular']),
           "premium" => intval($data['prices']['premium']),
           "vip" => intval($data['prices']['vip']),
-        ),
+        )
       ]);
-      $success = $insertOneResult->getInsertedCount() == 1;
+      $payload = [
+        "success" => $insertOneResult->getInsertedCount() == 1,
+        "event_id" => $insertOneResult->getInsertedId(),
+        "title" => $data['title']
+      ];
     } catch (Exception $e) {
-      $success = false;
+      $payload = [
+        "success" => false,
+        "event_id" => null,
+        "title" => null
+      ];
     }
-    return $success;
+    return $payload;
   }
 
   function getEvents() {

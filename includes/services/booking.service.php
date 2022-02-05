@@ -41,13 +41,16 @@ class Booking extends DatabaseHelper {
       ],
     ]);
 
-    return $this->prettifyList($bookings);
+    return $bookings->toArray();
   }
 
   function addBooking($booking) {
     $insertResult = $this->database->bookings->insertOne($booking);
     $success = $insertResult->getInsertedCount() == 1;
-    return $success;
+    return [
+      "success" => $success,
+      "booking_id" => (string)$insertResult->getInsertedId()
+    ];
   }
 
 }

@@ -1,4 +1,5 @@
 import { Section, Venue } from "../../includes/js/view/venue.view.js";
+import { showSlides } from "../../includes/js/scripts/slide.js";
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
@@ -11,8 +12,8 @@ const title = document.getElementById("title");
 const description = document.getElementById("description");
 const time = document.getElementById("time");
 const date = document.getElementById("date");
-const image = document.getElementById("image");
 const link = document.getElementById("link");
+const slideshowContainer = document.getElementById("slideshow-container");
 
 const prices = {
   vip: 0,
@@ -48,7 +49,7 @@ window.onload = async () => {
   }
 
   const response = await axios.get(
-    "/web/includes/controllers/eventById.controller.php",
+    "/web/includes/controllers/event-by-id.controller.php",
     {
       params: {
         id: params.id,
@@ -64,7 +65,19 @@ window.onload = async () => {
 
   const event = data[0];
 
-  image.src = event.image;
+  const images = event.images;
+
+  images.forEach((slide) => {
+    const imageContainer = document.createElement("div");
+    imageContainer.className = "slides fade";
+    const img = document.createElement("img");
+    img.src = slide;
+    img.className = "w-full none h-96 object-cover";
+    imageContainer.append(img);
+    slideshowContainer.append(imageContainer);
+  });
+  showSlides();
+
   title.innerText = event.title;
   description.innerText = event.description;
   date.innerText = event.date;

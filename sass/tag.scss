@@ -1,7 +1,14 @@
 .tag {
-  background-color: #CBE0F9;
+  background-color: #cbe0f9;
+  color: #203c5f;
   padding: 5px 10px;
   border-radius: 50px;
   font-size: 14px;
   display: block;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #a1c5f1;
+  }
 }

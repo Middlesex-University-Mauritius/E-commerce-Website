@@ -12,7 +12,7 @@ head();
   navbar();
   ?>
 
-  <div class="wrapper">
+  <div class="wrapper py-[77px]">
     <div class="my-8">
 
       <!-- Checkout page page -->

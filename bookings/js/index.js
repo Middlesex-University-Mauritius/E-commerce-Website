@@ -11,7 +11,7 @@ const emptyBookingsMessage = document.getElementById("bookings-empty");
 
 window.onload = function () {
   axios
-    .get("/web/includes/controllers/customerBookings.controller.php")
+    .get("/web/includes/controllers/customer-bookings.controller.php")
     .then((response) => {
       const { data } = response;
       if (!data) return;

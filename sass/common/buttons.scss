@@ -1,5 +1,5 @@
 button {
-  color: #FFFFFF;
+  color: #ffffff;
   border: 0px;
   border-radius: 4px;
   cursor: pointer;
@@ -7,9 +7,9 @@ button {
   // pale blue
   &.primary {
     color: white;
-    background-color: #7F90A3;
+    background-color: #1d4ed8;
     &:hover:enabled {
-      background-color: #879cb3;
+      background-color: #1e40b0;
     }
   }
 
@@ -41,7 +41,7 @@ button {
   }
 
   &:disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: auto;
   }
 }

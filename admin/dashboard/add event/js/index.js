@@ -6,7 +6,7 @@ const tagsContainer = document.getElementById("tags-container");
 const preview = document.getElementById("preview");
 let tags = [];
 let sessionId = null;
-let image = null;
+let images = [];
 
 window.onload = async () => {
   sessionId = await uuidv4();
@@ -16,8 +16,11 @@ eventImage.addEventListener("change", async () => {
   if (!sessionId) return;
 
   const formData = new FormData();
-  const file = eventImage.files[0];
-  formData.append("sample_image", file);
+  const files = eventImage.files;
+
+  for (let i = 0; i < files.length; i++) {
+    formData.append("file[]", files[i]);
+  }
 
   const response = await axios.post(
     "/web/admin/includes/services/upload.php",
@@ -36,21 +39,28 @@ eventImage.addEventListener("change", async () => {
 
   if (response.data) {
     preview.hidden = false;
-    preview.src = response.data.uploaded;
-    image = response.data.uploaded;
+
+    response.data.forEach((img) => {
+      const image = document.createElement("img");
+      image.src = img;
+      image.className = "w-full h-28 object-cover";
+      preview.append(image);
+    });
+
+    images = response.data;
   }
 });
 
 tag.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
+  if (e.key === "Enter" && e.target.value.trim().length >= 1) {
     const tagInput = document.createElement("div");
     tagInput.innerText = e.target.value;
-    tagInput.className =
-      "bg-blue-200 rounded-md px-3 py-2 text-sm m-1 first:ml-0 flex cursor-pointer hover:bg-blue-300";
+    tagInput.className = "tag";
     tagInput.addEventListener("click", () => {
       tagInput.remove();
     });
     tagsContainer.appendChild(tagInput);
+    tag.value = "";
   }
 });
 
@@ -119,7 +129,7 @@ confirm.addEventListener("click", () => {
     time: formInputs.time.value,
     category: category,
     tags,
-    image,
+    images,
     prices: {
       regular: regular.value,
       premium: premium.value,
@@ -128,14 +138,14 @@ confirm.addEventListener("click", () => {
   });
 
   axios
-    .post("/web/admin/includes/controllers/addEvent.php", {
+    .post("/web/admin/includes/controllers/add-event.controller.php", {
       title: formInputs.title.value,
       description: formInputs.description.value,
       date: formInputs.date.value,
       time: formInputs.time.value,
       category: category,
       tags,
-      image,
+      images,
       prices: {
         regular: regular.value,
         premium: premium.value,
@@ -152,7 +162,7 @@ confirm.addEventListener("click", () => {
       }
       confirm.disabled = false;
     })
-    .catch(function (error) {
+    .catch(() => {
       confirm.disabled = false;
     });
 });

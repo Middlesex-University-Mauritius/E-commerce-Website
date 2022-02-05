@@ -15,7 +15,7 @@ const emptyBookingsMessage = document.getElementById("customer-bookings-empty");
 window.onload = function () {
   // Populate customer details
   axios
-    .get("/web/includes/controllers/getProfile.controller.php")
+    .get("/web/includes/controllers/get-profile.controller.php")
     .then((response) => {
       const { success, user } = response.data;
 
@@ -30,8 +30,10 @@ window.onload = function () {
     });
 
   axios
-    .get("/web/includes/controllers/customerBookings.controller.php")
+    .get("/web/includes/controllers/customer-bookings.controller.php")
     .then((response) => {
+      console.log(response);
+
       const { data } = response;
       if (!data) return;
 

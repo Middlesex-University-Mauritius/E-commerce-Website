@@ -71,7 +71,6 @@
 
       <div class="p-5 bg-gray-50 border-t">
         <p class="text-gray-600">For development purposes, use <span class="text-green-600">admin</span> and <span class="text-green-600">password</span> as credentials</p>
-        <a href="/web/home" class="text-gray-600 text-blue-700 block mt-3">Go back to main page</a>
       </div>
     </form>
 

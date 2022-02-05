@@ -4,7 +4,7 @@ const parent = document.getElementById("event-data");
 
 window.onload = () => {
   axios
-    .get("/web/includes/controllers/eventsByCategory.controller.php")
+    .get("/web/includes/controllers/events-by-category.controller.php")
     .then((response) => {
       const events = response.data;
       events.forEach((item) => {
@@ -16,9 +16,9 @@ window.onload = () => {
           tags,
           time,
           title,
-          image,
+          images,
         } = item;
-        const event = new Event(title, description, prices, 0, tags, image);
+        const event = new Event(title, description, prices, 0, tags, images);
         event.render(parent);
       });
     });

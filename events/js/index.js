@@ -1,12 +1,33 @@
 import { Event } from "../../includes/js/view/event.view.js";
 
-let currentTab = "live-music";
+const urlSearchParams = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlSearchParams.entries());
+
+let currentTab = params.start || "live-music";
 
 const tabs = {
   "live-music": document.getElementById("live-music"),
   "stand-up": document.getElementById("stand-up"),
   "arts-and-theater": document.getElementById("arts-and-theater"),
 };
+
+const states = {
+  active:
+    "font-medium text-blue-600 bg-gray-100 active inline-block py-4 px-4 text-sm text-center rounded-t-lg white:bg-gray-800 white:text-blue-500",
+  disabled:
+    "inline-block py-4 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 white:text-gray-400 white:hover:bg-gray-800 white:hover:text-gray-300",
+};
+
+if (params.start) {
+  try {
+    tabs[params.start].className = states.active;
+    Object.values(tabs).forEach((tab) => {
+      if (params.start !== tab.id) {
+        tab.className = states.disabled;
+      }
+    });
+  } catch (e) {}
+}
 
 const events = document.getElementById("events");
 
@@ -17,7 +38,7 @@ const renderEvents = async () => {
 
   // Simple fetch request to get all events
   const response = await axios.get(
-    "../includes/controllers/eventsByCategory.controller.php",
+    "../includes/controllers/events-by-category.controller.php",
     {
       params: {
         category: currentTab,
@@ -37,7 +58,8 @@ const renderEvents = async () => {
       description,
       date,
       time,
-      image,
+      images,
+      datePosted,
     } = row;
 
     const event = new Event(
@@ -47,7 +69,8 @@ const renderEvents = async () => {
       description,
       date,
       time,
-      image
+      images,
+      datePosted
     );
     event.render(events);
   });
@@ -61,16 +84,14 @@ Object.values(tabs).forEach((tab) => {
   tab.addEventListener("click", (event) => {
     const { target } = event;
 
-    target.className =
-      "font-medium text-blue-600 bg-gray-100 active inline-block py-4 px-4 text-sm text-center rounded-t-lg white:bg-gray-800 white:text-blue-500";
+    target.className = states.active;
     currentTab = target.id;
 
     renderEvents();
 
     Object.values(tabs).forEach((tab) => {
       if (target.id !== tab.id) {
-        tab.className =
-          "inline-block py-4 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 white:text-gray-400 white:hover:bg-gray-800 white:hover:text-gray-300";
+        tab.className = states.disabled;
       }
     });
   });

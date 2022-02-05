@@ -9,15 +9,15 @@ $payload = array();
 
 $eventService = new Event();
 
-$success = $eventService->addEvent($data);
+$payload = $eventService->addEvent($data);
 
-if ($success) {
+if ($payload["success"]) {
   $payload = array(
     "success" => true,
     "message" => "Event created successfully",
     "event" => array(
-      "event_id" => $insertOneResult->getInsertedId(),
-      "title" => $title
+      "event_id" => $payload["event_id"],
+      "title" => $payload["title"]
     )
   ); 
 } else {

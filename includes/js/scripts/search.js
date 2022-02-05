@@ -1,5 +1,5 @@
-const search = document.getElementById("search-box");
-const input = document.getElementById("search-input");
+const search = document.getElementById("navbar-search-box");
+const input = document.getElementById("navbar-search-input");
 
 search.addEventListener("submit", (event) => {
   event.preventDefault();
