@@ -6,6 +6,8 @@ window.onload = () => {
   axios
     .get("/web/includes/controllers/events-by-category.controller.php")
     .then((response) => {
+
+      console.log("event-response", response);
       const events = response.data;
       events.forEach((item) => {
         const {

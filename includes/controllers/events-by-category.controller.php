@@ -6,4 +6,6 @@ $eventService = new Event();
 
 $category = $_GET["category"] ?? null;
 
-echo $eventService->getManyEvents($category);
+$events = $eventService->getManyEvents($category);
+
+echo json_encode($events);

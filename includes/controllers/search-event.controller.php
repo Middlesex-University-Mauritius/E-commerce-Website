@@ -6,4 +6,6 @@ $eventService = new Event();
 
 $query = $_GET["query"] ?? null;
 
-echo $eventService->getManyEventsByTitle($query);
+$events = $eventService->getManyEventsByTitle($query);
+
+json_encode($events);

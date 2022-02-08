@@ -6,4 +6,6 @@ $eventService = new Event();
 
 $id = $_GET["id"] ?? null;
 
-echo $eventService->getOneEvent($id);
+$event = $eventService->getOneEvent($id);
+
+echo json_encode($event);
