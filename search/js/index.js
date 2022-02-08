@@ -15,7 +15,7 @@ window.onload = async () => {
       },
     })
     .then((response) => {
-      console.log(response);
+      console.log("search", response.data);
 
       response.data.map((row) => {
         console.log(row);

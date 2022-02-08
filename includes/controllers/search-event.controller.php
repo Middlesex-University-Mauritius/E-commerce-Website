@@ -8,4 +8,4 @@ $query = $_GET["query"] ?? null;
 
 $events = $eventService->getManyEventsByTitle($query);
 
-json_encode($events);
+echo json_encode($events);
