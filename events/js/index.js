@@ -3,7 +3,7 @@ import { Event } from "../../includes/js/view/event.view.js";
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 
-let currentTab = params.start || "live-music";
+let currentTab = params.category || "live-music";
 
 const tabs = {
   "live-music": document.getElementById("live-music"),
@@ -18,11 +18,11 @@ const states = {
     "inline-block py-4 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 white:text-gray-400 white:hover:bg-gray-800 white:hover:text-gray-300",
 };
 
-if (params.start) {
+if (params.category) {
   try {
-    tabs[params.start].className = states.active;
+    tabs[params.category].className = states.active;
     Object.values(tabs).forEach((tab) => {
-      if (params.start !== tab.id) {
+      if (params.category !== tab.id) {
         tab.className = states.disabled;
       }
     });
