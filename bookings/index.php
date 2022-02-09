@@ -4,7 +4,7 @@
 <head>
 <?php
 include_once "../includes/head.php";
-head();
+head(true);
 ?>
 </head>
 
@@ -14,15 +14,7 @@ head();
   navbar();
   ?>
 
-  <?php
-  if (isset($_COOKIE["userId"])) {
-  } else {
-    header("Location: /web/home");
-    exit();
-  }
-  ?>
-
-    <div class="wrapper py-[77px]">
+  <div class="wrapper py-[77px]">
     <p class="text-3xl mb-4 mt-8">Your Bookings</p>
 
     <!-- Bookings -->

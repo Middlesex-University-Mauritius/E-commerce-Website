@@ -40,7 +40,6 @@ if ($registerPayload["success"]) {
     'user' => $registerPayload["customer_id"]
   );
 } else {
-  setcookie('userId', null, time()+99999999999, '/');
   $payload = array(
     'success' => false,
     'message' => 'customer not added',

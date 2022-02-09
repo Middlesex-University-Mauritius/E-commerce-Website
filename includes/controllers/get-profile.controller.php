@@ -7,6 +7,7 @@ $customerService = new Customer();
 $session = new SessionHelper();
 
 if (!$session->isSignedIn()) {
+  echo json_encode(null);
   header("Location: /web/signin");
   exit();
 }

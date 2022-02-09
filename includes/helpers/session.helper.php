@@ -12,12 +12,19 @@ class SessionHelper {
   }
 
   function isSignedIn() {
-    return isset($_SESSION['customer_id']) && isset($_COOKIE['customer_id']);
+    return (isset($_SESSION['customer_id']) and isset($_COOKIE['customer_id']));
   }
 
   function logout() {
     session_unset();
     session_destroy();
+    if (isset($_COOKIE['customer_id'])) {
+      unset($_COOKIE['customer_id']); 
+      setcookie('customer_id', null, -1, '/'); 
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

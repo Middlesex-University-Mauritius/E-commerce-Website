@@ -1,8 +1,10 @@
 <?php
-  if (isset($_COOKIE['userId'])) {
-    unset($_COOKIE['userId']); 
-    setcookie('userId', null, -1, '/'); 
-  }
+  require_once "../includes/helpers/session.helper.php";
+
+  $session = new SessionHelper();
+  $session->logout();
+  header("Location: /web/home");
+  exit();
 ?>
 <!DOCTYPE html>
 <html lang="en">

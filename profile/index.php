@@ -4,7 +4,7 @@
 <head>
 <?php
 include_once "../includes/head.php";
-head();
+head(true);
 ?>
 </head>
 

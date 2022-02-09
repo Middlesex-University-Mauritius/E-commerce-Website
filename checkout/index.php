@@ -6,7 +6,7 @@ include_once "../includes/head.php";
 head();
 ?>
 
-<body>
+<body id="body">
   <?php
   include_once "../includes/navbar.php";
   navbar();

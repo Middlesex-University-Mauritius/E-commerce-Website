@@ -3,7 +3,6 @@ import {
   validateFields,
 } from "../../includes/js/scripts/authentication.js";
 import Notification from "../../includes/js/view/notification.view.js";
-import { Storage } from "../../includes/js/scripts/storage.js";
 
 // Get fields from form
 const email = document.getElementById("email");
@@ -60,13 +59,10 @@ button.addEventListener("click", (event) => {
         confirmPassword: confirmPassword.value,
       })
       .then((response) => {
-        const storage = new Storage("user", {});
-
         const { data } = response;
 
         if (data.success) {
           notification.render("Account successfully created!", "success");
-          storage.set(data.user);
         } else {
           notification.render("Something went wrong", "error");
         }

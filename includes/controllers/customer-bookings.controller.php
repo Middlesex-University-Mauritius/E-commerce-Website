@@ -6,6 +6,7 @@ require_once '../helpers/session.helper.php';
 $session = new SessionHelper();
 
 if (!$session->isSignedIn()) {
+  echo json_encode(null);
   header("Location: /web/signin");
   exit();
 }
@@ -17,7 +18,7 @@ $bookings = $bookingService->getManyBookings($_SESSION["customer_id"]);
 if ($bookings) {
   echo json_encode($bookings);
 } else {
-  echo null;
+  echo json_encode(null);
 }
 
 ?>

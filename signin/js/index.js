@@ -3,7 +3,9 @@ import {
   validate,
 } from "../../includes/js/scripts/authentication.js";
 import Notification from "../../includes/js/view/notification.view.js";
-import { Storage } from "../../includes/js/scripts/storage.js";
+
+const urlSearchParams = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlSearchParams.entries());
 
 const email = document.getElementById("email");
 const password = document.getElementById("password");
@@ -36,8 +38,6 @@ button.addEventListener("click", (event) => {
         password: password.value,
       })
       .then((response) => {
-        const storage = new Storage("user", {});
-
         const { data } = response;
 
         if (!data.authenticated) {
@@ -49,11 +49,14 @@ button.addEventListener("click", (event) => {
 
           errors.append(errorList);
         } else {
-          storage.set(data.user);
           notification.render(`Authenticated as ${data.email}`, "success");
 
           setTimeout(() => {
-            window.location.href = "/web/home";
+            if (params.redirect) {
+              window.location.href = params.redirect;
+            } else {
+              window.location.href = "/web/home";
+            }
           }, 1000);
         }
 

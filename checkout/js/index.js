@@ -3,6 +3,7 @@ import { Loader } from "../../includes/js/view/loader.view.js";
 import Message from "../../includes/js/view/message.view.js";
 import { resetField } from "../../includes/js/scripts/resetField.js";
 import { loadCartItems } from "./scripts/loadCartItems.js";
+import Notification from "../../includes/js/view/notification.view.js";
 
 // Initialize local storage using storage helper class
 const storage = new Storage("cart", {});
@@ -62,6 +63,7 @@ placeOrder.addEventListener("click", () => {
 
   Object.keys(items).map((eventId) => {
     const { event_id, seats, subtotal, title } = items[eventId];
+
     axios
       .post("../includes/controllers/add-booking.controller.php", {
         eventId,
@@ -83,7 +85,17 @@ placeOrder.addEventListener("click", () => {
         }
       })
       .catch((error) => {
-        if (error) {
+        // Unauthorized
+        if (error.response.status === 401) {
+          const parent = document.getElementById("body")
+          const notification = new Notification(parent);
+          notification.render("You need to login to continue");
+          setTimeout(() => {
+            window.location.href = "/web/signin?redirect=/web/checkout"
+            loader.unset();
+            placeOrder.disabled = false;
+          }, 1200)
+        } else {
           loader.unset();
           placeOrder.disabled = false;
         }
