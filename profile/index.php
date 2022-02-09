@@ -14,14 +14,6 @@ head();
   navbar();
   ?>
 
-  <?php
-  if (isset($_COOKIE["userId"])) {
-  } else {
-    header("Location: /web/home");
-    exit();
-  }
-  ?>
-
   <div class="wrapper py-[77px]">
     <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 mt-8">Your Profile</h5>
 

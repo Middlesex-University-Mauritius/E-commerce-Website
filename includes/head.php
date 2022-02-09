@@ -4,12 +4,14 @@
 
 <?php
 
-function head($verifyUser=false)
-{
-  if ($verifyUser) {
-    $user = $_COOKIE["userId"] ?? null;
+require_once "../includes/helpers/session.helper.php";
 
-    if (!$user) {
+function head($requiresLogin=false)
+{
+  if ($requiresLogin) {
+    $session = new SessionHelper();
+
+    if (!$session->isSignedIn()) {
       header("Location: /web/home");
       exit();
     }

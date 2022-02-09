@@ -6,7 +6,8 @@ const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 
 const parent = document.getElementById("reservation");
-const modalTitle = document.getElementById("modal-title");
+const keysTitle = document.getElementById("keys-title");
+const keysContent = document.getElementById("keys-content");
 
 let currentEvent = null;
 let venue = null;
@@ -104,3 +105,8 @@ cartButton.addEventListener("click", () => {
     window.location.href = "/web/checkout/"
   }
 });
+
+keysTitle.addEventListener("click", () => {
+  const hidden = keysContent.hidden;
+  keysContent.hidden = !hidden;
+})

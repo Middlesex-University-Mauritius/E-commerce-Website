@@ -1,34 +1,28 @@
 <?php
 
 require_once '../services/customer.service.php';
+require_once '../helpers/session.helper.php';
 
-$userId = $_COOKIE['userId'];
+$customerService = new Customer();
+$session = new SessionHelper();
 
-if (!$userId) {
+if (!$session->isSignedIn()) {
   header("Location: /web/signin");
   exit();
 }
 
-$customerService = new Customer();
-$customer = $customerService->getProfile($userId);
+$customer = $customerService->getProfile($_SESSION["customer_id"]);
 
 $payload = array();
 
-if (isset($_COOKIE["userId"])) {
-  if ($customer && $_COOKIE["userId"] === $userId) {
-    $payload = array(
-      "success" => true,
-      "user" => $customer
-    );
-  } else {
-    $payload = array(
-      "success" => true,
-      "user" => null
-    );
-  }
+if ($customer) {
+  $payload = array(
+    "success" => true,
+    "user" => $customer
+  );
 } else {
   $payload = array(
-    "success" => false,
+    "success" => true,
     "user" => null
   );
 }

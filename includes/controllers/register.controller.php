@@ -1,6 +1,7 @@
 <?php
 
 require_once '../services/authentication.service.php';
+require_once '../helpers/session.helper.php';
 
 $request_body = file_get_contents('php://input');
 $data = json_decode($request_body, true);
@@ -23,16 +24,20 @@ $dataArray = [
 ];
 
 $customerService = new Authentication();
-$success = $customerService->register($dataArray);
+$session = new SessionHelper();
+
+$registerPayload = $customerService->register($dataArray);
 
 $payload = array();
 
-if ($success) {
-  setcookie('userId', (string)$insertResult->getInsertedId(), time()+99999999999, '/');
+if ($registerPayload["success"]) {
+  setcookie('customer_id', (string)$insertResult->getInsertedId(), time()+99999999999, '/');
+  $session->setUser((string)$insertResult->getInsertedId());
+
   $payload = array(
     'success' => true,
     'message' => 'customer added',
-    'user' => (string)$insertResult->getInsertedId()
+    'user' => $registerPayload["customer_id"]
   );
 } else {
   setcookie('userId', null, time()+99999999999, '/');

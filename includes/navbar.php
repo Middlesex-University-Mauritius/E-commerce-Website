@@ -2,6 +2,8 @@
 
 <?php
 
+require_once "../includes/helpers/session.helper.php";
+
 function links($authenticated, $id) {
   if ($authenticated === true) {
     echo <<<DEV
@@ -107,12 +109,14 @@ function navbar()
     <ul class="nav-links">
   DEV;
 
-  if (isset($_COOKIE["userId"])) {
-    echo links(true, $_COOKIE["userId"]);
+
+  $session = new SessionHelper();
+
+  if ($session->isSignedIn()) {
+    echo links(true, $_SESSION["customer_id"]);
   } else {
     echo links(false, null);
   }
-
 
   echo <<<DEV
     </ul>

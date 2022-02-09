@@ -281,7 +281,7 @@ export class Section {
 
         if (
           this.venue.seats[id].customer &&
-          this.venue.seats[id].customer._id.$oid === getCookie("userId")
+          this.venue.seats[id].customer._id.$oid === getCookie("customer_id")
         ) {
           const icon = document.createElement("i");
           icon.className = "fas fa-check";

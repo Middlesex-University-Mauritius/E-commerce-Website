@@ -1,6 +1,7 @@
 <?php
 
 require_once '../services/authentication.service.php';
+require_once '../helpers/session.helper.php';
 
 $request_body = file_get_contents('php://input');
 $data = json_decode($request_body, true);
@@ -9,6 +10,8 @@ $email = $data["email"] ?? null;
 $password = $data["password"] ?? null;
 
 $customerService = new Authentication();
+$session = new SessionHelper();
+
 $customer = $customerService->getCustomerByEmail($email);
 
 $authenticated = 0;
@@ -18,7 +21,8 @@ if ($customer) {
   $authenticated = $customer->password === $password;
 
   if ($authenticated) {
-    setcookie('userId', (string)$customer->_id, time()+99999999999, '/');
+    setcookie('customer_id', (string)$customer->_id, time()+99999999999, '/');
+    $session->setUser((string)$customer->_id);
     $payload = array(
       "authenticated" => true,
       "user" => (string)$customer->_id,
