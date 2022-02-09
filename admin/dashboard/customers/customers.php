@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../../../styles.css">
   <script src="https://kit.fontawesome.com/f2f51db1ed.js" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <title>Dashboard</title>
 </head>
 
@@ -24,26 +25,17 @@
       </p>
 
       <div class="flex-1 py-6 px-10">
-        <table>
+        <table id="customer-data">
           <tr>
             <th>Date</th>
             <th>Customer Name</th>
-          </tr>
-
-          <tr>
-            <td>22/02/2022</td>
-            <td>
-              <div class="flex space-x-3">
-                <img class="rounded-full w-8 h-8 border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSEuKKwqIqbJH-NRiDHluGbuC9ysMW99BPA&usqp=CAU" alt="" srcset="">
-                <p class="my-auto">Joe Rogan</p>
-              </div>
-            </td>
           </tr>
         </table>
 
       </div>
     </div>
   </div>
+  <script type = "module" src = "./js/index.js"></script>
 </body>
 
 </html>

@@ -15,11 +15,7 @@ window.onload = async () => {
       },
     })
     .then((response) => {
-      console.log("search", response.data);
-
       response.data.map((row) => {
-        console.log(row);
-
         const {
           _id: { $oid },
           title,
@@ -27,6 +23,8 @@ window.onload = async () => {
           date,
           time,
           images,
+          datePosted,
+          prices
         } = row;
 
         const event = new Event(
@@ -36,7 +34,9 @@ window.onload = async () => {
           description,
           date,
           time,
-          images
+          images,
+          datePosted,
+          prices
         );
         event.render(events);
       });

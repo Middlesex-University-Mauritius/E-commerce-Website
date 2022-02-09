@@ -13,7 +13,7 @@ $bookingService = new Booking();
 $bookings = $bookingService->getManyBookings($userId);
 
 if ($bookings) {
-  echo $bookings;
+  echo json_encode($bookings);
 } else {
   echo null;
 }

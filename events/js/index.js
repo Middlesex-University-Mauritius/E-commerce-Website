@@ -3,7 +3,7 @@ import { Event } from "../../includes/js/view/event.view.js";
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 
-let currentTab = params.category || "live-music";
+let currentTab = params.start || "live-music";
 
 const tabs = {
   "live-music": document.getElementById("live-music"),
@@ -18,11 +18,11 @@ const states = {
     "inline-block py-4 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 white:text-gray-400 white:hover:bg-gray-800 white:hover:text-gray-300",
 };
 
-if (params.category) {
+if (params.start) {
   try {
-    tabs[params.category].className = states.active;
+    tabs[params.start].className = states.active;
     Object.values(tabs).forEach((tab) => {
-      if (params.category !== tab.id) {
+      if (params.start !== tab.id) {
         tab.className = states.disabled;
       }
     });
@@ -60,6 +60,7 @@ const renderEvents = async () => {
       time,
       images,
       datePosted,
+      prices
     } = row;
 
     const event = new Event(
@@ -70,7 +71,8 @@ const renderEvents = async () => {
       date,
       time,
       images,
-      datePosted
+      datePosted,
+      prices
     );
     event.render(events);
   });

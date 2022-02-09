@@ -90,10 +90,12 @@
           description,
           date,
           time,
-          images
+          images,
+          datePosted,
+          prices
         } = row;
 
-        const event = new Event(SHRINKED, $oid, title, description, date, time, images);
+        const event = new Event(SHRINKED, $oid, title, description, date, time, images, datePosted, prices);
         event.render(events);
       })
     }

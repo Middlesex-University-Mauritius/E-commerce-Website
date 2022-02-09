@@ -32,8 +32,6 @@ window.onload = function () {
   axios
     .get("/web/includes/controllers/customer-bookings.controller.php")
     .then((response) => {
-      console.log(response);
-
       const { data } = response;
       if (!data) return;
 
