@@ -60,6 +60,7 @@ const renderEvents = async () => {
       time,
       images,
       datePosted,
+      prices
     } = row;
 
     const event = new Event(
@@ -70,7 +71,8 @@ const renderEvents = async () => {
       date,
       time,
       images,
-      datePosted
+      datePosted,
+      prices
     );
     event.render(events);
   });

@@ -28,7 +28,7 @@ export class Booking {
     const link = document.createElement("a");
     link.href = `/web/details/?id=${this.id}`;
     link.innerText = this.id;
-    link.className = "text-blue-600";
+    link.className = "text-blue-600 hover:underline";
     idData.append(link);
 
     // Event name
