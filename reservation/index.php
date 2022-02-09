@@ -18,7 +18,7 @@ head();
     <!-- Reservation page -->
     <div class="flex flex-row-reverse relative" id="reservation">
       <!-- keys -->
-      <div class="card absolute top-0 left-0 mx-10 my-10 p-0 min-w-[200px] select-none">
+      <div class="card absolute top-0 left-0 mx-10 my-10 p-0 min-w-[200px] select-none z-50">
         <div id="keys-title" class="bg-gray-50 border-b p-1 flex space-x-2 rounded-t-md hover:bg-gray-100 flex justify-between cursor-pointer">
           <p class="font-semibold text-sm">Keys</p>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
