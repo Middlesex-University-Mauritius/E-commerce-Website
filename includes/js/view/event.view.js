@@ -70,7 +70,7 @@ export class Event {
 
     // Parent card
     containers.card.className =
-      "bg-white rounded-lg border border-gray-200 shadow-md";
+      "bg-white rounded-lg border border-gray-200 shadow-md fade";
 
     if (!this.shrinked) containers.card.classList.add("flex");
 
@@ -195,7 +195,7 @@ export class Event {
 
     const button = document.createElement("button");
     button.className = "px-5 py-2 primary";
-    button.innerText = "See Tickets";
+    button.innerText = "View Details";
 
     if (this.shrinked) button.className = "px-5 py-2 primary w-full mt-4";
 
@@ -205,8 +205,9 @@ export class Event {
 
     calendarParent.append(containers.calendar.parent);
 
+    calendarParent.append(buttonLink);
+
     if (!this.shrinked) {
-      calendarParent.append(buttonLink);
       calendarParent.className = "flex justify-between";
       bodyParent.classList.add("w-full");
     }

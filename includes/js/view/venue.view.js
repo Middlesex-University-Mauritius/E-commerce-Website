@@ -5,6 +5,9 @@
 
 import { getCookie } from "../scripts/cookie.js";
 
+const urlSearchParams = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlSearchParams.entries());
+
 // Message when sidebar is empty
 const emptyMessage = (content) => {
   const message = document.createElement("p");
@@ -23,6 +26,7 @@ export class Venue {
   ratio = 1;
   prices = {};
   seats = {};
+  updating = false
 
   // Can be initialized with a ratio and mouse events disabled
   // Ratio is the actual size of the preview. eg. 1 is full size, 2 is half the size
@@ -33,10 +37,31 @@ export class Venue {
     this.ratio = ratio;
     this.disabled = disabled;
     this.prices = prices;
+
+    if (params.update && params.update === "true") {
+      this.updating = true;
+    }
   }
 
   render() {
     this.parent.append(this.container);
+  }
+
+  // Set update status back to false
+  setUpdating(status) {
+    if (!params.update || (params.update && params.update === "false")) return
+
+    const cartButton = document.getElementById("cart-button");
+    this.updating = status
+
+    // Updating
+    if (status) {
+      cartButton.classList.add("edit")
+      cartButton.innerText = "Save changes"
+    } else {
+      cartButton.classList.remove("edit")
+      cartButton.innerText = "Checkout"
+    }
   }
 
   // Compare with database to check if seat is already booked
@@ -144,7 +169,7 @@ export class Section {
         const s = this.venue.getSelections(id);
 
         const card = document.createElement("div");
-        card.className = "tickets-content-card";
+        card.className = "tickets-content-card fade";
 
         const titleContainer = document.createElement("div");
         titleContainer.className = "flex justify-between";
@@ -163,6 +188,7 @@ export class Section {
           "my-auto underline cursor-pointer text-red-700 hover:text-red-600 select-none";
         deleteBtn.innerText = "Delete";
         deleteBtn.addEventListener("click", () => {
+          this.venue.setUpdating(true);
           this.venue.setSubtotal(s.price * -1);
           card.remove();
           this.venue.deleteSelection(id);
@@ -280,6 +306,8 @@ export class Section {
             if (this.venue.seats[id] && this.venue.seats[id].disabled) {
               return;
             }
+
+            this.venue.setUpdating(true);
 
             // Remove check mark
             if (this.venue.getSelections(id)) {

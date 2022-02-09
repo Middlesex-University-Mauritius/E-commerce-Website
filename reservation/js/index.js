@@ -1,5 +1,6 @@
 import { Venue, Section } from "../../includes/js/view/venue.view.js";
 import { Storage } from "../../includes/js/scripts/storage.js";
+import { updateCart } from "../../includes/js/scripts/cart.js";
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
@@ -65,8 +66,6 @@ window.onload = async () => {
   regular.populateSeats();
 };
 
-const continueButton = document.getElementById("continue");
-const returnButton = document.getElementById("return");
 const cartButton = document.getElementById("cart-button");
 
 let storage = new Storage("cart", {});
@@ -92,18 +91,16 @@ const addToCart = () => {
   }
 
   storage.set(cart);
+
+  // Update cart count
+  updateCart()
 };
 
 cartButton.addEventListener("click", () => {
-  modalTitle.innerText = `Updating your cart with x${
-    Object.keys(venue.selections).length
-  } tickets`;
-});
-continueButton.addEventListener("click", () => {
-  addToCart();
-  window.location.href = "/web/checkout";
-});
-returnButton.addEventListener("click", () => {
-  addToCart();
-  window.location.href = "/web/events";
+  addToCart()
+  if (venue.updating) {
+    venue.setUpdating(false);
+  } else {
+    window.location.href = "/web/checkout/"
+  }
 });

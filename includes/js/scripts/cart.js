@@ -1,7 +1,11 @@
 import { ticketsCount } from "./core.js";
 
-// Get all items in cart
-const cartCount = document.getElementById("cart-count");
+export const updateCart = () => {
+  // Get all items in cart
+  const cartCount = document.getElementById("cart-count");
 
-// Render the number of items in cart in navbar
-cartCount.innerText = ticketsCount();
+  // Render the number of items in cart in navbar
+  cartCount.innerText = ticketsCount();
+}
+
+updateCart()

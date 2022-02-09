@@ -51,12 +51,12 @@
         <div class="space-y-2">
           <div>
             <p class="text-gray-700">Username</p>
-            <input class="my-2 w-full" type="text" id="username" name="username">
+            <input class="my-2 w-full bg-gray-50 border border-gray-300 border border-gray-300" type="text" id="username" name="username">
           </div>
 
           <div>
             <p class="text-gray-700">Password</p>
-            <input class="my-2 w-full" type="password" id="password" name="password">
+            <input class="my-2 w-full bg-gray-50 border border-gray-300 border border-gray-300" type="password" id="password" name="password">
           </div>
         </div>
 
