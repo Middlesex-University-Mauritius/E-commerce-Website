@@ -1,6 +1,6 @@
-import  ( Customer ) from "../../../includes/view/customer.view.js";
+// import  { Customer } from "../../../includes/view/customer.view.js";
 
-const parent = =document.getElementById("customer-data");
+const parent = document.getElementById("customer-data");
 
 window.onload = function () {
   axios
@@ -13,8 +13,8 @@ window.onload = function () {
             date,
             name,
           } = item;
-          const customer = new Custoomer(id, name, date);
-          customeer.render(parent);
+          // const customer = new Custoomer(id, name, date);
+          // customer.render(parent);
         });
   });
  };
