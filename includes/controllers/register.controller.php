@@ -14,6 +14,7 @@ $phone = $data["phone"] ?? null;
 $password = $data["password"] ?? null;
 $confirmPassword = $data["confirmPassword"] ?? null;
 
+// Form inputs from front end
 $dataArray = [
   "email" => $email,
   "firstName" => $firstName,
@@ -23,13 +24,21 @@ $dataArray = [
   "password" => $password
 ];
 
+// Calling our authentication service
 $customerService = new Authentication();
+// Session service
 $session = new SessionHelper();
 
+// TODO: Write a validation here to check if customer already exists. Use the function getCustomerByEmail in service.
+// Don't forget to exit() after the validation. 
+
+// Register the customer
 $registerPayload = $customerService->register($dataArray);
 
+// Inital payload is empty
 $payload = array();
 
+// Register successful
 if ($registerPayload["success"]) {
   setcookie('customer_id', json_encode($registerPayload["customer_id"]), time()+99999999999, '/');
   $session->setUser($registerPayload["customer_id"]);
@@ -40,6 +49,7 @@ if ($registerPayload["success"]) {
     'user' => $registerPayload["customer_id"]
   );
 } else {
+  // Registration failed
   $payload = array(
     'success' => false,
     'message' => 'customer not added',
