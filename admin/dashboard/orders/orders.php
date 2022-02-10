@@ -2,13 +2,10 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../../styles.css">
-  <script src="https://kit.fontawesome.com/f2f51db1ed.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <title>Dashboard</title>
+  <?php
+  include_once "../../includes/head.php";
+  head();
+  ?>
 </head>
 
 <body id="body">
@@ -26,7 +23,7 @@
       <div class="flex-1 py-6 px-10">
 
         <div class='flex space-x-10'>
-          <table>
+          <table id="order-data">
             <tr>
               <th>Date</th>
               <th>Customer Name</th>
@@ -36,92 +33,14 @@
               <th>Charge</th>
             </tr>
 
-            <tr>
-              <td>22/02/2022</td>
-              <td>
-                <div class="flex space-x-3">
-                  <img class="rounded-full w-8 h-8 border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSEuKKwqIqbJH-NRiDHluGbuC9ysMW99BPA&usqp=CAU" alt="" srcset="">
-                  <p class="my-auto">James Gordon</p>
-                </div>
-              </td>
-              <td>#001</td>
-              <td>Concert</td>
-              <td>x3</td>
-              <td>Rs 3,500</td>
-              <td>
-                <button class="warning px-4 py-2">Delete Order</button>
-              </td>
-            </tr>
-            <tr>
-              <td>22/02/2022</td>
-              <td>
-                <div class="flex space-x-3">
-                  <img class="rounded-full w-8 h-8 border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSEuKKwqIqbJH-NRiDHluGbuC9ysMW99BPA&usqp=CAU" alt="" srcset="">
-                  <p class="my-auto">James Gordon</p>
-                </div>
-              </td>
-              <td>#001</td>
-              <td>Concert</td>
-              <td>x3</td>
-              <td>Rs 3,500</td>
-              <td>
-                <button class="warning px-4 py-2">Delete Order</button>
-              </td>
-            </tr>
-            <tr>
-              <td>22/02/2022</td>
-              <td>
-                <div class="flex space-x-3">
-                  <img class="rounded-full w-8 h-8 border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSEuKKwqIqbJH-NRiDHluGbuC9ysMW99BPA&usqp=CAU" alt="" srcset="">
-                  <p class="my-auto">James Gordon</p>
-                </div>
-              </td>
-              <td>#001</td>
-              <td>Concert</td>
-              <td>x3</td>
-              <td>Rs 3,500</td>
-              <td>
-                <button class="warning px-4 py-2">Delete Order</button>
-              </td>
-            </tr>
-            <tr>
-              <td>22/02/2022</td>
-              <td>
-                <div class="flex space-x-3">
-                  <img class="rounded-full w-8 h-8 border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSEuKKwqIqbJH-NRiDHluGbuC9ysMW99BPA&usqp=CAU" alt="" srcset="">
-                  <p class="my-auto">James Gordon</p>
-                </div>
-              </td>
-              <td>#001</td>
-              <td>Concert</td>
-              <td>x3</td>
-              <td>Rs 3,500</td>
-              <td>
-                <button class="warning px-4 py-2">Delete Order</button>
-              </td>
-            </tr>
-            <tr>
-              <td>22/02/2022</td>
-              <td>
-                <div class="flex space-x-3">
-                  <img class="rounded-full w-8 h-8 border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSEuKKwqIqbJH-NRiDHluGbuC9ysMW99BPA&usqp=CAU" alt="" srcset="">
-                  <p class="my-auto">James Gordon</p>
-                </div>
-              </td>
-              <td>#001</td>
-              <td>Concert</td>
-              <td>x3</td>
-              <td>Rs 3,500</td>
-              <td>
-                <button class="warning px-4 py-2">Delete Order</button>
-              </td>
-            </tr>
           </table>
         </div>
 
       </div>
     </div>
   </div>
+
+  <script type="module" src="./js/index.js"></script>
 </body>
 
 </html>

@@ -25,12 +25,15 @@ if (!$session->isSignedIn()) {
   exit();
 }
 
+$datePosted = new \MongoDB\BSON\UTCDateTime();
+
 $dataArray = [
   "customer_id" => new MongoDB\BSON\ObjectID($_SESSION["customer_id"]),
   "event_id" => new MongoDB\BSON\ObjectID($eventId),
   "seats" => $seats,
   "subtotal" => $subtotal,
-  "address" => $address
+  "address" => $address,
+  "timestamp" => $datePosted
 ];
 
 $bookingService = new Booking();

@@ -6,7 +6,7 @@ require "../../../vendor/autoload.php";
 class Event extends DatabaseHelper {
 
   function addEvent($data) {
-    $datePosted = (string)new \MongoDB\BSON\UTCDateTime();
+    $datePosted = new \MongoDB\BSON\UTCDateTime();
     $payload = array();
     try {
       $insertOneResult = $this->database->events->insertOne([

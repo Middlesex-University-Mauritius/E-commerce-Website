@@ -1,4 +1,4 @@
-class Order {
+export class Order {
   date = null;
   name = null;
   eventId = null;
@@ -20,6 +20,9 @@ class Order {
     const tr = document.createElement("tr");
     const dateData = document.createElement("td");
     const customerData = document.createElement("td");
+
+    dateData.innerText = moment(Number(this.date)).fromNow();
+
     const customerContainer = document.createElement("div")
     customerContainer.className = "flex space-x-3";
     const customerImage = document.createElement("img");
@@ -28,6 +31,12 @@ class Order {
     const customerName = document.createElement("p");
     customerName.className = "my-auto";
     customerName.innerText = this.name;
+
+    const avatar = document.createElement("img");
+    avatar.src = "/web/includes/img/avatar.png"
+    avatar.className = "rounded-full w-8 h-8 border"
+
+    customerContainer.append(avatar, customerName);
     customerData.append(customerContainer);
 
     const eventData = document.createElement("td");

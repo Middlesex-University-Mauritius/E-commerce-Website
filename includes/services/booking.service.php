@@ -4,6 +4,41 @@ require "../helpers/database.helper.php";
 
 class Booking extends DatabaseHelper {
 
+  function getBookings() {
+    $bookings = $this->database->bookings->aggregate([
+      [
+        '$lookup' => [
+          'from' => 'customers',
+          'localField' => 'customer_id',
+          'foreignField' => '_id',
+          'as' => 'customer'
+        ]
+      ],
+      [
+        '$unwind' => [
+          'path' => '$customer',
+          'preserveNullAndEmptyArrays' => true,
+        ]
+      ],
+      [
+        '$lookup' => [
+          'from' => 'events',
+          'localField' => 'event_id',
+          'foreignField' => '_id',
+          'as' => 'event'
+        ]
+      ],
+      [
+        '$unwind' => [
+          'path' => '$event',
+          'preserveNullAndEmptyArrays' => true,
+        ]
+      ],
+    ]);
+
+    return $bookings->toArray();
+  }
+
   function getManyBookings($customerId) {
     $bookings = $this->database->bookings->aggregate([
       [

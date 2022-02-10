@@ -52,6 +52,7 @@ const renderEvents = async () => {
 
   // Render the events on the page in shrinked mode
   response.data.map((row) => {
+    console.log(row)
     const {
       _id: { $oid },
       title,
@@ -59,7 +60,7 @@ const renderEvents = async () => {
       date,
       time,
       images,
-      datePosted,
+      datePosted: { $date: { $numberLong: timestamp } },
       prices
     } = row;
 
@@ -71,7 +72,7 @@ const renderEvents = async () => {
       date,
       time,
       images,
-      datePosted,
+      timestamp,
       prices
     );
     event.render(events);

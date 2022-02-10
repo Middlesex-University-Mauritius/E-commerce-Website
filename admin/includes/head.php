@@ -4,19 +4,8 @@
 
 <?php
 
-require_once "../includes/helpers/session.helper.php";
-
-function head($requiresLogin=false)
+function head()
 {
-  if ($requiresLogin) {
-    $session = new SessionHelper();
-
-    if (!$session->isSignedIn()) {
-      header("Location: /web/home");
-      exit();
-    }
-  }
-
   echo <<<DEV
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +18,7 @@ function head($requiresLogin=false)
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" type="text/javascript" ></script>
     <script type="module" src="/web/includes/js/scripts/cart.js"></script>
     <script type="module" src="/web/includes/js/scripts/search.js"></script>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../../../styles.css">
 
     <title>Tixx | Event booking</title>
   DEV;

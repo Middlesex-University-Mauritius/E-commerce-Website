@@ -38,9 +38,9 @@ export class Event {
     this.prices = prices
   }
 
+
   isToday(comparedDate) {
-    const today = (date) =>
-      kmoment(Date(comparedDate), "HH").diff(date, "days") == 0;
+    const today = (date) => moment(Number(comparedDate), "HH").diff(date, "days") == 0;
     return today;
   }
 
@@ -117,7 +117,7 @@ export class Event {
       "bg-green-200 max-w-min text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded my-auto";
     tag.innerText = "NEW";
 
-    if (this.isToday(Date(this.datePosted))) {
+    if (this.isToday(Number(this.datePosted))) {
       titleContainer.append(tag);
     }
 
