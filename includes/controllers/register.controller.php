@@ -31,8 +31,8 @@ $registerPayload = $customerService->register($dataArray);
 $payload = array();
 
 if ($registerPayload["success"]) {
-  setcookie('customer_id', (string)$insertResult->getInsertedId(), time()+99999999999, '/');
-  $session->setUser((string)$insertResult->getInsertedId());
+  setcookie('customer_id', json_encode($registerPayload["customer_id"]), time()+99999999999, '/');
+  $session->setUser($registerPayload["customer_id"]);
 
   $payload = array(
     'success' => true,

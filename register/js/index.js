@@ -1,3 +1,5 @@
+"use strict"
+
 import {
   validate,
   validateFields,
@@ -69,7 +71,12 @@ button.addEventListener("click", (event) => {
 
         setTimeout(() => {
           window.location.href = "/web/home";
+          button.disabled = false;
         }, 1000);
+      }).catch((error) => {
+        if (error) {
+          button.disabled = false;
+        }
       });
   }
 });

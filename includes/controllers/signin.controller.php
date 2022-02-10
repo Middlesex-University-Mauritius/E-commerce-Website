@@ -21,7 +21,7 @@ if ($customer) {
   $authenticated = $customer->password === $password;
 
   if ($authenticated) {
-    setcookie('customer_id', (string)$customer->_id, time()+99999999999, '/');
+    setcookie('customer_id', json_encode((string)$customer->_id), time()+99999999999, '/');
     $session->setUser((string)$customer->_id);
     $payload = array(
       "authenticated" => true,

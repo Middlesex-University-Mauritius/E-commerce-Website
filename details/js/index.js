@@ -1,5 +1,7 @@
 import { Section, Venue } from "../../includes/js/view/venue.view.js";
 import { showSlides } from "../../includes/js/scripts/slide.js";
+import { getCookie, setCookie } from "../../includes/js/scripts/cookie.js";
+import { setRecentlyVisited } from "../../includes/js/scripts/recommendation.js";
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
@@ -64,6 +66,8 @@ window.onload = async () => {
   }
 
   const event = data[0];
+
+  setRecentlyVisited(event._id.$oid)
 
   const images = event.images;
 

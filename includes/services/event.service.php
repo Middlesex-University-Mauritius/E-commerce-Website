@@ -63,6 +63,22 @@ class Event extends DatabaseHelper {
     return $event->toArray();
   }
 
+  function recentlyVisited($ids) {
+    $formattedIds = array();
+
+    foreach (json_decode($ids) as $id) {
+      array_push($formattedIds, new MongoDB\BSON\ObjectID($id));
+    }
+
+    $events = $this->database->events->find([
+      '_id' => [
+        '$in' => $formattedIds
+      ]
+    ]);
+
+    return $events->toArray();
+  }
+
 }
 
 ?>

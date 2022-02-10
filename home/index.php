@@ -58,8 +58,11 @@
     </div>
 
     <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 mt-8">Dicover Events</h5>
-
     <div id="events" class="space-y-3">
+    </div>
+
+    <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 mt-8">Recently Visited</h5>
+    <div id="recently-visited" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     </div>
   </div>
 
@@ -100,6 +103,8 @@
       })
     }
   </script>
+
+  <!-- Home page banner search bar -->
   <script>
     const bannerSearch = document.getElementById("search-box");
     const bannerInput = document.getElementById("search-input");
@@ -109,6 +114,9 @@
       window.location.href = `/web/search?query=${bannerInput.value}`;
     });
   </script>
+
+  <!-- Frequently Visited Module -->
+  <script type="module" src="./js/frequentlyVisited.js"></script>
 </body>
 
 </html>

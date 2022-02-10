@@ -1,3 +1,5 @@
+"use strict"
+
 /**
  * file: event.view.js
  * description: event card view
@@ -77,6 +79,9 @@ export class Event {
     const bodyParent = document.createElement("div");
 
     // Card image
+    const imageContainer = document.createElement("a");
+    imageContainer.href = `/web/details?id=${this.id}`
+
     const image = document.createElement("img");
     image.src = this.images[0];
     image.className =
@@ -84,8 +89,10 @@ export class Event {
 
     if (!this.shrinked) {
       image.className =
-        "rounded-l-md border border-gray-200 w-56 min-h-max object-cover";
+        "rounded-l-md border border-gray-200 w-56 h-full object-cover";
     }
+
+    imageContainer.append(image);
 
     // Body
     containers.body.parent.className = "px-6 py-4 border-b";
@@ -214,7 +221,7 @@ export class Event {
 
     bodyParent.append(containers.body.parent, calendarParent);
 
-    containers.card.append(image, bodyParent);
+    containers.card.append(imageContainer, bodyParent);
     parent.append(containers.card);
   }
 }
