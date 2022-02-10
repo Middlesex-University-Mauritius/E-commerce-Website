@@ -2,21 +2,23 @@ import { Order } from "../../../includes/view/order.view.js";
 
 const parent = document.getElementById("order-data");
 
+// Get all bookings/orders for all customers
 window.onload = () => {
   axios
     .get("/web/admin/includes/controllers/view-orders.controller.php")
     .then((response) => {
       const orders = response.data;
       orders.forEach((item) => {
-        console.log(item)
         const {
           timestamp: { $date: { $numberLong: date } },
-          event,
-          customer,
+          event: { _id: { $oid: eventId }, category },
+          customer: { firstName },
           seats,
           subtotal
         } = item;
-        const order = new Order(date, customer.firstName, event._id.$oid, event.category, Object.keys(seats).length, subtotal);
+
+        // Render the items using Order view
+        const order = new Order(date, firstName, eventId, category, Object.keys(seats).length, subtotal);
         order.render(parent);
       });
     });

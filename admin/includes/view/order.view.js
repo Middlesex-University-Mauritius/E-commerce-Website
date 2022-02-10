@@ -21,8 +21,10 @@ export class Order {
     const dateData = document.createElement("td");
     const customerData = document.createElement("td");
 
+    // Timestamp 
     dateData.innerText = moment(Number(this.date)).fromNow();
 
+    // Customer details 
     const customerContainer = document.createElement("div")
     customerContainer.className = "flex space-x-3";
     const customerImage = document.createElement("img");
@@ -32,6 +34,7 @@ export class Order {
     customerName.className = "my-auto";
     customerName.innerText = this.name;
 
+    // Customer avatar placeholder
     const avatar = document.createElement("img");
     avatar.src = "/web/includes/img/avatar.png"
     avatar.className = "rounded-full w-8 h-8 border"
@@ -39,17 +42,21 @@ export class Order {
     customerContainer.append(avatar, customerName);
     customerData.append(customerContainer);
 
+    // Event id
     const eventData = document.createElement("td");
     eventData.innerText = this.eventId;
 
+    // Category
     const categoryData = document.createElement("td");
     categoryData.innerText = this.category;
 
+    // Number of tickets
     const ticketCountData = document.createElement("td");
-    ticketCountData.innerText = this.tickets;
+    ticketCountData.innerText = `x${this.tickets}`;
 
+    // Subtotal
     const chargeData = document.createElement("td");
-    chargeData.innerText = this.charge;
+    chargeData.innerText = `Rs ${this.charge}`;
 
     tr.append(dateData, customerData, eventData, categoryData, ticketCountData, chargeData);
     parent.append(tr);

@@ -22,6 +22,7 @@
 
       <div class="flex-1 py-6 px-10">
 
+        <!-- Orders -->
         <div class='flex space-x-10'>
           <table id="order-data">
             <tr>

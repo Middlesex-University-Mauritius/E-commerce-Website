@@ -4,6 +4,7 @@ require "../helpers/database.helper.php";
 
 class Booking extends DatabaseHelper {
 
+  // Get bookings using aggregate function. Populate event using eventId and customer using customer_id
   function getBookings() {
     $bookings = $this->database->bookings->aggregate([
       [

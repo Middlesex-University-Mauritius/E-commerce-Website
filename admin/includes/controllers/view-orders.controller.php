@@ -2,8 +2,11 @@
 
 require '../../../includes/services/booking.service.php';
 
+// Initiate the booking service
 $bookingService = new Booking();
 
-$orders = $bookingService->getBookings();
+// Get all the bookings
+$bookings = $bookingService->getBookings();
 
-echo json_encode($orders);
+// Encode data 
+echo json_encode($bookings);
