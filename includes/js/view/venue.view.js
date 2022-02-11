@@ -4,6 +4,10 @@
  */
 
 import { getCookie } from "../scripts/cookie.js";
+import { Storage } from "../scripts/storage.js";
+
+const storage = new Storage("cart", {});
+const cart = storage.get();
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
@@ -27,18 +31,20 @@ export class Venue {
   prices = {};
   seats = {};
   updating = false
+  compareWithCurrentUser = true
 
   // Can be initialized with a ratio and mouse events disabled
   // Ratio is the actual size of the preview. eg. 1 is full size, 2 is half the size
-  constructor(parent, prices, ratio = 1, disabled = false) {
+  constructor(parent, prices, compareWithCurrentUser = true, ratio = 1, disabled = false) {
     this.container.className = "venue-container";
     this.container.id = "venue-container";
     this.parent = parent;
     this.ratio = ratio;
     this.disabled = disabled;
     this.prices = prices;
+    this.compareWithCurrentUser = compareWithCurrentUser;
 
-    if (params.update && params.update === "true") {
+    if (Object.keys(cart).length >= 1 && Object.keys(cart[params.id]).length >= 1) {
       this.updating = true;
     }
   }
@@ -49,7 +55,7 @@ export class Venue {
 
   // Set update status back to false
   setUpdating(status) {
-    if (!params.update || (params.update && params.update === "false")) return
+    if (Object.keys(cart).length <= 0 || Object.keys(cart[params.id]).length <= 0) return
 
     const cartButton = document.getElementById("cart-button");
     this.updating = status
@@ -163,10 +169,8 @@ export class Section {
 
     // Display empty message when seats are not selected
     if (Object.keys(this.venue.getSelections()).length === 0) {
-      document.getElementById("cart-button").disabled = true;
       emptyMessage(content);
     } else {
-      document.getElementById("cart-button").disabled = false;
       Object.keys(this.venue.getSelections()).map((id) => {
         const s = this.venue.getSelections(id);
 
@@ -284,6 +288,7 @@ export class Section {
         if (
           this.venue.seats[id].customer &&
           this.venue.seats[id].customer._id.$oid === getCookie("customer_id")
+          && this.venue.compareWithCurrentUser
         ) {
           const icon = document.createElement("i");
           icon.className = "fas fa-check";

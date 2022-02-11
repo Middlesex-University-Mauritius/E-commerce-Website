@@ -77,7 +77,7 @@ let storage = new Storage("cart", {});
 const cart = storage.get();
 
 const addToCart = () => {
-  if (!params.id || !venue || !currentEvent) return;
+  if (!params.id || !venue || !currentEvent || Object.keys(cart).length <= 0) return;
 
   if (venue.getSelections()) {
     // Item exists in cart already

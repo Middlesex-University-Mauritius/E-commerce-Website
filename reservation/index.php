@@ -63,7 +63,7 @@ head();
             </div>
           </div>
           <p class="text-gray-700">The total will be calculated at the checkout page.</p>
-          <button disabled id="cart-button" class="primary py-3 mt-4 w-full">
+          <button id="cart-button" class="primary py-3 mt-4 w-full">
             Checkout
           </button>
         </div>
