@@ -163,13 +163,15 @@ export class Section {
 
     // Display empty message when seats are not selected
     if (Object.keys(this.venue.getSelections()).length === 0) {
+      document.getElementById("cart-button").disabled = true;
       emptyMessage(content);
     } else {
+      document.getElementById("cart-button").disabled = false;
       Object.keys(this.venue.getSelections()).map((id) => {
         const s = this.venue.getSelections(id);
 
         const card = document.createElement("div");
-        card.className = "tickets-content-card fade";
+        card.className = "tickets-content-card";
 
         const titleContainer = document.createElement("div");
         titleContainer.className = "flex justify-between";

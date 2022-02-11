@@ -43,12 +43,12 @@ window.onload = function () {
       }
 
       bookings.map((booking) => {
-        const { event_id, event, subtotal, seats } = booking;
+        const { event, subtotal, seats } = booking;
 
         const bookingView = new Booking(
+          event._id.$oid,
           event.date,
           event.title,
-          event_id.$oid,
           event.category,
           Object.keys(seats).length,
           subtotal

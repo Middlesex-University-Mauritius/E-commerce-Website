@@ -1,4 +1,4 @@
-import { Order } from "../../../includes/view/order.view.js";
+import { Booking } from "../../../includes/view/booking.view.js";
 
 const parent = document.getElementById("order-data");
 
@@ -11,14 +11,15 @@ window.onload = () => {
       orders.forEach((item) => {
         const {
           timestamp: { $date: { $numberLong: date } },
-          event: { _id: { $oid: eventId }, category },
+          event: { category },
           customer: { firstName },
+          address: { streetAddress },
           seats,
           subtotal
         } = item;
 
         // Render the items using Order view
-        const order = new Order(date, firstName, eventId, category, Object.keys(seats).length, subtotal);
+        const order = new Booking(date, firstName, streetAddress, category, Object.keys(seats).length, subtotal);
         order.render(parent);
       });
     });

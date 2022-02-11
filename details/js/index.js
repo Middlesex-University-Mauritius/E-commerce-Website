@@ -75,7 +75,7 @@ window.onload = async () => {
     const imageContainer = document.createElement("div");
     imageContainer.className = "slides fade";
     const img = document.createElement("img");
-    img.src = slide;
+    img.src = `/web/__images__/${event._id.$oid}/${slide}`;
     img.className = "w-full none h-96 object-cover";
     imageContainer.append(img);
     slideshowContainer.append(imageContainer);

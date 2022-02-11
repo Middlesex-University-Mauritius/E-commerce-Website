@@ -6,21 +6,18 @@ window.onload = () => {
   axios
     .get("/web/includes/controllers/events-by-category.controller.php")
     .then((response) => {
-
-      console.log("event-response", response);
       const events = response.data;
       events.forEach((item) => {
         const {
-          category,
-          date,
+          _id: { $oid: event_id },
           description,
           prices,
           tags,
-          time,
           title,
           images,
+          bookings
         } = item;
-        const event = new Event(title, description, prices, 0, tags, images);
+        const event = new Event(event_id, title, description, prices, bookings.length, tags, images);
         event.render(parent);
       });
     });

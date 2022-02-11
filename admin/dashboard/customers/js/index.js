@@ -1,23 +1,18 @@
-// import  { Customer } from "../../../includes/view/customer.view.js";
+"use strict"
+
+import  { Customer } from "../../../includes/view/customer.view.js";
 
 const parent = document.getElementById("customer-data");
 
 window.onload = function () {
   axios
-    .get("/web/includes/controllers/getAllCustomers.controller.php")
+    .get("/web/admin/includes/controllers/get-all-customers.controller.php")
     .then((response) => {
-        const customers = response.data;
-        customers.forEach((item) => {
-          const {
-            id,
-            date,
-            name,
-          } = item;
-          // const customer = new Custoomer(id, name, date);
-          // customer.render(parent);
-        });
+      const customers = response.data;
+      customers.forEach((item) => {
+        const { firstName, lastName, email, phone, age, bookings } = item;
+        const customer = new Customer(`${firstName} ${lastName}`, email, phone, age, bookings.length);
+        customer.render(parent);
+      });
   });
  };
-  // Load customers here
-  // steps:
-  // see /admin/dashboard/events/js/index.js

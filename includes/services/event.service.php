@@ -6,7 +6,17 @@ class Event extends DatabaseHelper {
 
   function getManyEvents($category) {
     if (!$category) {
-      $events = $this->database->events->find([]);
+      // $events = $this->database->events->find([]);
+      $events = $this->database->events->aggregate([
+        [
+          '$lookup' => [
+            'from' => 'bookings',
+            'localField' => '_id',
+            'foreignField' => 'event_id',
+            'as' => 'bookings'
+          ]
+        ]
+      ]);
     } else {
       $events = $this->database->events->find([
         'category' => $category

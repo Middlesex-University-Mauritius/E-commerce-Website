@@ -254,6 +254,7 @@ p.error {
   box-shadow: 0px 1px 4px rgba(167, 167, 167, 0.25);
   user-select: none;
   cursor: pointer;
+  transition: all 0.3s;
 }
 #notification.error {
   background-color: #d14848;

@@ -8,13 +8,13 @@ const parent = document.getElementById("recently-visited");
 
 const SHRINKED = true;
 const recentlyVisited = getCookie(RECENTLY_VISITED);
+// Show 10 frequently visited events
 const response = await axios.get("/web/includes/controllers/recently-visited.controller.php", {
   params: {
     ids: JSON.stringify(Object.keys(recentlyVisited))
   }
 });
 const events = response.data;
-console.log("events", events)
 
 events.map((row) => {
   const {

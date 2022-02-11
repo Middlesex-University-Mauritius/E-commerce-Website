@@ -16,10 +16,7 @@ function head()
     <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.min.css" />
     <script src="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" type="text/javascript" ></script>
-    <script type="module" src="/web/includes/js/scripts/cart.js"></script>
-    <script type="module" src="/web/includes/js/scripts/search.js"></script>
     <link rel="stylesheet" href="../../../styles.css">
-
-    <title>Tixx | Event booking</title>
+    <title>Dashboard</title>
   DEV;
 }

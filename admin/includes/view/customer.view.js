@@ -1,20 +1,21 @@
-class Customer {
-  id = null;
-  date = null;
+export class Customer {
   name = null;
+  email = null;
+  phone = null;
+  age = null;
+  bookings = null;
 
-  constructor(id, date, name) {
-    this.id = id;
-    this.date = date;
+  constructor(name, email, phone, age, bookings) {
     this.name = name;
+    this.email = email;
+    this.phone = phone;
+    this.age = age;
+    this.bookings = bookings;
   }
 
   render(parent) {
 
     const tr = document.createElement("tr");
-
-    const idData = document.createElement("td");
-    const dateData = document.createElement("td");
 
     const customerData = document.createElement("td");
     const customerContainer = document.createElement("div")
@@ -25,15 +26,22 @@ class Customer {
     const customerName = document.createElement("p");
     customerName.className = "my-auto";
     customerName.innerText = this.name;
+    customerContainer.append(customerImage, customerName);
     customerData.append(customerContainer);
 
-    const idData = document.createElement("td");
-    idData.innerText = this.id;
+    const emailData = document.createElement("td");
+    emailData.innerText = this.email;
 
-    const dateData = document.createElement("td");
-    dateData.innerText = this.date;
+    const phoneData = document.createElement("td");
+    phoneData.innerText = this.phone;
 
-    tr.append(idData, dateData, customerData);
+    const ageData = document.createElement("td");
+    ageData.innerText = this.age;
+
+    const bookingsData = document.createElement("td");
+    bookingsData.innerText = `x${this.bookings}`;
+
+    tr.append(customerData, emailData, phoneData, ageData, bookingsData);
     parent.append(tr);
   }
 

@@ -62,6 +62,10 @@ window.onload = async () => {
     venue.getAvailability(Object.values(cart[params.id].seats), true);
   }
 
+  if (Object.keys(cart).length >= 1 && Object.keys(cart[params.id]).length >= 1) {
+    cartButton.disabled = false;
+  }
+
   vip.populateSeats();
   premium.populateSeats();
   regular.populateSeats();

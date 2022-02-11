@@ -1,55 +1,9 @@
+import Notification from "../../../../includes/js/view/notification.view.js";
+
 const parent = document.getElementById("body");
 const tag = document.getElementById("tag");
 const eventImage = document.getElementById("event-image");
-const notification = new Notification(parent);
 const tagsContainer = document.getElementById("tags-container");
-const preview = document.getElementById("preview");
-let tags = [];
-let sessionId = null;
-let images = [];
-
-window.onload = async () => {
-  sessionId = await uuidv4();
-};
-
-eventImage.addEventListener("change", async () => {
-  if (!sessionId) return;
-
-  const formData = new FormData();
-  const files = eventImage.files;
-
-  for (let i = 0; i < files.length; i++) {
-    formData.append("file[]", files[i]);
-  }
-
-  const response = await axios.post(
-    "/web/admin/includes/services/upload.php",
-    formData,
-    {
-      params: {
-        sessionId,
-      },
-      header: {
-        "Content-Type": "multipart/form-data",
-      },
-    }
-  );
-
-  console.log(response);
-
-  if (response.data) {
-    preview.hidden = false;
-
-    response.data.forEach((img) => {
-      const image = document.createElement("img");
-      image.src = img;
-      image.className = "w-full h-28 object-cover";
-      preview.append(image);
-    });
-
-    images = response.data;
-  }
-});
 
 tag.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && e.target.value.trim().length >= 1) {
@@ -89,30 +43,29 @@ window.onCategoryChange = function (e) {
   });
 };
 
-const confirm = document.getElementById("confirm");
+const proceed = document.getElementById("proceed");
 
 Object.values(formInputs).forEach((input) =>
   input.addEventListener("input", () => input.classList.remove("error"))
 );
 
-confirm.addEventListener("click", () => {
-  confirm.disabled = true;
+proceed.addEventListener("click", () => {
+  proceed.disabled = true;
 
+  // Prepare tags for upload
+  let tags = [];
   if (tagsNodes.length >= 1) {
     tagsNodes.forEach((tag) => {
-      if (tag.innerText) {
-        tags.push(tag.innerText);
-      }
+      if (tag.innerText) tags.push(tag.innerText);
     });
   }
 
+  // Validate other fields
   let validated = true;
-
   if (eventImage.files.length === 0) {
     validated = false;
     eventImage.classList.add("error");
   }
-
   Object.values(formInputs).forEach((input) => {
     if (input.value.length === 0) {
       validated = false;
@@ -120,49 +73,54 @@ confirm.addEventListener("click", () => {
     }
   });
 
+  // Validation successful
   if (!validated) return;
 
-  console.log({
-    title: formInputs.title.value,
-    description: formInputs.description.value,
-    date: formInputs.date.value,
-    time: formInputs.time.value,
-    category: category,
-    tags,
-    images,
-    prices: {
-      regular: regular.value,
-      premium: premium.value,
-      vip: vip.value,
-    },
-  });
+  // Prepare image for upload
+  const formData = new FormData();
+  const files = eventImage.files;
+  let images = []
+  for (let i = 0; i < files.length; i++) {
+    formData.append("file[]", files[i]);
+    images.push(`image-${i}.${files[i].name.split(".").pop()}`);
+  }
+
+  // Append other field inputs to form 
+  formData.append("title", formInputs.title.value)
+  formData.append("description", formInputs.description.value)
+  formData.append("date", formInputs.date.value)
+  formData.append("time", formInputs.time.value)
+  formData.append("category", category)
+  formData.append("images", JSON.stringify(images))
+  formData.append("tags", JSON.stringify(tags))
+  formData.append("prices", JSON.stringify({
+    regular: regular.value,
+    premium: premium.value,
+    vip: vip.value,
+  }))
 
   axios
-    .post("/web/admin/includes/controllers/add-event.controller.php", {
-      title: formInputs.title.value,
-      description: formInputs.description.value,
-      date: formInputs.date.value,
-      time: formInputs.time.value,
-      category: category,
-      tags,
-      images,
-      prices: {
-        regular: regular.value,
-        premium: premium.value,
-        vip: vip.value,
-      },
+    .post("/web/admin/includes/controllers/add-event.controller.php", formData, {
+      header: {
+        "Content-Type": "multipart/form-data",
+      }
     })
     .then((response) => {
       const { data } = response;
+      const notification = new Notification(parent);
 
       if (data.success) {
-        window.location.href = "/web/admin/dashboard/events/events.php";
+        notification.render("Event created successfully", "success")
       } else {
-        window.location.href = "/web/admin/dashboard/events/events.php";
+        notification.render("Something went wrong when creating event", "error")
       }
-      confirm.disabled = false;
+
+      setTimeout(() => {
+        window.location.href = "/web/admin/dashboard/events/events.php";
+        proceed.disabled = false;
+      }, 2000)
     })
     .catch(() => {
-      confirm.disabled = false;
+      proceed.disabled = false;
     });
 });

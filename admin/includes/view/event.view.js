@@ -1,4 +1,5 @@
 export class Event {
+  event_id = null;
   title = null;
   description = null;
   prices = null;
@@ -6,7 +7,8 @@ export class Event {
   tags = null;
   images = null;
 
-  constructor(title, description, prices, bookings, tags, images) {
+  constructor(event_id, title, description, prices, bookings, tags, images) {
+    this.event_id = event_id;
     this.title = title;
     this.description = description;
     this.prices = prices;
@@ -30,7 +32,7 @@ export class Event {
 
     const image = document.createElement("img");
     image.className = "h-40 w-40 rounded object-cover";
-    image.src = this.images[0];
+    image.src = `/web/__images__/${this.event_id}/${this.images[0]}`;
 
     const productContent = document.createElement("div");
     productContent.className = "space-y-3";
@@ -69,9 +71,13 @@ export class Event {
     count.className = "my-auto";
     count.innerText = this.bookings;
 
+    const editUrl = document.createElement("a");
+    editUrl.href = `/web/admin/dashboard/edit-event?id=${this.event_id}`
     const button = document.createElement("button");
     button.className = "edit py-2 px-4 whitespace-nowrap";
-    button.innerText = "Edit Product";
+    button.innerText = "Edit Event";
+    editUrl.append(button);
+    editData.append(editUrl);
 
     bookingsContainer.append(icon, count);
 
@@ -80,7 +86,6 @@ export class Event {
 
     productData.append(productContainer);
     bookingsData.append(bookingsContainer);
-    editData.append(button);
 
     tr.append(productData, priceData, bookingsData, editData);
 

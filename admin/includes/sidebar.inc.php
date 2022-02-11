@@ -24,9 +24,8 @@ echo <<<DEV
 DEV;
 echo "<div class='space-y-2 flex flex-col text-left'>";
 field("customers", "Customers", "far fa-user");
-field("recommendations", "Recommendations", "fas fa-tachometer-alt");
 field("events", "My Events", "far fa-star");
 field("add event", "Add Event", "fas fa-plus");
-field("orders", "View Orders", "fas fa-shopping-cart");
+field("bookings", "View Bookings", "fas fa-shopping-cart");
 echo "</div>";
 echo "</div>";

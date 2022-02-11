@@ -2,6 +2,8 @@
 
 require '../services/event.service.php';
 
+$id = $_GET["id"] ?? null;
+
 $data = [
   "title" => $_POST["title"],
   "description" => $_POST["description"],
@@ -17,23 +19,20 @@ $payload = array();
 
 $eventService = new Event();
 
-$payload = $eventService->addEvent($data);
-$eventService->upload($payload["event_id"]);
+$payload = $eventService->updateEvent($id, $data);
+if (count(json_decode($_POST["images"])) >= 1) {
+  $eventService->upload($id);
+}
 
 if ($payload["success"]) {
   $payload = array(
     "success" => true,
-    "message" => "Event created successfully",
-    "event" => array(
-      "event_id" => $payload["event_id"],
-      "title" => $payload["title"]
-    )
+    "message" => "Event updated successfully"
   ); 
 } else {
   $payload = array(
     "success" => false,
-    "message" => "Unable to create event",
-    "event" => null
+    "message" => "Unable to update event"
   );
 }
 

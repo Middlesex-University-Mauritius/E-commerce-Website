@@ -83,7 +83,7 @@ export class Event {
     imageContainer.href = `/web/details?id=${this.id}`
 
     const image = document.createElement("img");
-    image.src = this.images[0];
+    image.src = `/web/__images__/${this.id}/${this.images[0]}`;
     image.className =
       "rounded-t-md border border-gray-200 w-full h-56 object-cover";
 

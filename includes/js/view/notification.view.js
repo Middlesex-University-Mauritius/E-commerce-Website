@@ -32,7 +32,9 @@ class Notification {
     } else {
       this.parent.append(notification);
       setTimeout(() => {
-        this.parent.removeChild(notification);
+        notification.style.position = "absolute";
+        notification.style.top = "-9999999px";
+        // this.parent.removeChild(notification);
       }, 5000);
     }
   }

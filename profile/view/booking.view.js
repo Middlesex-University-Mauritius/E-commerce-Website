@@ -1,15 +1,15 @@
 export class Booking {
+  id = null;
   date = null;
   eventName = null;
-  id = null;
   category = null;
   tickets = null;
   charge = null;
 
-  constructor(date, eventName, id, category, tickets, charge) {
+  constructor(id, date, eventName, category, tickets, charge) {
+    this.id = id;
     this.date = date;
     this.eventName = eventName;
-    this.id = id;
     this.category = category;
     this.tickets = tickets;
     this.charge = charge;
@@ -26,7 +26,7 @@ export class Booking {
 
     // Event Id
     const link = document.createElement("a");
-    link.href = `/web/details/?id=${this.id}`;
+    link.href = `/web/reservation/?id=${this.id}`;
     link.innerText = this.id;
     link.className = "text-blue-600 hover:underline";
     idData.append(link);
@@ -35,7 +35,17 @@ export class Booking {
     eventNameData.innerText = this.eventName;
 
     // Category
-    categoryData.innerText = this.category;
+    const category = document.createElement("span");
+
+    if (this.category === "live-music")
+      category.className = "bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded"
+    else if (this.category === "stand-up")
+      category.className = "bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded"
+    else if (this.category === "arts-and-theater")
+      category.className = "bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded"
+
+    category.innerText = this.category;
+    categoryData.append(category)
 
     // Tickets
     ticketsData.innerText = `x${this.tickets}`;

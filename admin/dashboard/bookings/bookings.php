@@ -28,7 +28,7 @@
             <tr>
               <th>Date</th>
               <th>Customer Name</th>
-              <th>Event ID</th>
+              <th>Address</th>
               <th>Category</th>
               <th>Tickets</th>
               <th>Charge</th>
