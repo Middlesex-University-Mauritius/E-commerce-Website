@@ -191,9 +191,9 @@ proceed.addEventListener("click", () => {
       const { data } = response;
 
       if (data.success) {
-        notification.render("Event updated successfully", "success")
+        notification.render(data.message, "success")
       } else {
-        notification.render("Something went wrong when updating event", "error")
+        notification.render(data.message, "error")
       }
 
       setTimeout(() => {
@@ -223,9 +223,9 @@ deleteButton.addEventListener("click", async () => {
   const { data } = response;
 
   if (data.success) {
-    notification.render("Event deleted successfully", "success")
+    notification.render(data.message, "success")
   } else {
-    notification.render("Something went wrong when deleting event", "error")
+    notification.render(data.message, "error")
   }
 
   setTimeout(() => {

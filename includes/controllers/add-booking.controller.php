@@ -1,9 +1,12 @@
 <?php
 
 require_once '../services/booking.service.php';
+require_once '../services/customer.service.php';
 require_once '../helpers/session.helper.php';
 
 $session = new SessionHelper();
+$bookingService = new Booking();
+$customerService = new Customer();
 
 $request_body = file_get_contents('php://input');
 $data = json_decode($request_body, true);
@@ -36,11 +39,10 @@ $dataArray = [
   "timestamp" => $datePosted
 ];
 
-$bookingService = new Booking();
-
 $response = $bookingService->addBooking($dataArray);
 
 if ($response["success"]) {
+  $customerService->updateCustomerBookingQuantity($_SESSION["customer_id"]);
   http_response_code(200);
   $payload = array(
     "success" => true,

@@ -22,13 +22,17 @@
 
       <div class="flex-1 py-6 px-10">
 
-        <table id="event-data">
-          <tr>
-            <th>Product</th>
-            <th>List Price</th>
-            <th>Customers</th>
-            <th></th>
-          </tr>
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>List Price</th>
+              <th>Customers</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="event-data">
+          </tbody>
         </table>
       </div>
 

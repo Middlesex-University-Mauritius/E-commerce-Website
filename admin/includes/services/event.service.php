@@ -120,6 +120,7 @@ class Event extends DatabaseHelper {
   }
 
   function upload($event_id) {
+    $pass = true;
     if($_FILES['file'])
     {
       $root = $_SERVER['DOCUMENT_ROOT'] . '/web/__images__/' . $event_id;
@@ -138,9 +139,12 @@ class Event extends DatabaseHelper {
         $upload_name = 'image-'."$i.".$extension;
 
         $file_path = '/web/__images__/' . $event_id . '/' . $upload_name;
-        move_uploaded_file($file_tmp_name , $_SERVER['DOCUMENT_ROOT'].$file_path);
+        if (!move_uploaded_file($file_tmp_name , $_SERVER['DOCUMENT_ROOT'].$file_path)) {
+          $pass = false;
+        }
       }
     }
+    return $pass;
   }
 
 }

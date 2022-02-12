@@ -18,22 +18,25 @@ $payload = array();
 $eventService = new Event();
 
 $payload = $eventService->addEvent($data);
-$eventService->upload($payload["event_id"]);
+$uploaded = $eventService->upload($payload["event_id"]);
+if (!$uploaded) {
+  $payload = array(
+    "success" => false,
+    "message" => "File uploading failed. Check if __images__ folder has the correct permissions"
+  ); 
+  echo json_encode($payload);
+  exit();
+}
 
 if ($payload["success"]) {
   $payload = array(
     "success" => true,
-    "message" => "Event created successfully",
-    "event" => array(
-      "event_id" => $payload["event_id"],
-      "title" => $payload["title"]
-    )
+    "message" => "Event created successfully"
   ); 
 } else {
   $payload = array(
     "success" => false,
-    "message" => "Unable to create event",
-    "event" => null
+    "message" => "Unable to create event"
   );
 }
 

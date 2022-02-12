@@ -1,7 +1,4 @@
-import { Booking } from "../view/booking.view.js";
-
-const urlSearchParams = new URLSearchParams(window.location.search);
-const params = Object.fromEntries(urlSearchParams.entries());
+import { Booking } from "../../includes/js/view/booking.view.js";
 
 // bookings
 const customerBookings = document.getElementById("bookings");
@@ -24,11 +21,11 @@ window.onload = function () {
       }
 
       orders.map((order) => {
-        const { event_id, event, subtotal, seats } = order;
+        const { event_id: { $oid: id }, event } = order;
 
         const bookingView = new Booking(
+          id,
           event.date,
-          event_id,
           event.title,
           event.description
         );

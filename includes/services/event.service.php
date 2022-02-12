@@ -6,7 +6,6 @@ class Event extends DatabaseHelper {
 
   function getManyEvents($category) {
     if (!$category) {
-      // $events = $this->database->events->find([]);
       $events = $this->database->events->aggregate([
         [
           '$lookup' => [

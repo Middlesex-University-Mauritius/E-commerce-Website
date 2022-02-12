@@ -1,19 +1,19 @@
 export class Booking {
+  id = null;
   date = null;
   title = null;
-  eventId = null;
   description = null;
 
-  constructor(date, eventId, title, description) {
+  constructor(id, date, title, description) {
+    this.id = id;
     this.date = date;
-    this.eventId = eventId;
     this.title = title;
     this.description = description;
   }
 
   render(parent) {
     const li = document.createElement("li");
-    li.className = "mb-10 ml-4";
+    li.className = "mb-10 ml-4 fade";
     const timeline = document.createElement("div");
     timeline.className =
       "absolute w-3 h-3 bg-gray-200 rounded-full -left-1.5 border border-white white:border-gray-900 white:bg-gray-700";
@@ -23,7 +23,7 @@ export class Booking {
     const title = document.createElement("a");
     title.className =
       "text-lg font-semibold text-gray-900 white:text-white block hover:underline";
-    title.href = `/web/details/?id=${this.eventId}`;
+    title.href = `/web/details/?id=${this.id}`;
     const description = document.createElement("p");
     description.className =
       "mb-4 text-base font-normal text-gray-500 white:text-gray-400";

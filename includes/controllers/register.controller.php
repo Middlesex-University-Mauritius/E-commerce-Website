@@ -21,7 +21,8 @@ $dataArray = [
   "lastName" => $lastName,
   "age" => intval($age),
   "phone" => intval($phone),
-  "password" => $password
+  "password" => $password,
+  "bookingQuantity" => 0
 ];
 
 // Calling our authentication service

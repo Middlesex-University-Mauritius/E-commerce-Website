@@ -21,7 +21,15 @@ $eventService = new Event();
 
 $payload = $eventService->updateEvent($id, $data);
 if (count(json_decode($_POST["images"])) >= 1) {
-  $eventService->upload($id);
+  $uploaded = $eventService->upload($id);
+  if (!$uploaded) {
+    $payload = array(
+      "success" => false,
+      "message" => "File uploading failed. Check if __images__ folder has the correct permissions"
+    ); 
+    echo json_encode($payload);
+    exit();
+  }
 }
 
 if ($payload["success"]) {

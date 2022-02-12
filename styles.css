@@ -48,16 +48,17 @@ h5 {
 table {
   width: 100%;
 }
-table tr th {
+table thead tr th, table tbody tr th {
   font-weight: 600;
   color: #2e2e2e;
 }
-table tr th,
-table tr td {
+table thead tr th,
+table thead tr td, table tbody tr th,
+table tbody tr td {
   text-align: left;
   padding: 8px 20px;
 }
-table tr:nth-child(even) {
+table tbody tr:nth-child(odd) {
   background-color: #f3f7fa;
   border-top: 1px solid #e4e4e4;
   border-bottom: 1px solid #e4e4e4;
