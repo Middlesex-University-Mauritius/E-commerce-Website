@@ -2,7 +2,7 @@
 
 <?php
 
-require_once "../includes/helpers/session.helper.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/web" ."/includes/helpers/session.helper.php";
 
 function links($authenticated, $id) {
   if ($authenticated === true) {
@@ -98,7 +98,7 @@ function navbar()
   echo <<<DEV
   <div id="nav" class="nav">
     <div class="logo">
-      <a href="/web/home/index.php"><img src="../includes/img/logo.png" alt="Tixx logo"></a>
+      <a href="/web/home/index.php"><img src="/web/includes/img/logo.png" alt="Tixx logo"></a>
     </div>
 
     <form id="navbar-search-box" class="search-box mx-auto my-auto">

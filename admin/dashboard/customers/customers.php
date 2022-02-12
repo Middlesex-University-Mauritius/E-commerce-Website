@@ -21,7 +21,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </div>
-      <div class="p-5">
+      <div class="p-5 overflow-y-auto h-screen">
         <ol id="sidebar-content" class="relative border-l border-gray-200 white:border-gray-700"></ol>
       </div>
     </div>
@@ -45,6 +45,8 @@
             </div>
           </div>
         </div>
+
+        <div class="my-4 text-sm text-gray-500 white:text-gray-300">Click on name to view bookings</div>
 
         <table>
           <thead>

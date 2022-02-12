@@ -4,7 +4,7 @@
 
 <?php
 
-require_once "../includes/helpers/session.helper.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/web" ."/includes/helpers/session.helper.php";
 
 function head($requiresLogin=false)
 {
@@ -29,8 +29,8 @@ function head($requiresLogin=false)
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" type="text/javascript" ></script>
     <script type="module" src="/web/includes/js/scripts/cart.js"></script>
     <script type="module" src="/web/includes/js/scripts/search.js"></script>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="/web/styles.css">
 
-    <title>Tixx | Event booking</title>
+    <title>Tixx | Ticket booking</title>
   DEV;
 }
