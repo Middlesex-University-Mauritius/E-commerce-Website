@@ -19,39 +19,39 @@ head();
       <div class="space-y-2">
         <div>
           <p class="text-gray-900">Email</p>
-          <input class="my-2 w-full bg-gray-50 border border-gray-300 border border-gray-300" type="email" id="email" name="email">
+          <input required class="my-2 w-full bg-gray-50 border border-gray-300 border border-gray-300" type="email" id="email" name="email">
         </div>
 
         <div class="flex space-x-4">
           <div>
             <p class="text-gray-900">First Name</p>
-            <input class="my-2 w-full bg-gray-50 border border-gray-300" type="text" id="firstName" name="firstName">
+            <input required class="my-2 w-full bg-gray-50 border border-gray-300" type="text" id="firstName" name="firstName">
           </div>
           <div>
             <p class="text-gray-900">Last Name</p>
-            <input class="my-2 w-full bg-gray-50 border border-gray-300" type="text" id="lastName" name="lastName">
+            <input required class="my-2 w-full bg-gray-50 border border-gray-300" type="text" id="lastName" name="lastName">
           </div>
         </div>
 
         <div class="flex space-x-4">
           <div>
             <p class="text-gray-900">Age</p>
-            <input class="my-2 w-full bg-gray-50 border border-gray-300" type="number" id="age" name="age">
+            <input required class="my-2 w-full bg-gray-50 border border-gray-300" type="number" id="age" name="age">
           </div>
           <div>
             <p class="text-gray-900">Phone</p>
-            <input class="my-2 w-full bg-gray-50 border border-gray-300" type="text" id="phone" name="phone">
+            <input required class="my-2 w-full bg-gray-50 border border-gray-300" type="text" id="phone" name="phone">
           </div>
         </div>
 
         <div>
           <p class="text-gray-900">Password</p>
-          <input class="my-2 w-full bg-gray-50 border border-gray-300" type="password" id="password" name="password">
+          <input required class="my-2 w-full bg-gray-50 border border-gray-300" type="password" id="password" name="password">
         </div>
 
         <div>
           <p class="text-gray-900">Confirm Password</p>
-          <input class="my-2 w-full bg-gray-50 border border-gray-300" type="password" id="confirmPassword" name="confirmPassword">
+          <input required class="my-2 w-full bg-gray-50 border border-gray-300" type="password" id="confirmPassword" name="confirmPassword">
         </div>
       </div>
 
@@ -70,8 +70,6 @@ head();
   footer();
   ?>
 
-  <script type="module" src="../includes/js/scripts/authentication.js"></script>
-  <script type="module" src="../includes/js/view/message.view.js"></script>
   <script type="module" src="./js/index.js"></script>
 
 </body>

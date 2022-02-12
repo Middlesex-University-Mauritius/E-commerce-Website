@@ -23,12 +23,12 @@
         <div class="space-y-2">
           <div>
             <p class="text-gray-900">Email</p>
-            <input class="my-2 w-full bg-gray-50 border border-gray-300 border border-gray-300" type="email" id="email" name="email">
+            <input required class="my-2 w-full bg-gray-50 border border-gray-300 border border-gray-300" type="email" id="email" name="email">
           </div>
 
           <div>
             <p class="text-gray-900">Password</p>
-            <input class="my-2 w-full bg-gray-50 border border-gray-300 border border-gray-300" type="password" id="password" name="password">
+            <input required class="my-2 w-full bg-gray-50 border border-gray-300 border border-gray-300" type="password" id="password" name="password">
           </div>
         </div>
 
@@ -57,8 +57,6 @@
   footer();
   ?>
 
-  <script type="module" src="../includes/js/scripts/authentication.js"></script>
-  <script type="module" src="../includes/js/view/message.view.js"></script>
   <script type="module" src="./js/index.js"></script>
 
 </body>

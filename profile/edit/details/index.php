@@ -33,28 +33,28 @@ head(true);
           <div class="flex space-x-4">
             <div class="w-full">
               <p class="text-gray-900">First Name</p>
-              <input class="my-2 w-full bg-gray-50 border border-gray-300" type="text" id="first-name" name="first-name">
+              <input required class="my-2 w-full bg-gray-50 border border-gray-300" type="text" id="first-name" name="first-name">
             </div>
             <div class="w-full">
               <p class="text-gray-900">Last Name</p>
-              <input class="my-2 w-full bg-gray-50 border border-gray-300" type="text" id="last-name" name="last-name">
+              <input required class="my-2 w-full bg-gray-50 border border-gray-300" type="text" id="last-name" name="last-name">
             </div>
           </div>
 
           <div class="flex space-x-4">
             <div class="w-full">
               <p class="text-gray-900">Age</p>
-              <input class="my-2 w-full bg-gray-50 border border-gray-300" type="number" id="age" name="age">
+              <input required class="my-2 w-full bg-gray-50 border border-gray-300" type="number" id="age" name="age">
             </div>
             <div class="w-full">
               <p class="text-gray-900">Phone</p>
-              <input class="my-2 w-full bg-gray-50 border border-gray-300" type="text" id="phone" name="phone">
+              <input required class="my-2 w-full bg-gray-50 border border-gray-300" type="text" id="phone" name="phone">
             </div>
           </div>
         </div>
       </div>
 
-      <button class="edit py-2 px-4 text-sm">Update profile</button>
+      <button id="update-profile-button" class="edit py-2 px-4 text-sm">Update profile</button>
     </div>
 
   </div>

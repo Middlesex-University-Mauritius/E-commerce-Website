@@ -22,7 +22,7 @@ head(true);
     ?>
 
     <div>
-      <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 mt-8">Edit Profile</h5>
+      <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 mt-8">Change password</h5>
 
       <div class="card p-0 mb-8 w-[800px]">
         <div class="bg-gray-50 border-b p-5 flex space-x-2 rounded-t-md justify-between">
@@ -30,23 +30,23 @@ head(true);
         </div>
 
         <!-- Change password form -->
-        <div class="py-2 px-5">
+        <div class="py-2 space-y-2 px-5">
           <div class="w-full">
             <p class="text-gray-900">Old password</p>
-            <input class="my-2 w-full bg-gray-50 border border-gray-300" type="password" id="old-password" name="old-password">
+            <input required class="my-2 w-full bg-gray-50 border border-gray-300" type="password" id="oldPassword" name="oldPassword">
           </div>
           <div class="w-full">
             <p class="text-gray-900">New password</p>
-            <input class="my-2 w-full bg-gray-50 border border-gray-300" type="password" id="new-password" name="new-password">
+            <input required class="my-2 w-full bg-gray-50 border border-gray-300" type="password" id="password" name="password">
           </div>
           <div class="w-full">
             <p class="text-gray-900">Confirm new password</p>
-            <input class="my-2 w-full bg-gray-50 border border-gray-300" type="password" id="confirm-new-password" name="confirm-new-password">
+            <input required class="my-2 w-full bg-gray-50 border border-gray-300" type="password" id="confirmPassword" name="confirmPassword">
           </div>
         </div>
       </div>
 
-      <button disabled class="edit p-2 w-[800px]">Update profile</button>
+      <button id="change-password-button" class="edit py-2 px-4 text-sm">Change password</button>
     </div>
 
   </div>

@@ -1,4 +1,4 @@
-import { validateFields } from "../../../includes/js/scripts/authentication.js";
+import { validateFieldsWithInput } from "../../../includes/js/scripts/form.js";
 
 const username    = document.getElementById("username");
 const password = document.getElementById("password");
@@ -9,7 +9,7 @@ const fields = {
   password
 }
 
-validateFields(fields);
+validateFieldsWithInput(fields);
 
 submit.addEventListener("click", () => {
   const adminError = document.getElementById("admin-error");

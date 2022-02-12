@@ -1,7 +1,7 @@
 import {
-  validateFields,
-  validate,
-} from "../../includes/js/scripts/authentication.js";
+  validateFieldsWithInput,
+  validateFieldsWithoutInput,
+} from "../../includes/js/scripts/form.js";
 import Notification from "../../includes/js/view/notification.view.js";
 
 const urlSearchParams = new URLSearchParams(window.location.search);
@@ -22,16 +22,16 @@ const parent = document.getElementById("body");
 const notification = new Notification(parent);
 
 // Validate the fields
-validateFields(fields);
+validateFieldsWithInput(fields);
 
 // Show errors when login fails
 button.addEventListener("click", (event) => {
   errors.innerHTML = null;
   event.preventDefault();
-  button.disabled = true;
-  if (!validate(email) || !validate(password)) {
-    return notification.render("There are some errors in your form", "error");
-  } else {
+
+  const { hasErrors } = validateFieldsWithoutInput(fields);
+
+  if (!hasErrors) {
     axios
       .post("/web/includes/controllers/signin.controller.php", {
         email: email.value,

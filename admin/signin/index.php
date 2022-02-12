@@ -77,7 +77,7 @@
     <a href="/web/home" class="block transition ease-in-out delay-50 py-3 px-4 mt-4 text-center rounded text-gray-600 hover:text-blue-600">Go back to main website</a>
   </div>
 
-  <script type="module" src="../../includes/js/scripts/authentication.js"></script>
+  <script type="module" src="../../includes/js/scripts/form"></script>
   <script type="module" src="../../includes/js/view/message.view.js"></script>
   <script type="module" src="./js/index.js"></script>
 

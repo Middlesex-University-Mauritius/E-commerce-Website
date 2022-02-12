@@ -1,9 +1,9 @@
 "use strict"
 
 import {
-  validate,
-  validateFields,
-} from "../../includes/js/scripts/authentication.js";
+  validateFieldsWithInput,
+  validateFieldsWithoutInput,
+} from "../../includes/js/scripts/form.js";
 import Notification from "../../includes/js/view/notification.view.js";
 
 // Get fields from form
@@ -32,24 +32,17 @@ const parent = document.getElementById("body");
 const notification = new Notification(parent);
 
 // Validate the fields
-validateFields(fields);
+validateFieldsWithInput(fields);
 
 // Handle click on register
 button.addEventListener("click", (event) => {
   event.preventDefault();
-  button.disabled = true;
-  if (
-    !validate(email) ||
-    !validate(firstName) ||
-    !validate(lastName) ||
-    !validate(age) ||
-    !validate(phone) ||
-    !validate(password) ||
-    !validate(confirmPassword)
-  ) {
-    // Show notifications if there are any errors
-    return notification.render("There are some errors in your form", "error");
-  } else {
+
+  const { hasErrors } = validateFieldsWithoutInput(fields);
+
+  // No errors
+  if (!hasErrors) {
+    button.disabled = true;
     axios
       .post("/web/includes/controllers/register.controller.php", {
         email: email.value,
