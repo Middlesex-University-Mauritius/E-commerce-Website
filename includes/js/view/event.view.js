@@ -71,8 +71,7 @@ export class Event {
     };
 
     // Parent card
-    containers.card.className =
-      "bg-white rounded-lg border border-gray-200 shadow-md fade";
+    containers.card.className = "bg-white rounded-lg border border-gray-200 shadow-md fade";
 
     if (!this.shrinked) containers.card.classList.add("flex");
 

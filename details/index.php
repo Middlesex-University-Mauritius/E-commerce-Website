@@ -29,6 +29,38 @@ head();
 
           <p id="description" class="mt-4"></p>
         </div>
+
+        <div>
+          <h5 class="text-2xl font-bold tracking-tight text-gray-900 mt-8 mb-4">Price of Seats</h5>
+          <div class="grid grid-cols-3 gap-4"> 
+            <div class="p-4 max-w-sm bg-white rounded-lg border shadow-md sm:p-8">
+              <h3 class="mb-4 text-xl font-medium text-gray-500">Regular</h3>
+              <div class="flex items-baseline text-gray-900">
+                <span class="text-xl font-semibold">Rs</span>
+                <span id="regular-price" class="text-2xl font-extrabold tracking-tight">49</span>
+                <span class="ml-1 text-lg font-normal text-gray-500">/seat</span>
+              </div>
+            </div>       
+
+            <div class="p-4 max-w-sm bg-white rounded-lg border shadow-md sm:p-8">
+              <h3 class="mb-4 text-xl font-medium text-gray-500">Premium</h3>
+              <div class="flex items-baseline text-gray-900">
+                <span class="text-xl font-semibold">Rs</span>
+                <span id="premium-price" class="text-2xl font-extrabold tracking-tight">49</span>
+                <span class="ml-1 text-lg font-normal text-gray-500">/seat</span>
+              </div>
+            </div>       
+
+            <div class="p-4 max-w-sm bg-white rounded-lg border shadow-md sm:p-8">
+              <h3 class="mb-4 text-xl font-medium text-gray-500">VIP</h3>
+              <div class="flex items-baseline text-gray-900">
+                <span class="text-xl font-semibold">Rs</span>
+                <span id="vip-price" class="text-2xl font-extrabold tracking-tight">49</span>
+                <span class="ml-1 text-lg font-normal text-gray-500">/seat</span>
+              </div>
+            </div>       
+          </div>
+        </div>
       </div>
 
       <!-- Venue preview card -->

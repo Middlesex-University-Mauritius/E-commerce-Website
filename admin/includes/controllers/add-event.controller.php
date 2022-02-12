@@ -8,6 +8,7 @@ $data = [
   "date" => $_POST["date"],
   "time" => $_POST["time"],
   "category" => ($_POST["category"]),
+  "averagePrice" => json_decode($_POST["averagePrice"]),
   "tags" => json_decode($_POST["tags"]),
   "images" => json_decode($_POST["images"]),
   "prices" => json_decode($_POST["prices"]),

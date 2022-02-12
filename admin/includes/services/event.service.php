@@ -51,6 +51,7 @@ class Event extends DatabaseHelper {
         "category" => $data['category'],
         "tags" => $data['tags'],
         "updatedAt" => $updatedAt,
+        "averagePrice" => $data['averagePrice'],
         "prices" => array(
           "regular" => intval($data['prices']->regular),
           "premium" => intval($data['prices']->premium),
@@ -98,6 +99,7 @@ class Event extends DatabaseHelper {
         "images" => $data['images'],
         "datePosted" => $datePosted,
         "updatedAt" => $datePosted,
+        "averagePrice" => $data['averagePrice'],
         "prices" => array(
           "regular" => intval($data['prices']->regular),
           "premium" => intval($data['prices']->premium),

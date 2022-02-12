@@ -4,6 +4,7 @@ require "../helpers/database.helper.php";
 
 class Event extends DatabaseHelper {
 
+  // Find all events
   function getManyEvents($category) {
     if (!$category) {
       $events = $this->database->events->aggregate([
@@ -25,14 +26,33 @@ class Event extends DatabaseHelper {
     return $events->toArray();
   }
 
-  function getManyEventsByTitle($query) {
-    $events = $this->database->events->find([
-      'title' => new MongoDB\BSON\Regex("^$query", 'i')
-    ]);
+  // Find events with search functionality and sorting options
+  function getManyEventsByTitle($query, $field, $order) {
+    $events = $this->database->events->find(
+      [
+        '$or' => [
+          [
+            'title' => new MongoDB\BSON\Regex("^$query", 'i')
+          ],
+          [
+            'category' => new MongoDB\BSON\Regex("^$query", 'i')
+          ],
+          [
+            'tags' => new MongoDB\BSON\Regex("^$query", 'i')
+          ]
+        ],
+      ],
+      [
+        'sort' => [
+          "$field" => json_decode($order)
+        ]
+      ]
+    );
 
     return $events->toArray();
   }
 
+  // Find one event using event id
   function getOneEvent($id) {
     $event = $this->database->events->aggregate([
       [

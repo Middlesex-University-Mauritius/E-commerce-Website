@@ -18,6 +18,10 @@ const date = document.getElementById("date");
 const link = document.getElementById("link");
 const slideshowContainer = document.getElementById("slideshow-container");
 
+const regularPrice = document.getElementById("regular-price");
+const premiumPrice = document.getElementById("premium-price");
+const vipPrice = document.getElementById("vip-price");
+
 const prices = {
   vip: 0,
   regular: 0,
@@ -45,6 +49,10 @@ window.onload = async () => {
   }
 
   const event = data[0];
+
+  regularPrice.innerText = event.prices.regular;
+  premiumPrice.innerText = event.prices.premium;
+  vipPrice.innerText = event.prices.vip;
 
   // Reduce the size of the preview venue by 2 using ratio parameter and disabling mouse events
   const venue = new Venue(parent, prices, compareWithCurrentUser, RATIO, DISABLED);
