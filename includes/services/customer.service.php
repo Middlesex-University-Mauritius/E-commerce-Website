@@ -24,6 +24,14 @@ class Customer extends DatabaseHelper {
     );
   }
 
+  // Update customer email, firstname, lastname, age and phone
+  function updateProfileDetails($newDetails) {
+  }
+
+  // Update password
+  function updatePassword($newPassword) {
+  }
+
 }
 
 ?>

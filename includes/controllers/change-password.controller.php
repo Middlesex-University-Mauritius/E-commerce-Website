@@ -1,6 +1,6 @@
 <?php
 
-require_once '../services/authentication.service.php';
+require_once '../services/customer.service.php';
 
 $request_body = file_get_contents('php://input');
 $data = json_decode($request_body, true);
@@ -8,12 +8,10 @@ $data = json_decode($request_body, true);
 $newPassword = $data["newPassword"] ?? null;
 
 // Calling our authentication service
-$customerService = new Authentication();
-// Session service
-$session = new SessionHelper();
+$customerService = new Customer();
 
 // Register the customer
-$newPasswordPayload = $customerService->changePassword($newPassword);
+$newPasswordPayload = $customerService->updatePassword($newPassword);
 
 // Inital payload is empty
 $payload = array();

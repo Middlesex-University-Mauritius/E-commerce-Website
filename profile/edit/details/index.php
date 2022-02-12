@@ -29,7 +29,12 @@ head(true);
           <p class="font-semibold">Your Personal Details</p>
         </div>
 
-        <div class="py-2 px-5">
+        <div class="py-2 space-y-2 px-5">
+          <div class="w-full">
+            <p class="text-gray-900">Email</p>
+            <input required class="my-2 w-full bg-gray-50 border border-gray-300" type="email" id="email" name="email">
+          </div>
+
           <div class="flex space-x-4">
             <div class="w-full">
               <p class="text-gray-900">First Name</p>

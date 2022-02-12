@@ -11,12 +11,14 @@ if (params.active === "details") {
 const profileName = document.getElementById("profile-name");
 
 // Fields
+const email = document.getElementById("email");
 const firstName = document.getElementById("first-name");
 const lastName = document.getElementById("last-name");
 const age = document.getElementById("age");
 const phone = document.getElementById("phone");
 
 const fields = {
+  email,
   firstName,
   lastName,
   age,
@@ -34,6 +36,7 @@ window.onload = async () => {
   profileName.innerText = `${user.firstName} ${user.lastName}`;
 
   if (success) {
+    email.value = user.email;
     firstName.value = user.firstName;
     lastName.value = user.lastName;
     age.value = user.age;

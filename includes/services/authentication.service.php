@@ -28,10 +28,6 @@ class Authentication extends DatabaseHelper {
     }
   }
 
-  function changePassword($newPassword) {
-    // Write mongo query
-  }
-
 }
 
 ?>
