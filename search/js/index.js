@@ -1,3 +1,4 @@
+import { collectSearchTermResults } from "../../includes/js/scripts/recommendation/tracker.js";
 import { Event } from "../../includes/js/view/event.view.js";
 
 const urlSearchParams = new URLSearchParams(window.location.search);
@@ -44,6 +45,8 @@ const fetchData = async (options = { field: "date", order: -1 }) => {
     }
   });
   console.log(response.data);
+  collectSearchTermResults(response.data);
+
   response.data.map((row) => {
     const {
       _id: { $oid },
@@ -69,7 +72,6 @@ const fetchData = async (options = { field: "date", order: -1 }) => {
     );
     event.render(events);
   });
-
 }
 
 window.onload = async () => {

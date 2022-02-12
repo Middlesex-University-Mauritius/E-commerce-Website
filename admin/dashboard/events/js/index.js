@@ -15,9 +15,10 @@ window.onload = () => {
           tags,
           title,
           images,
-          bookings
+          bookings,
+          promoted
         } = item;
-        const event = new Event(event_id, title, description, prices, bookings.length, tags, images);
+        const event = new Event(event_id, title, description, prices, bookings.length, tags, images, promoted);
         event.render(parent);
       });
     });

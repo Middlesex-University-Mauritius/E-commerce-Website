@@ -3,9 +3,6 @@
  * description: Checkout cart item
  */
 
-import { Storage } from "../../../includes/js/scripts/storage.js";
-import { loadCartItems } from "../scripts/loadCartItems.js";
-
 export class CartItem {
 
   title = null;
@@ -18,15 +15,6 @@ export class CartItem {
     this.title = title;
     this.tickets = tickets;
     this.subtotal = subtotal;
-    const deleteButton = document.getElementById("delete");
-
-    deleteButton.addEventListener("click", () => {
-      const storage = new Storage("cart", {});
-      let items = storage.get();
-      delete items[id];
-      storage.set(items);
-      loadCartItems();
-    })
   }
 
   render(parent) {
@@ -36,10 +24,13 @@ export class CartItem {
 
     const icon = document.createElement("i");
     icon.setAttribute("data-modal-toggle", "defaultModal")
+    icon.addEventListener("click", () => {
+      window.itemToDelete = this.id;
+    })
 
     const updateButton = document.createElement("a");
     updateButton.innerText = "Update"
-    updateButton.href = `/web/reservation/?id=${this.id}&update=true`
+    updateButton.href = `/web/reservation/?id=${this.id}`
     updateButton.className = "p-2 mr-3 text-blue-600 underline hover:text-blue-800"
 
     const title = document.createElement("p");

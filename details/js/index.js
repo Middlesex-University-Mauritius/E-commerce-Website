@@ -1,7 +1,6 @@
 import { Section, Venue } from "../../includes/js/view/venue.view.js";
 import { showSlides } from "../../includes/js/scripts/slide.js";
-import { getCookie, setCookie } from "../../includes/js/scripts/cookie.js";
-import { setRecentlyVisited } from "../../includes/js/scripts/recommendation.js";
+import { setRecentlyVisited } from "../../includes/js/scripts/recommendation/tracker.js";
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
@@ -53,6 +52,8 @@ window.onload = async () => {
   regularPrice.innerText = event.prices.regular;
   premiumPrice.innerText = event.prices.premium;
   vipPrice.innerText = event.prices.vip;
+
+  document.querySelector("#current").innerText = event.title
 
   // Reduce the size of the preview venue by 2 using ratio parameter and disabling mouse events
   const venue = new Venue(parent, prices, compareWithCurrentUser, RATIO, DISABLED);

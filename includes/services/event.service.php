@@ -4,6 +4,14 @@ require "../helpers/database.helper.php";
 
 class Event extends DatabaseHelper {
 
+  // Show promoted events
+  function getPromotedEvents() {
+    $events = $this->database->events->find([
+      'promoted' => true
+    ]);
+    return $events->toArray();
+  }
+
   // Find all events
   function getManyEvents($category) {
     if (!$category) {
@@ -95,15 +103,35 @@ class Event extends DatabaseHelper {
   function recentlyVisited($ids) {
     $formattedIds = array();
 
-    foreach (json_decode($ids) as $id) {
+    foreach ($ids as $id) {
       array_push($formattedIds, new MongoDB\BSON\ObjectID($id));
     }
 
-    $events = $this->database->events->find([
-      '_id' => [
-        '$in' => $formattedIds
+    $events = $this->database->events->find(
+      [
+        '_id' => [
+          '$in' => $formattedIds
+        ]
+      ], 
+      [
+        'limit' => 5
       ]
-    ]);
+    );
+
+    return $events->toArray();
+  }
+
+  function searchTermResults($tags) {
+    $events = $this->database->events->find(
+      [
+        'tags' => [
+          '$in' => $tags
+        ]
+      ],
+      [
+        'limit' => 5
+      ]
+    );
 
     return $events->toArray();
   }

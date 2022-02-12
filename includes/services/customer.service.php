@@ -11,19 +11,6 @@ class Customer extends DatabaseHelper {
     return $customer;
   }
 
-  function updateCustomerBookingQuantity($customer_id) {
-    $this->database->customers->updateOne(
-      [
-        '_id' => new MongoDB\BSON\ObjectID($customer_id)
-      ],
-      [
-        '$inc' => [
-          'bookingQuantity' => 1
-        ]
-      ]
-    );
-  }
-
   // Update customer email, firstname, lastname, age and phone
   function updateProfileDetails($newDetails) {
   }

@@ -1,19 +1,27 @@
 "use strict"
 
-import { getCookie } from "../../includes/js/scripts/cookie.js";
-import { RECENTLY_VISITED } from "../../includes/js/scripts/recommendation.js";
-import { Event } from "../../includes/js/view/event.view.js";
+import { getCookie } from "../cookie.js";
+import { RECENTLY_VISITED } from "./tracker.js";
+import { Event } from "../../view/event.view.js";
 
 const parent = document.getElementById("recently-visited");
 
 const SHRINKED = true;
 const recentlyVisited = getCookie(RECENTLY_VISITED);
+
+const result = Object
+ .entries(recentlyVisited)
+ .sort((a, b) => b[1] - a[1])
+ .reduce((_sortedObj, [k,v]) => ({
+   ..._sortedObj, 
+   [k]: v
+ }), {})
+
 // Show 10 frequently visited events
-const response = await axios.get("/web/includes/controllers/recently-visited.controller.php", {
-  params: {
-    ids: JSON.stringify(Object.keys(recentlyVisited))
-  }
+const response = await axios.post("/web/includes/controllers/recently-visited.controller.php", {
+  ids: Object.keys(result)
 });
+
 const events = response.data;
 
 events.map((row) => {

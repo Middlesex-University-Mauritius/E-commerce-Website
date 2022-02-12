@@ -57,13 +57,15 @@
       </div>
     </div>
 
-    <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 mt-8">Dicover Events</h5>
+    <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 mt-8">Promoted Events</h5>
     <div id="events" class="space-y-3">
     </div>
 
     <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 mt-8">Recently Visited</h5>
-    <div id="recently-visited" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-    </div>
+    <div id="recently-visited" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
+
+    <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 mt-8">Recommended based on your searches</h5>
+    <div id="search-term" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
   </div>
 
   <?php
@@ -82,7 +84,8 @@
 
     window.onload = async function() {
       // Test fetch from events service
-      const response = await axios.get("/web/includes/controllers/events-by-category.controller.php");
+      const response = await axios.get("/web/includes/controllers/get-promoted-events.controller.php");
+      console.log("promoted", response.data);
       if (!response.data) return;
 
       // Render the events cards on the page
@@ -95,10 +98,11 @@
           time,
           images,
           datePosted,
-          prices
+          prices,
+          promoted
         } = row;
 
-        const event = new Event(SHRINKED, $oid, title, description, date, time, images, datePosted, prices);
+        const event = new Event(SHRINKED, $oid, title, description, date, time, images, datePosted, prices, promoted);
         event.render(events);
       })
     }
@@ -116,7 +120,10 @@
   </script>
 
   <!-- Frequently Visited Module -->
-  <script type="module" src="./js/frequentlyVisited.js"></script>
+  <script type="module" src="../includes/js/scripts/recommendation/frequentlyVisited.js"></script>
+
+  <!-- Search Term Results Module -->
+  <script type="module" src="../includes/js/scripts/recommendation/searchTerm.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,7 @@
+"use strict"
+
+import Notification from "../../../includes/js/view/notification.view.js";
+
 export class Event {
   event_id = null;
   title = null;
@@ -6,8 +10,9 @@ export class Event {
   bookings = null;
   tags = null;
   images = null;
+  promoted = null;
 
-  constructor(event_id, title, description, prices, bookings, tags, images) {
+  constructor(event_id, title, description, prices, bookings, tags, images, promoted=false) {
     this.event_id = event_id;
     this.title = title;
     this.description = description;
@@ -15,6 +20,7 @@ export class Event {
     this.bookings = bookings;
     this.tags = tags;
     this.images = images;
+    this.promoted = promoted;
   }
 
   render(parent) {
@@ -22,6 +28,7 @@ export class Event {
     const productData = document.createElement("td");
     const priceData = document.createElement("td");
     const bookingsData = document.createElement("td");
+    const promotedData = document.createElement("td");
     const editData = document.createElement("td");
 
     priceData.className = "whitespace-nowrap";
@@ -87,7 +94,37 @@ export class Event {
     productData.append(productContainer);
     bookingsData.append(bookingsContainer);
 
-    tr.append(productData, priceData, bookingsData, editData);
+    const switchParent = document.createElement("div");
+    switchParent.className = "my-auto block"
+    const switchContainer = document.createElement("label");
+    switchContainer.className = "flex relative items-center cursor-pointer";
+    switchContainer.setAttribute("for", `toggle-${this.event_id}`);
+    const switchInput = document.createElement("input");
+    switchInput.type = "checkbox";
+    switchInput.id = `toggle-${this.event_id}`;
+    switchInput.className = "sr-only";
+    switchInput.checked = this.promoted;
+    const switchPlaceholder = document.createElement("div");
+    switchPlaceholder.className = "w-11 h-6 bg-gray-300 rounded-full border border-gray-300 toggle-bg";
+
+    switchInput.addEventListener("change", async (event) => {
+      const response = await axios.post("/web/admin/includes/controllers/promote-event.controller.php", {
+        id: this.event_id,
+        status: event.target.checked 
+      })
+      const notification = new Notification(document.querySelector("#body"));
+      if (response.data.success) {
+        if (event.target.checked ) notification.render("Event promoted successfully", "success");
+      } else {
+        notification.render("Something went wrong");
+      }
+    })
+
+    switchContainer.append(switchInput, switchPlaceholder)
+    switchParent.append(switchContainer);
+    promotedData.append(switchParent)
+
+    tr.append(productData, priceData, bookingsData, promotedData, editData);
 
     parent.append(tr);
   }

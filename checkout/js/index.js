@@ -1,7 +1,7 @@
 import { Storage } from "../../includes/js/scripts/storage.js";
 import { Loader } from "../../includes/js/view/loader.view.js";
 import Message from "../../includes/js/view/message.view.js";
-import { resetField } from "../../includes/js/scripts/resetField.js";
+import { resetField } from "../../includes/js/scripts/form.js";
 import { loadCartItems } from "./scripts/loadCartItems.js";
 import Notification from "../../includes/js/view/notification.view.js";
 
@@ -62,7 +62,7 @@ placeOrder.addEventListener("click", () => {
   placeOrder.disabled = true;
 
   Object.keys(items).map((eventId) => {
-    const { event_id, seats, subtotal, title } = items[eventId];
+    const { seats, subtotal } = items[eventId];
 
     axios
       .post("../includes/controllers/add-booking.controller.php", {
@@ -73,7 +73,6 @@ placeOrder.addEventListener("click", () => {
       })
       .then((response) => {
         const { data } = response;
-        console.log(data);
         loader.unset();
         placeOrder.disabled = false;
         storage.delete();
@@ -110,3 +109,15 @@ Object.values(customerInformation).forEach((field) => {
     address[event.target.id] = event.target.value;
   });
 });
+
+// Remove cart item 
+const deleteButton = document.getElementById("delete");
+deleteButton.addEventListener("click", () => {
+  const id = window.itemToDelete;
+  if (!id) return
+  const storage = new Storage("cart", {});
+  let items = storage.get();
+  delete items[id];
+  storage.set(items);
+  loadCartItems();
+})

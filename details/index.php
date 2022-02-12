@@ -17,7 +17,30 @@ head();
 
   <!-- Event details page -->
   <div class="wrapper py-[77px]">
-    <div class="flex space-x-10 mt-8">
+    <nav class="flex py-6" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/web/home" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900">
+            <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+            <a href="/web/events" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2">Events</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+            <span id="current" class="ml-1 text-sm font-medium text-gray-400 md:ml-2">Flowbite</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <div class="flex space-x-10">
       <!-- Event details card -->
       <div class="flex-1 space-y-10">
         <div class="card">
@@ -93,6 +116,11 @@ head();
         </div>
       </div>
     </div>
+
+    <div class="border-t mt-10">
+      <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 mt-8">Recommended based on your searches</h5>
+      <div id="search-term" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
+    </div>
   </div>
 
   <script type="module" src="./js/index.js"></script>
@@ -101,6 +129,9 @@ head();
   include_once "../includes/footer.php";
   footer();
   ?>
+
+  <!-- Search Term Results Module -->
+  <script type="module" src="../includes/js/scripts/recommendation/searchTerm.js"></script>
 
 </body>
 

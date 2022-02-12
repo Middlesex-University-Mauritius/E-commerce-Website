@@ -62,7 +62,7 @@ window.onload = async () => {
     venue.getAvailability(Object.values(cart[params.id].seats), true);
   }
 
-  if (Object.keys(cart).length >= 1 && Object.keys(cart[params.id]).length >= 1) {
+  if (Object.keys(cart).length >= 1 && cart[params.id] && Object.keys(cart[params.id]).length >= 1) {
     cartButton.disabled = false;
   }
 
@@ -77,7 +77,7 @@ let storage = new Storage("cart", {});
 const cart = storage.get();
 
 const addToCart = () => {
-  if (!params.id || !venue || !currentEvent || Object.keys(venue.getSelections()).length <= 0) return;
+  if (!params.id || !venue || !currentEvent || (Object.keys(venue.getSelections()).length <= 0 && !venue.updating)) return;
 
   if (venue.getSelections()) {
     // Item exists in cart already
@@ -104,9 +104,9 @@ const addToCart = () => {
 cartButton.addEventListener("click", () => {
   addToCart()
   if (venue.updating) {
-    venue.setUpdating(false);
+    return venue.setUpdating(false);
   } else {
-    window.location.href = "/web/checkout/"
+    return window.location.href = "/web/checkout/"
   }
 });
 

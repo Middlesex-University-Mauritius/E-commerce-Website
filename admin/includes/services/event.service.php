@@ -37,6 +37,24 @@ class Event extends DatabaseHelper {
     return $payload;
   }
 
+  function setPromoteStatus($id, $status) {
+    $payload = array();
+    $modifyOneResult = $this->database->events->updateOne(
+      [
+        '_id' => new \MongoDB\BSON\ObjectId($id)
+      ],
+      [
+        '$set' => [
+          'promoted' => $status
+        ]
+      ]
+    );
+    $payload = [
+      "success" => $modifyOneResult->getModifiedCount() == 1,
+    ];
+    return $payload;
+  }
+
   function updateEvent($id, $data) {
     // Get current time
     $updatedAt = new \MongoDB\BSON\UTCDateTime();

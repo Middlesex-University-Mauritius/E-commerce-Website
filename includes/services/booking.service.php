@@ -86,6 +86,20 @@ class Booking extends DatabaseHelper {
 
     // Return successful if customer added
     $success = $insertResult->getInsertedCount() == 1;
+
+    if ($success) {
+      $this->database->customers->updateOne(
+        [
+          '_id' => $booking["customer_id"],
+        ],
+        [
+          '$inc' => [
+            'bookingQuantity' => 1
+          ]
+        ]
+      );
+    }
+
     return [
       "success" => $success,
       "booking_id" => (string)$insertResult->getInsertedId()

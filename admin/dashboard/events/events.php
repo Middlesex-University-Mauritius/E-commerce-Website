@@ -28,6 +28,7 @@
               <th>Product</th>
               <th>List Price</th>
               <th>Customers</th>
+              <th>Promoted</th>
               <th></th>
             </tr>
           </thead>

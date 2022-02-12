@@ -24,12 +24,18 @@ head();
         We hope your enjoy your purchase and see you in our shop again.
       </div>
     </div>
+
+    <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 mt-8">Recommended based on your searches</h5>
+    <div id="search-term" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
   </div>
 
   <?php
   include_once "../includes/footer.php";
   footer();
   ?>
+
+  <!-- Search Term Results Module -->
+  <script type="module" src="../includes/js/scripts/recommendation/searchTerm.js"></script>
 
 </body>
 

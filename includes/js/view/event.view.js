@@ -15,6 +15,7 @@ export class Event {
   images = null;
   datePosted = null;
   prices = null;
+  promoted = false;
 
   constructor(
     shrinked,
@@ -25,7 +26,8 @@ export class Event {
     time,
     images,
     datePosted,
-    prices
+    prices,
+    promoted = false
   ) {
     this.id = id;
     this.title = title;
@@ -36,6 +38,7 @@ export class Event {
     this.images = images;
     this.datePosted = datePosted;
     this.prices = prices
+    this.promoted = promoted
   }
 
 
@@ -112,9 +115,12 @@ export class Event {
     titleContainer.append(title);
 
     const tag = document.createElement("span");
-    tag.className =
-      "bg-green-200 max-w-min text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded my-auto";
-    tag.innerText = "NEW";
+    if (this.promoted) {
+      tag.className = "bg-yellow-200 text-yellow-800 max-w-min text-xs font-semibold mr-2 px-2.5 py-0.5 rounded my-auto";
+    } else {
+      tag.className = "bg-green-200 text-green-800 max-w-min text-xs font-semibold mr-2 px-2.5 py-0.5 rounded my-auto";
+    }
+    tag.innerText = this.promoted ? "PROMOTED" : "NEW";
 
     if (this.isToday(Number(this.datePosted))) {
       titleContainer.append(tag);

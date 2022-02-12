@@ -44,7 +44,7 @@ export class Venue {
     this.prices = prices;
     this.compareWithCurrentUser = compareWithCurrentUser;
 
-    if (Object.keys(cart).length >= 1 && Object.keys(cart[params.id]).length >= 1) {
+    if (Object.keys(cart).length >= 1 && cart[params.id] && Object.keys(cart[params.id]).length >= 1) {
       this.updating = true;
     }
   }
@@ -55,19 +55,23 @@ export class Venue {
 
   // Set update status back to false
   setUpdating(status) {
-    if (Object.keys(cart).length <= 0 || Object.keys(cart[params.id]).length <= 0) return
-
+    if (Object.keys(cart).length >= 1 && cart[params.id] && Object.keys(cart[params.id]).length >= 1) {
     const cartButton = document.getElementById("cart-button");
-    this.updating = status
 
     // Updating
     if (status) {
       cartButton.classList.add("edit")
       cartButton.innerText = "Save changes"
+      this.updating = true;
     } else {
       cartButton.classList.remove("edit")
       cartButton.innerText = "Checkout"
+      this.updating = false;
     }
+    } else {
+      return
+    }
+
   }
 
   // Compare with database to check if seat is already booked
