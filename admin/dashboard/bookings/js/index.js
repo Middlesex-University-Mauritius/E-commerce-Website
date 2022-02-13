@@ -26,21 +26,6 @@ const fetchData = async () => {
     return;
   }
 
-  // // Re render the table
-  // renderTable(
-  //   bookingTable,
-  //   [
-  //     "Date",
-  //     "Customer Name",
-  //     "Addres",
-  //     "Category",
-  //     "Tickets",
-  //     "Charge",
-  //     "",
-  //   ],
-  //   "booking-data"
-  // )
-
   bookings.forEach((item) => {
     const {
       _id: { $oid: booking_id },

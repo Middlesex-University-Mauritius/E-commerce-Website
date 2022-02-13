@@ -20,14 +20,13 @@
         <?php echo ucfirst(basename($_SERVER['PHP_SELF'], ".php")) ?>
       </p>
 
-      <div class="flex-1 py-6 px-10">
-
+      <div id="event-table" class="flex-1 py-6 px-10">
         <table>
           <thead>
             <tr>
               <th>Product</th>
               <th>List Price</th>
-              <th>Customers</th>
+              <th>Tickets</th>
               <th>Promoted</th>
               <th></th>
             </tr>

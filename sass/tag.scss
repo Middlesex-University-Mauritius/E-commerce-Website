@@ -7,8 +7,19 @@
   display: block;
   transition: all 0.2s;
   cursor: pointer;
+  white-space: nowrap;
 
   &:hover {
     background-color: #a1c5f1;
   }
+}
+
+.tags-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.tags-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }

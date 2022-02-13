@@ -48,19 +48,7 @@
 
         <div class="my-4 text-sm text-gray-500 white:text-gray-300">Click on name to view bookings</div>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Customer Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Age</th>
-              <th>Bookings</th>
-            </tr>
-          </thead>
-          <tbody id="customer-data">
-          </tbody>
-        </table>
+        <div id="customer-table"></div>
 
       </div>
     </div>

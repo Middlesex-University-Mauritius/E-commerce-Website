@@ -20,7 +20,7 @@ $dataArray = [
   "firstName" => $firstName,
   "lastName" => $lastName,
   "age" => intval($age),
-  "phone" => intval($phone),
+  "phone" => $phone,
   "password" => $password,
   "bookingQuantity" => 0
 ];

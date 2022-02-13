@@ -34,7 +34,7 @@ button.addEventListener("click", (event) => {
   if (!hasErrors) {
     axios
       .post("/web/includes/controllers/signin.controller.php", {
-        email: email.value,
+        email: email.value.toLowerCase(),
         password: password.value,
       })
       .then((response) => {

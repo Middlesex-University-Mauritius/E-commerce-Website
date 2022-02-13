@@ -7,6 +7,8 @@
  * @param {String} key 
  */
 export const renderTable = (parent, headers, key) => {
+  parent.innerHTML = null;
+
   const table = document.createElement("table");
   const thead = document.createElement("thead");
   const tbody = document.createElement("tbody");

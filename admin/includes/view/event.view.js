@@ -53,14 +53,14 @@ export class Event {
 
     const description = document.createElement("p");
     description.innerText =
-      this.description.length >= 190
-        ? this.description.substring(0, 190) + "..."
+      this.description.length >= 100
+        ? this.description.substring(0, 100) + "..."
         : this.description;
 
     descriptionContainer.append(title, description);
 
     const tagsContainer = document.createElement("div");
-    tagsContainer.className = "flex space-x-2";
+    tagsContainer.className = "flex space-x-2 overflow-x-auto max-w-[600px] tags-container";
     this.tags.forEach((t) => {
       const tag = document.createElement("a");
       tag.className = "tag";
@@ -75,10 +75,9 @@ export class Event {
     bookingsContainer.className = "flex space-x-2";
     const icon = document.createElement("i");
     icon.className = "fas fa-users text-lg";
-
     const count = document.createElement("p");
     count.className = "my-auto";
-    count.innerText = formatNumber(this.bookings);
+    count.innerText = `${formatNumber(this.bookings)} / 252`;
 
     const editUrl = document.createElement("a");
     editUrl.href = `/web/admin/dashboard/edit-event?id=${this.event_id}`

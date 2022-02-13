@@ -45,11 +45,11 @@ button.addEventListener("click", (event) => {
     button.disabled = true;
     axios
       .post("/web/includes/controllers/register.controller.php", {
-        email: email.value,
+        email: email.value.toLowerCase(),
         firstName: firstName.value,
         lastName: lastName.value,
         age: age.value,
-        phone: phone.value,
+        phone: String(phone.value),
         password: password.value,
         confirmPassword: confirmPassword.value,
       })
