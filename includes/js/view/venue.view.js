@@ -5,6 +5,7 @@
 
 import { getCookie } from "../scripts/cookie.js";
 import { Storage } from "../scripts/storage.js";
+import { formatNumber } from "../scripts/core.js";
 
 const storage = new Storage("cart", {});
 const cart = storage.get();
@@ -205,7 +206,7 @@ export class Section {
           const seat = document.getElementById(id);
           seat.classList.remove("active");
           seat.childNodes[0].remove();
-          subtotalComponent.innerText = this.venue.getSubtotal();
+          subtotalComponent.innerText = formatNumber(this.venue.getSubtotal());
 
           if (Object.keys(this.venue.getSelections()).length === 0) {
             emptyMessage(content);
@@ -220,7 +221,7 @@ export class Section {
         abbreviated.className = "abbrevated";
         abbreviated.innerText = `row ${s.row} column ${s.col}`;
         const price = document.createElement("p");
-        price.innerText = `Rs ${s.price}`;
+        price.innerText = `Rs ${formatNumber(s.price)}`;
         more.append(abbreviated, price);
 
         card.append(titleContainer, more);
@@ -229,7 +230,7 @@ export class Section {
       });
     }
 
-    subtotalComponent.innerText = this.venue.getSubtotal();
+    subtotalComponent.innerText = formatNumber(this.venue.getSubtotal());
   }
 
   // Update seat with a check mark

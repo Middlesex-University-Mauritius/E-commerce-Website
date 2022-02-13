@@ -1,10 +1,8 @@
 import { Booking } from "../view/booking.view.js";
 
 // Customer bookings
-const customerBookings = document.getElementById("customer-bookings");
-
-// Empty bookings
-const emptyBookingsMessage = document.getElementById("customer-bookings-empty");
+const bookingData = document.getElementById("booking-data");
+const bookingTable = document.getElementById("booking-table");
 
 // Customer fields
 const customerFields = document.getElementById("customer-fields");
@@ -56,13 +54,12 @@ window.onload = function () {
     .get("/web/includes/controllers/customer-bookings.controller.php")
     .then((response) => {
       const { data } = response;
-      if (!data) return;
-
       const bookings = data;
 
-      if (bookings.length >= 1) {
-        customerBookings.hidden = false;
-        emptyBookingsMessage.hidden = true;
+      if (!bookings || bookings.length === 0) {
+        bookingTable.innerHTML = null;
+        bookingTable.innerText = "You didn't order anything yet"
+        return
       }
 
       bookings.map((booking) => {
@@ -76,7 +73,7 @@ window.onload = function () {
           Object.keys(seats).length,
           subtotal
         );
-        bookingView.render(customerBookings);
+        bookingView.render(bookingData);
       });
     });
 };

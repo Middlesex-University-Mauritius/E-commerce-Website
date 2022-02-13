@@ -1,25 +1,34 @@
+import { formatNumber } from "../../../includes/js/scripts/core.js";
+import { Seat } from "./seat.view.js";
+
 export class Booking {
+  booking_id = null;
   date = null;
   name = null;
   address = null;
   category = null;
-  tickets = null;
+  seats = null;
   charge = null;
+  customer_id = null;
 
-  constructor(date, name, address, category, tickets, charge) {
+  constructor(booking_id, date, name, address, category, seats, charge, customer_id) {
+    this.booking_id = booking_id;
     this.date = date;
     this.name = name;
     this.address = address;
     this.category = category;
-    this.tickets = tickets;
+    this.seats = seats;
     this.charge = charge;
+    this.customer_id = customer_id;
   }
 
   render(parent) {
 
     const tr = document.createElement("tr");
+    tr.className = "fade";
     const dateData = document.createElement("td");
     const customerData = document.createElement("td");
+    const ticketsData = document.createElement("td");
 
     // Timestamp 
     dateData.innerHTML = `
@@ -65,15 +74,35 @@ export class Booking {
     category.innerText = this.category;
     categoryData.append(category)
 
-    // Number of tickets
+    // Number of tickets/seats
     const ticketCountData = document.createElement("td");
-    ticketCountData.innerText = `x${this.tickets}`;
+    ticketCountData.innerText = `x${formatNumber(Object.keys(this.seats).length)}`;
 
     // Subtotal
     const chargeData = document.createElement("td");
-    chargeData.innerText = `Rs ${this.charge}`;
+    chargeData.innerText = `Rs ${formatNumber(this.charge)}`;
 
-    tr.append(dateData, customerData, addressData, categoryData, ticketCountData, chargeData);
+    // Bookings
+    const opener = document.createElement("p");
+    opener.innerText = "View"
+    opener.className = "text-blue-700 cursor-pointer select-none seats";
+    opener.addEventListener("click", async () => {
+      window.bookingIdToCancel = this.booking_id;
+      window.customerIdToCancel = this.customer_id;
+      const bookingSidebar = document.getElementById("right-sidebar");
+      bookingSidebar.classList.add("right-0");
+      const parent = document.getElementById("right-sidebar-content");
+      parent.innerHTML = null;
+
+      Object.keys(this.seats).map((id) => {
+        const { row, col, price, type } = this.seats[id];
+        const seatView = new Seat(id, row, col, price, type);
+        seatView.render(parent);
+      })
+    })
+    ticketsData.append(opener)
+
+    tr.append(dateData, customerData, addressData, categoryData, ticketCountData, chargeData, ticketsData);
     parent.append(tr);
   }
 

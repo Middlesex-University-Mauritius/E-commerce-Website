@@ -9,8 +9,12 @@ export const setRecentlyVisited = (event_id = null) => {
   if (!event_id) return;
 
   let recentlyVisited = getCookie(RECENTLY_VISITED) || {};
-  if (recentlyVisited[event_id]) {
-    recentlyVisited[event_id] = recentlyVisited[event_id] + 1;
+  if (Reflect.has(recentlyVisited, event_id)) {
+    if (recentlyVisited[event_id] >= 20) {
+      recentlyVisited[event_id] = 1
+    } else {
+      recentlyVisited[event_id] = recentlyVisited[event_id] + 1;
+    }
   } else {
     recentlyVisited[event_id] = 1
   }
@@ -23,9 +27,13 @@ export const collectSearchTermResults = (events) => {
   events.forEach((event) => {
     event.tags.forEach((tag) => {
       if (Reflect.has(searchTermResults, tag)) {
-        searchTermResults[tag] = searchTermResults[tag] + 1;
+        if (searchTermResults[tag] >= 20) {
+          searchTermResults[tag] = 1;
+        } else {
+          searchTermResults[tag] = searchTermResults[tag] + 1;
+        }
       } else {
-        searchTermResults[tag] = 0;
+        searchTermResults[tag] = 1;
       }
     })
   })

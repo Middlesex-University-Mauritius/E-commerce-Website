@@ -1,5 +1,7 @@
 "use strict"
 
+import { formatNumber } from "../scripts/core.js";
+
 /**
  * file: event.view.js
  * description: event card view
@@ -144,12 +146,12 @@ export class Event {
     const currency = document.createElement("span");
     currency.innerText = "Rs";
     const from = document.createElement("span");
-    from.innerText = this.prices.regular;
+    from.innerText = formatNumber(this.prices.regular);
     from.className = "text-xl font-semibold text-gray-700";
     const range = document.createElement("span");
-    range.innerText = "-";
+    range.innerText = " - ";
     const to = document.createElement("span");
-    to.innerText = this.prices.vip;
+    to.innerText = formatNumber(this.prices.vip);
     to.className = "text-xl font-semibold text-gray-700";
 
     // Append price

@@ -1,13 +1,12 @@
 "use strict"
 
-import { Booking } from "../../../../includes/js/view/booking.view.js";
 import  { Customer } from "../../../includes/view/customer.view.js";
 
 // Booking sidebar
-const bookingSidebar = document.getElementById("booking-sidebar");
+const bookingSidebar = document.getElementById("right-sidebar");
 
 // Sidebar close button
-const sidebarCloseButton = document.getElementById("sidebar-close");
+const sidebarCloseButton = document.getElementById("right-sidebar-close");
 
 // Filter options
 const bookingOnlyFilter = document.getElementById("bookings-only-filter");
@@ -41,7 +40,7 @@ bookingOnlyFilter.addEventListener("change", (event) => {
 
 // Detect outside click
 window.addEventListener('click', function(e){   
-  if (!document.getElementById('booking-sidebar').contains(e.target) && !e.target.classList.contains("name")){
+  if (!document.getElementById('right-sidebar').contains(e.target) && !e.target.classList.contains("name")){
     // Clicked outside the box
     bookingSidebar.classList.remove("right-0")
     bookingSidebar.classList.add("-right-[400px]")

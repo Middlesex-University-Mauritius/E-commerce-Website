@@ -29,36 +29,36 @@
     overflow-y: auto;
     max-height: 700px;
     height: 100%;
-
-    // sidebar item
-    .tickets-content-card {
-      border: 1px solid #dedede;
-      padding: 10px;
-      background-color: white;
-      margin: 10px 0px;
-      border-radius: 4px;
-
-      .seat-no {
-        color: #7f90a3;
-      }
-
-      .abbrevated {
-        color: #7f90a3;
-      }
-
-      .more {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding-top: 10px;
-        margin-top: 10px;
-        border-top: 1px solid #dedede;
-      }
-    }
   }
 }
 
 // CMS admin sidebar
 #admin-sidebar {
   position: fixed; // Fixed
+}
+
+// sidebar item
+.tickets-content-card {
+  border: 1px solid #dedede;
+  padding: 10px;
+  background-color: white;
+  margin: 10px 0px;
+  border-radius: 4px;
+
+  .seat-no {
+    color: #7f90a3;
+  }
+
+  .abbrevated {
+    color: #7f90a3;
+  }
+
+  .more {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid #dedede;
+  }
 }

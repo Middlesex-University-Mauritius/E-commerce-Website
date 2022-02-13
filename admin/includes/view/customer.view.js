@@ -1,4 +1,5 @@
 import { Booking } from "../../../includes/js/view/booking.view.js";
+import { formatNumber } from "../../../includes/js/scripts/core.js";
 
 export class Customer {
   id = null;
@@ -34,9 +35,9 @@ export class Customer {
     customerData.append(customerContainer);
 
     customerName.addEventListener("click", async () => {
-      const bookingSidebar = document.getElementById("booking-sidebar");
+      const bookingSidebar = document.getElementById("right-sidebar");
       bookingSidebar.classList.add("right-0");
-      const parent = document.getElementById("sidebar-content");
+      const parent = document.getElementById("right-sidebar-content");
       parent.innerHTML = null;
 
       const api = "/web/includes/controllers/customer-bookings.controller.php";
@@ -76,7 +77,7 @@ export class Customer {
     ageData.innerText = this.age;
 
     const bookingsData = document.createElement("td");
-    bookingsData.innerText = this.bookings;
+    bookingsData.innerText = formatNumber(this.bookings);
 
     tr.append(customerData, emailData, phoneData, ageData, bookingsData);
     parent.append(tr);

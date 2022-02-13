@@ -1,6 +1,7 @@
 "use strict"
 
 import Notification from "../../../includes/js/view/notification.view.js";
+import { formatNumber } from "../../../includes/js/scripts/core.js";
 
 export class Event {
   event_id = null;
@@ -45,9 +46,10 @@ export class Event {
     productContent.className = "space-y-3";
 
     const descriptionContainer = document.createElement("div");
-    const title = document.createElement("p");
+    const title = document.createElement("a");
     title.className = "font-bold";
     title.innerText = this.title;
+    title.href = `/web/details?id=${this.event_id}`
 
     const description = document.createElement("p");
     description.innerText =
@@ -67,7 +69,7 @@ export class Event {
       tagsContainer.append(tag);
     });
 
-    priceData.innerText = `Rs ${this.prices.regular} - ${this.prices.vip}`;
+    priceData.innerText = `Rs ${formatNumber(this.prices.regular)} - ${formatNumber(this.prices.vip)}`;
 
     const bookingsContainer = document.createElement("div");
     bookingsContainer.className = "flex space-x-2";
@@ -76,7 +78,7 @@ export class Event {
 
     const count = document.createElement("p");
     count.className = "my-auto";
-    count.innerText = this.bookings;
+    count.innerText = formatNumber(this.bookings);
 
     const editUrl = document.createElement("a");
     editUrl.href = `/web/admin/dashboard/edit-event?id=${this.event_id}`

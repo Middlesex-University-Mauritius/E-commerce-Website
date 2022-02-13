@@ -38,7 +38,7 @@ const renderEvents = async () => {
 
   // Simple fetch request to get all events
   const response = await axios.get(
-    "../includes/controllers/events-by-category.controller.php",
+    "/web/includes/controllers/events-by-category.controller.php",
     {
       params: {
         category: currentTab,

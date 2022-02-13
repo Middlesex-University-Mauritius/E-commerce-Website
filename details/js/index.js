@@ -1,6 +1,7 @@
 import { Section, Venue } from "../../includes/js/view/venue.view.js";
 import { showSlides } from "../../includes/js/scripts/slide.js";
 import { setRecentlyVisited } from "../../includes/js/scripts/recommendation/tracker.js";
+import { formatNumber } from "../../includes/js/scripts/core.js";
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
@@ -49,9 +50,9 @@ window.onload = async () => {
 
   const event = data[0];
 
-  regularPrice.innerText = event.prices.regular;
-  premiumPrice.innerText = event.prices.premium;
-  vipPrice.innerText = event.prices.vip;
+  regularPrice.innerText = formatNumber(event.prices.regular);
+  premiumPrice.innerText = formatNumber(event.prices.premium);
+  vipPrice.innerText = formatNumber(event.prices.vip);
 
   document.querySelector("#current").innerText = event.title
 

@@ -19,3 +19,8 @@ export const eventsCount = () => {
 
   return Object.keys(cart).length || 0;
 };
+
+// Format number
+export const formatNumber = (number) => {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}

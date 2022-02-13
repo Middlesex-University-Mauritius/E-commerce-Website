@@ -14,15 +14,15 @@
     include_once "../../includes/sidebar.inc.php";
     ?>
 
-    <div id="booking-sidebar" class="fixed top-0 -right-[400px] h-screen z-30 bg-white w-[400px] drop-shadow-lg border-l transition-all	duration-100">
+    <div id="right-sidebar" class="fixed top-0 -right-[400px] h-screen z-30 bg-white w-[400px] drop-shadow-lg border-l transition-all	duration-100">
       <div class="flex border-b p-5 justify-between">
-        <p id="sidebar-header" class="text-xl text-gray-800">Bookings</p>
-        <svg id="sidebar-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 my-auto text-gray-800 cursor-pointer hover:text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <p id="right-sidebar-header" class="text-xl text-gray-800">Bookings</p>
+        <svg id="right-sidebar-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 my-auto text-gray-800 cursor-pointer hover:text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </div>
       <div class="p-5 overflow-y-auto h-screen">
-        <ol id="sidebar-content" class="relative border-l border-gray-200 white:border-gray-700"></ol>
+        <ol id="right-sidebar-content" class="relative border-l border-gray-200 white:border-gray-700"></ol>
       </div>
     </div>
 

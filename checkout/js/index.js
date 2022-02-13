@@ -68,7 +68,7 @@ placeOrder.addEventListener("click", () => {
       .post("../includes/controllers/add-booking.controller.php", {
         eventId,
         seats,
-        subtotal,
+        total: subtotal + 0.15 * subtotal,
         address,
       })
       .then((response) => {

@@ -169,7 +169,7 @@ proceed.addEventListener("click", () => {
   formData.append("date", formInputs.date.value)
   formData.append("time", formInputs.time.value)
   formData.append("category", category)
-  formData.append("averagePrice", JSON.stringify((Number(regular.value) + Number(premium.value) + Number(vip.value)) / 3))
+  formData.append("averagePrice", JSON.stringify(parseFloat((Number(regular.value) + Number(premium.value) + Number(vip.value)) / 3).toFixed()))
   formData.append("images", JSON.stringify(images))
   formData.append("tags", JSON.stringify(tags))
   formData.append("prices", JSON.stringify({

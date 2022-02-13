@@ -40,8 +40,7 @@ head(true);
         <p class="font-semibold">Your Bookings</p>
       </div>
 
-      <div class="p-5">
-
+      <div id="booking-table" class="p-5">
         <table>
           <thead>
             <tr>
@@ -53,11 +52,9 @@ head(true);
               <th>Total</th>
             </tr>
           </thead>
-          <tbody hidden id="customer-bookings">
+          <tbody id="booking-data">
           </tbody>
         </table>
-
-        <p id="customer-bookings-empty">You did not order anything yet</p>
       </div>
     </div>
   </div>

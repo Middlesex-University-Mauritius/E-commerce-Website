@@ -3,6 +3,8 @@
  * description: Checkout cart item
  */
 
+import { formatNumber } from "../../../includes/js/scripts/core.js";
+
 export class CartItem {
 
   title = null;
@@ -39,7 +41,7 @@ export class CartItem {
 
     title.innerText = this.title;
     tickets.innerText = `x${this.tickets} tickets`;
-    subtotal.innerText = `Rs ${this.subtotal}`;
+    subtotal.innerText = `Rs ${formatNumber(this.subtotal)}`;
 
     const controller = document.createElement("div");
     controller.className = "my-auto"

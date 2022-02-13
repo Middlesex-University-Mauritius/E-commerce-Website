@@ -1,4 +1,4 @@
-import { eventsCount, ticketsCount } from "../../../includes/js/scripts/core.js";
+import { eventsCount, formatNumber, ticketsCount } from "../../../includes/js/scripts/core.js";
 import { Storage } from "../../../includes/js/scripts/storage.js";
 import { CartItem } from "../view/cartItem.view.js";
 
@@ -45,6 +45,6 @@ export const loadCartItems = () => {
     cartItem.render(cart);
   });
 
-  subtotalElement.innerText = total;
-  totalElement.innerText = total + 0.15 * total;
+  subtotalElement.innerText = formatNumber(total);
+  totalElement.innerText = formatNumber(total + 0.15 * total);
 }
