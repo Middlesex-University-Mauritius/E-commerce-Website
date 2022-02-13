@@ -4,6 +4,13 @@
 
 <?php
 
+session_start();
+
+if (!isset($_SESSION["admin-authenticated"])) {
+  header("Location: /web/admin/signin/");
+  exit;
+}
+
 function head()
 {
   echo <<<DEV
@@ -16,7 +23,7 @@ function head()
     <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.min.css" />
     <script src="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" type="text/javascript" ></script>
-    <link rel="stylesheet" href="../../../styles.css">
+    <link rel="stylesheet" href="/web/styles.css">
     <title>Dashboard</title>
   DEV;
 }

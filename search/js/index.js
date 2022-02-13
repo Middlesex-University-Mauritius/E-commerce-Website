@@ -44,7 +44,6 @@ const fetchData = async (options = { field: "date", order: -1 }) => {
       order: JSON.stringify(options.order)
     }
   });
-  console.log(response.data);
   collectSearchTermResults(response.data);
 
   response.data.map((row) => {

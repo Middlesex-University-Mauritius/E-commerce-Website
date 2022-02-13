@@ -76,8 +76,6 @@ document.querySelector("#cancel-booking-button").addEventListener("click", async
 
   const notification = new Notification(document.querySelector("#body"));
 
-  console.log(response.data)
-
   if (!response.data) return;
 
   if (response.data.success) {

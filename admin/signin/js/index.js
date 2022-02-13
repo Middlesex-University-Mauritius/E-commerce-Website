@@ -1,4 +1,4 @@
-import { validateFieldsWithInput } from "../../../includes/js/scripts/form.js";
+import { validateFieldsWithInput, validateFieldsWithoutInput } from "../../../includes/js/scripts/form.js";
 
 const username    = document.getElementById("username");
 const password = document.getElementById("password");

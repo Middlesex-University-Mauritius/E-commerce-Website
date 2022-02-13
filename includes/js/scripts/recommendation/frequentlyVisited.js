@@ -19,7 +19,7 @@ const result = Object
 
 // Show 10 frequently visited events
 const response = await axios.post("/web/includes/controllers/recently-visited.controller.php", {
-  ids: Object.keys(result)
+  ids: Object.keys(result).slice(0, 10)
 });
 
 const events = response.data;

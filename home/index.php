@@ -85,7 +85,6 @@
     window.onload = async function() {
       // Test fetch from events service
       const response = await axios.get("/web/includes/controllers/get-promoted-events.controller.php");
-      console.log("promoted", response.data);
       if (!response.data) return;
 
       // Render the events cards on the page

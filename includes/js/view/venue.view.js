@@ -47,6 +47,11 @@ export class Venue {
 
     if (Object.keys(cart).length >= 1 && cart[params.id] && Object.keys(cart[params.id]).length >= 1) {
       this.updating = true;
+
+      const cartButton = document.getElementById("cart-button");
+      cartButton.classList.add("edit")
+      cartButton.innerText = "Save changes"
+      this.updating = true;
     }
   }
 
@@ -66,7 +71,7 @@ export class Venue {
       this.updating = true;
     } else {
       cartButton.classList.remove("edit")
-      cartButton.innerText = "Checkout"
+      cartButton.innerText = "Add to cart"
       this.updating = false;
     }
     } else {

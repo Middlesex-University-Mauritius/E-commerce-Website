@@ -62,7 +62,7 @@
 
         <?php
         if ($ERROR) {
-          echo '<p id="admin-error" class="text-red-800 mt-4 mb-0">Invalid username or password</p>';
+          echo '<p id="admin-error" class="text-red-600 mb-0">Invalid username or password</p>';
         }
         ?>
 
