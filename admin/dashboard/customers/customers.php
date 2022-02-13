@@ -48,7 +48,7 @@
 
         <div class="my-4 text-sm text-gray-500 white:text-gray-300">Click on name to view bookings</div>
 
-        <div id="customer-table"></div>
+        <div id="customer-table" class="overflow-auto max-w-screen"></div>
 
       </div>
     </div>

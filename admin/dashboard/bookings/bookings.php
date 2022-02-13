@@ -42,16 +42,16 @@
       <div class="flex-1 py-6 px-10">
 
         <!-- Bookings -->
-        <div id="booking-table">
+        <div id="booking-table" class="overflow-auto max-w-screen">
           <table>
             <thead>
               <tr>
-                <th>Date</th>
+                <th class="min-w-[150px]">Date</th>
                 <th>Customer Name</th>
                 <th>Address</th>
-                <th>Category</th>
+                <th class="min-w-[150px]">Category</th>
                 <th>Tickets</th>
-                <th>Charge</th>
+                <th class="min-w-[150px]">Charge</th>
                 <th></th>
               </tr>
             </thead>

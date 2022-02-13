@@ -52,6 +52,9 @@ table {
       th {
         font-weight: 600;
         color: #2e2e2e;
+        position: sticky;
+        top: 0;
+        white-space: nowrap;
       }
 
       th,

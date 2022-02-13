@@ -40,7 +40,7 @@ head(true);
         <p class="font-semibold">Your Bookings</p>
       </div>
 
-      <div id="booking-table" class="p-5">
+      <div id="booking-table" class="p-5 flex-1 overflow-auto max-w-screen">
         <table>
           <thead>
             <tr>

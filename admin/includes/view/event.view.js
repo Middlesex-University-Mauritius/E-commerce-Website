@@ -36,38 +36,44 @@ export class Event {
 
     const productContainer = document.createElement("div");
     productContainer.className =
-      "flex space-x-4 h-40 md:max-w-[450px] lg:max-w-[800px]";
+      "flex space-x-4 md:max-w-[450px] lg:max-w-[800px]";
 
     const image = document.createElement("img");
-    image.className = "h-40 w-40 rounded object-cover";
+    image.className = "h-32 w-32 rounded object-cover";
     image.src = `/web/__images__/${this.event_id}/${this.images[0]}`;
 
     const productContent = document.createElement("div");
-    productContent.className = "space-y-3";
+    productContent.className = "space-y-4";
 
     const descriptionContainer = document.createElement("div");
     const title = document.createElement("a");
     title.className = "font-bold";
-    title.innerText = this.title;
+    title.innerText = this.title.length >= 50 
+        ? this.title.substring(0, 50) + "..."
+        : this.title;
     title.href = `/web/details?id=${this.event_id}`
 
     const description = document.createElement("p");
     description.innerText =
-      this.description.length >= 100
-        ? this.description.substring(0, 100) + "..."
+      this.description.length >= 80
+        ? this.description.substring(0, 80) + "..."
         : this.description;
 
     descriptionContainer.append(title, description);
 
     const tagsContainer = document.createElement("div");
-    tagsContainer.className = "flex space-x-2 overflow-x-auto max-w-[600px] tags-container";
-    this.tags.forEach((t) => {
+    tagsContainer.className = "flex space-x-2 overflow-x-auto max-w-[400px] tags-container";
+    this.tags.slice(0, 3).forEach((t) => {
       const tag = document.createElement("a");
       tag.className = "tag";
       tag.href = "#";
       tag.innerText = t;
       tagsContainer.append(tag);
     });
+    const more = document.createElement("p");
+    more.className = "my-auto text-gray-600 font-semibold text-sm"
+    more.innerText = `+${this.tags.length - 3}`;
+    tagsContainer.append(more)
 
     priceData.innerText = `Rs ${formatNumber(this.prices.regular)} - ${formatNumber(this.prices.vip)}`;
 

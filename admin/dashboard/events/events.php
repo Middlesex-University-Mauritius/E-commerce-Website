@@ -20,13 +20,13 @@
         <?php echo ucfirst(basename($_SERVER['PHP_SELF'], ".php")) ?>
       </p>
 
-      <div id="event-table" class="flex-1 py-6 px-10">
+      <div id="event-table" class="flex-1 py-6 px-10 overflow-auto max-w-screen">
         <table>
           <thead>
             <tr>
-              <th>Product</th>
-              <th>List Price</th>
-              <th>Tickets</th>
+              <th class="min-w-[600px]">Product</th>
+              <th class="min-w-[200px]">List Price</th>
+              <th class="min-w-[200px]">Tickets</th>
               <th>Promoted</th>
               <th></th>
             </tr>

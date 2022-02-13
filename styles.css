@@ -51,6 +51,9 @@ table {
 table thead tr th, table tbody tr th {
   font-weight: 600;
   color: #2e2e2e;
+  position: sticky;
+  top: 0;
+  white-space: nowrap;
 }
 table thead tr th,
 table thead tr td, table tbody tr th,
@@ -546,7 +549,7 @@ p.error {
 .tag {
   background-color: #cbe0f9;
   color: #203c5f;
-  padding: 5px 10px;
+  padding: 4px 7px;
   border-radius: 50px;
   font-size: 14px;
   display: block;
