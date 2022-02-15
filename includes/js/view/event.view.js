@@ -45,7 +45,8 @@ export class Event {
 
 
   isToday(comparedDate) {
-    const today = (date) => moment(Number(comparedDate), "HH").diff(date, "days") == 0;
+    const mom = moment(Number(comparedDate.$date.$numberLong)).format('YYYY-MM-DD')
+    const today = moment(mom).isSame(comparedDate, "day");
     return today;
   }
 
@@ -116,16 +117,23 @@ export class Event {
 
     titleContainer.append(title);
 
-    const tag = document.createElement("span");
-    if (this.promoted) {
-      tag.className = "bg-yellow-200 text-yellow-800 max-w-min text-xs font-semibold mr-2 px-2.5 py-0.5 rounded my-auto";
-    } else {
-      tag.className = "bg-green-200 text-green-800 max-w-min text-xs font-semibold mr-2 px-2.5 py-0.5 rounded my-auto";
-    }
-    tag.innerText = this.promoted ? "PROMOTED" : "NEW";
+    if (this.isToday(this.datePosted)) {
+      const tag = document.createElement("span");
+      if (this.promoted) {
+        tag.className = "bg-yellow-200 text-yellow-800 max-w-min text-xs font-semibold mr-2 px-2.5 py-0.5 rounded my-auto";
+      } else {
+        tag.className = "bg-green-200 text-green-800 max-w-min text-xs font-semibold mr-2 px-2.5 py-0.5 rounded my-auto";
+      }
+      tag.innerText = this.promoted ? "PROMOTED" : "NEW";
 
-    if (this.isToday(Number(this.datePosted))) {
       titleContainer.append(tag);
+    } else {
+      if (this.promoted) {
+        const tag = document.createElement("span");
+        tag.className = "bg-yellow-200 text-yellow-800 max-w-min text-xs font-semibold mr-2 px-2.5 py-0.5 rounded my-auto";
+        tag.innerText = this.promoted ? "PROMOTED" : "NEW";
+        titleContainer.append(tag);
+      }
     }
 
     if (!this.shrinked) {
@@ -182,7 +190,7 @@ export class Event {
     containers.calendar.icons.time.className = "far fa-clock my-auto";
 
     const date = document.createElement("span");
-    date.innerText = this.date;
+    date.innerText = moment(this.date).format("MMMM Do YYYY");
     date.className = "my-auto";
 
     const time = document.createElement("span");

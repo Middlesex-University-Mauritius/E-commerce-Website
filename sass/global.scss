@@ -50,6 +50,7 @@ table {
   thead, tbody {
     tr {
       th {
+        min-width: 150px;
         font-weight: 600;
         color: #2e2e2e;
         position: sticky;

@@ -1,5 +1,7 @@
+"use strict"
+
 import { formatNumber } from "../../../includes/js/scripts/core.js";
-import { Seat } from "./seat.view.js";
+import { Seat } from "../../../includes/js/view/seat.view.js";
 
 export class Booking {
   booking_id = null;
@@ -67,7 +69,7 @@ export class Booking {
     if (this.category === "live-music")
       category.className = "bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded"
     else if (this.category === "stand-up")
-      category.className = "bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded"
+      category.className = "bg-green-200 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded"
     else if (this.category === "arts-and-theater")
       category.className = "bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded"
 
@@ -83,10 +85,9 @@ export class Booking {
     chargeData.innerText = `Rs ${formatNumber(this.charge)}`;
 
     // Bookings
-    const opener = document.createElement("p");
-    opener.innerText = "View"
-    opener.className = "text-blue-700 cursor-pointer select-none seats";
-    opener.addEventListener("click", async () => {
+    ticketsData.className = "text-blue-700 cursor-pointer select-none seats";
+    ticketsData.innerText = "View";
+    ticketsData.addEventListener("click", async () => {
       window.bookingIdToCancel = this.booking_id;
       window.customerIdToCancel = this.customer_id;
       const bookingSidebar = document.getElementById("right-sidebar");
@@ -100,7 +101,6 @@ export class Booking {
         seatView.render(parent);
       })
     })
-    ticketsData.append(opener)
 
     tr.append(dateData, customerData, addressData, categoryData, ticketCountData, chargeData, ticketsData);
     parent.append(tr);

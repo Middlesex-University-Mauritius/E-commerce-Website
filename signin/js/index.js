@@ -3,6 +3,7 @@ import {
   validateFieldsWithoutInput,
 } from "../../includes/js/scripts/form.js";
 import Notification from "../../includes/js/view/notification.view.js";
+import { Error } from "../../includes/js/view/error.view.js";
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
@@ -10,7 +11,7 @@ const params = Object.fromEntries(urlSearchParams.entries());
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const button = document.getElementById("login-btn");
-const errors = document.getElementById("errors");
+const errorContainer = document.getElementById("errors");
 
 const fields = {
   email,
@@ -26,7 +27,8 @@ validateFieldsWithInput(fields);
 
 // Show errors when login fails
 button.addEventListener("click", (event) => {
-  errors.innerHTML = null;
+  errorContainer.innerHTML = null;
+  const errorMessage = new Error();
   event.preventDefault();
 
   const { hasErrors } = validateFieldsWithoutInput(fields);
@@ -40,14 +42,8 @@ button.addEventListener("click", (event) => {
       .then((response) => {
         const { data } = response;
 
-        if (!data.authenticated) {
-          const errorList = document.createElement("ul");
-          errorList.className = "error-list";
-          const error = document.createElement("li");
-          error.innerText = data.message;
-          errorList.append(error);
-
-          errors.append(errorList);
+        if (!data.success) {
+          errorMessage.render(errorContainer, data.message);
         } else {
           notification.render(`Authenticated as ${data.email}`, "success");
 
@@ -61,6 +57,8 @@ button.addEventListener("click", (event) => {
         }
 
         button.disabled = false;
+      }).catch((error) => {
+        errorMessage.render(errorContainer, data.message);
       });
   }
 });

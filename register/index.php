@@ -53,6 +53,8 @@ head();
           <p class="text-gray-900">Confirm Password</p>
           <input required class="my-2 w-full bg-gray-50 border border-gray-300" type="password" id="confirmPassword" name="confirmPassword">
         </div>
+
+        <div id="errors"></div>
       </div>
 
       <button id="register-btn" class="primary py-3 mt-4 w-full">Register</button>

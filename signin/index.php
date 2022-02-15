@@ -30,12 +30,11 @@
             <p class="text-gray-900">Password</p>
             <input required class="my-2 w-full bg-gray-50 border border-gray-300 border border-gray-300" type="password" id="password" name="password">
           </div>
+
+          <div id="errors"></div>
         </div>
 
         <button id="login-btn" class="primary py-3 mt-4 w-full">Sign In</button>
-
-        <div id="errors" class="my-4">
-        </div>
 
         <!-- Registration page redirection link -->
         <div class="flex place-content-center mt-4 space-x-1">

@@ -2,7 +2,6 @@
 
 import { Booking } from "../../../includes/view/booking.view.js";
 import Notification from "../../../../includes/js/view/notification.view.js";
-import { renderTable } from "../../../../includes/js/view/table.view.js";
 
 const bookingData = document.getElementById("booking-data");
 const bookingTable = document.getElementById("booking-table");

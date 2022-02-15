@@ -1,6 +1,6 @@
 "use strict"
 
-import { formatNumber } from "../../../includes/js/scripts/core.js";
+import { formatNumber } from "../scripts/core.js";
 
 export class Seat {
   id = null;

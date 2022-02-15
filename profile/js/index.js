@@ -7,8 +7,11 @@ const bookingTable = document.getElementById("booking-table");
 // Customer fields
 const customerFields = document.getElementById("customer-fields");
 
-// Edit details button
-const editDetails = document.getElementById("edit-details");
+// Booking sidebar
+const ticketSidebar = document.getElementById("right-sidebar");
+
+// Sidebar close button
+const sidebarCloseButton = document.getElementById("right-sidebar-close");
 
 let fields = {}
 
@@ -63,17 +66,32 @@ window.onload = function () {
       }
 
       bookings.map((booking) => {
-        const { event, subtotal, seats } = booking;
+        const { event, total, seats } = booking;
 
         const bookingView = new Booking(
           event._id.$oid,
           event.date,
           event.title,
           event.category,
-          Object.keys(seats).length,
-          subtotal
+          seats,
+          total
         );
         bookingView.render(bookingData);
       });
     });
 };
+
+// Detect outside click
+window.addEventListener('click', function(e){   
+  if (!document.getElementById('right-sidebar').contains(e.target) && !e.target.classList.contains("seats")){
+    // Clicked outside the box
+    ticketSidebar.classList.remove("right-0")
+    ticketSidebar.classList.add("-right-[400px]")
+  }
+});
+
+// Sidebar close
+sidebarCloseButton.addEventListener("click", () => {
+  ticketSidebar.classList.remove("right-0")
+  ticketSidebar.classList.add("-right-[400px]")
+})

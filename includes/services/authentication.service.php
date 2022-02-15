@@ -13,19 +13,7 @@ class Authentication extends DatabaseHelper {
 
   function register($values) {
     $insertResult = $this->database->customers->insertOne($values);
-    $success = $insertResult->getInsertedCount() == 1;
-
-    if ($success) {
-      return [
-        "success" => $success,
-        "customer_id" => (string)$insertResult->getInsertedId(),
-      ];
-    } else {
-      return [
-        "success" => false,
-        "customer_id" => null
-      ];
-    }
+    return $insertResult;
   }
 
 }

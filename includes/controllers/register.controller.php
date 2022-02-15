@@ -30,31 +30,39 @@ $customerService = new Authentication();
 // Session service
 $session = new SessionHelper();
 
-// TODO: Write a validation here to check if customer already exists. Use the function getCustomerByEmail in service.
-// Don't forget to exit() after the validation. 
-
-// Register the customer
-$registerPayload = $customerService->register($dataArray);
-
 // Inital payload is empty
 $payload = array();
 
+$customer = $customerService->getCustomerByEmail($email);
+
+if ($customer) {
+  $payload = [
+    "success" => false,
+    "message" => "User with that email address already exists"
+  ];
+  echo json_encode($payload);
+  exit();
+}
+
+// Register the customer
+$registration = $customerService->register($dataArray);
+
+$success = $registration->getInsertedCount() == 1;
+
 // Register successful
-if ($registerPayload["success"]) {
-  setcookie('customer_id', json_encode($registerPayload["customer_id"]), time()+99999999999, '/');
-  $session->setUser($registerPayload["customer_id"]);
+if ($success) {
+  setcookie('customer_id', json_encode($email), time()+99999999999, '/');
+  $session->setUser($email);
 
   $payload = array(
     'success' => true,
     'message' => 'customer added',
-    'user' => $registerPayload["customer_id"]
   );
 } else {
   // Registration failed
   $payload = array(
     'success' => false,
     'message' => 'customer not added',
-    'user' => null
   );
 }
 

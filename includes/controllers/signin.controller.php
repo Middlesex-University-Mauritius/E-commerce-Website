@@ -24,19 +24,20 @@ if ($customer) {
     setcookie('customer_id', json_encode((string)$customer->_id), time()+99999999999, '/');
     $session->setUser((string)$customer->_id);
     $payload = array(
-      "authenticated" => true,
-      "user" => (string)$customer->_id,
-      "email" => $customer->email,
-      "message" => "user logged in successfully"
+      "success" => true,
+      "message" => "User logged in successfully"
     );
   } else {
     $payload = array(
-      "authenticated" => false,
-      "user" => null,
-      "email" => null,
+      "success" => false,
       "message" => "Entry password invalid. Try again!"
     );
   }
+} else {
+  $payload = array(
+    "success" => false,
+    "message" => "This user does not exist"
+  );
 }
 
 echo json_encode($payload);

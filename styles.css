@@ -49,6 +49,7 @@ table {
   width: 100%;
 }
 table thead tr th, table tbody tr th {
+  min-width: 150px;
   font-weight: 600;
   color: #2e2e2e;
   position: sticky;
@@ -375,7 +376,7 @@ p.error {
   padding: 10px 30px;
   transition: background 0.3s;
   position: fixed;
-  z-index: 999999999999;
+  z-index: 40;
 }
 .nav .logo {
   display: block;
