@@ -48,11 +48,12 @@ if ($customer) {
 $registration = $customerService->register($dataArray);
 
 $success = $registration->getInsertedCount() == 1;
+$customer_id = (string)$registration->getInsertedId();
 
 // Register successful
 if ($success) {
-  setcookie('customer_id', json_encode($email), time()+99999999999, '/');
-  $session->setUser($email);
+  setcookie('customer_id', json_encode($customer_id), time()+99999999999, '/');
+  $session->setUser($customer_id);
 
   $payload = array(
     'success' => true,

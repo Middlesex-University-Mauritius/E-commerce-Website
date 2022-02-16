@@ -13,22 +13,24 @@ const ticketSidebar = document.getElementById("right-sidebar");
 // Sidebar close button
 const sidebarCloseButton = document.getElementById("right-sidebar-close");
 
-let fields = {}
+let fields = {};
 
 window.onload = function () {
   // Populate customer details
   axios
     .get("/web/includes/controllers/get-profile.controller.php")
     .then((response) => {
+      console.log(response.data);
+
       const { success, user } = response.data;
 
       fields = {
         "First Name": user.firstName,
         "Last Name": user.lastName,
-        "Email": user.email,
-        "Age": user.age,
-        "Phone": user.phone
-      }
+        Email: user.email,
+        Age: user.age,
+        Phone: user.phone,
+      };
 
       if (success) {
         Object.keys(fields).map((field) => {
@@ -45,9 +47,9 @@ window.onload = function () {
           fieldValue.id = field;
           fieldValue.innerText = fields[field];
 
-          container.append(fieldTitle, fieldValue)
+          container.append(fieldTitle, fieldValue);
           customerFields.append(container);
-        })
+        });
       } else {
         window.location.href = "/web/signin";
       }
@@ -61,8 +63,8 @@ window.onload = function () {
 
       if (!bookings || bookings.length === 0) {
         bookingTable.innerHTML = null;
-        bookingTable.innerText = "You didn't order anything yet"
-        return
+        bookingTable.innerText = "You didn't order anything yet";
+        return;
       }
 
       bookings.map((booking) => {
@@ -82,16 +84,19 @@ window.onload = function () {
 };
 
 // Detect outside click
-window.addEventListener('click', function(e){   
-  if (!document.getElementById('right-sidebar').contains(e.target) && !e.target.classList.contains("seats")){
+window.addEventListener("click", function (e) {
+  if (
+    !document.getElementById("right-sidebar").contains(e.target) &&
+    !e.target.classList.contains("seats")
+  ) {
     // Clicked outside the box
-    ticketSidebar.classList.remove("right-0")
-    ticketSidebar.classList.add("-right-[400px]")
+    ticketSidebar.classList.remove("right-0");
+    ticketSidebar.classList.add("-right-[400px]");
   }
 });
 
 // Sidebar close
 sidebarCloseButton.addEventListener("click", () => {
-  ticketSidebar.classList.remove("right-0")
-  ticketSidebar.classList.add("-right-[400px]")
-})
+  ticketSidebar.classList.remove("right-0");
+  ticketSidebar.classList.add("-right-[400px]");
+});
