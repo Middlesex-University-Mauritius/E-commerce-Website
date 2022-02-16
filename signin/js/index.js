@@ -45,7 +45,10 @@ button.addEventListener("click", (event) => {
         if (!data.success) {
           errorMessage.render(errorContainer, data.message);
         } else {
-          notification.render(`Authenticated as ${data.email}`, "success");
+          notification.render(
+            `Authenticated as ${email.value.toLowerCase()}`,
+            "success"
+          );
 
           setTimeout(() => {
             if (params.redirect) {
@@ -57,7 +60,8 @@ button.addEventListener("click", (event) => {
         }
 
         button.disabled = false;
-      }).catch((error) => {
+      })
+      .catch((error) => {
         errorMessage.render(errorContainer, data.message);
       });
   }
