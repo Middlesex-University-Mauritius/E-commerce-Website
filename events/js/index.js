@@ -59,8 +59,9 @@ const renderEvents = async () => {
       date,
       time,
       images,
-      datePosted: { $date: { $numberLong: timestamp } },
-      prices
+      datePosted,
+      prices,
+      promoted,
     } = row;
 
     const event = new Event(
@@ -71,8 +72,9 @@ const renderEvents = async () => {
       date,
       time,
       images,
-      timestamp,
-      prices
+      datePosted,
+      prices,
+      promoted
     );
     event.render(events);
   });
