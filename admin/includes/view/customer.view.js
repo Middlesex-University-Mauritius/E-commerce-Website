@@ -23,13 +23,14 @@ export class Customer {
     tr.className = "fade";
 
     const customerData = document.createElement("td");
-    const customerContainer = document.createElement("div")
+    const customerContainer = document.createElement("div");
     customerContainer.className = "flex space-x-3";
     const customerImage = document.createElement("img");
-    customerImage.className = "rounded-full w-8 h-8 border"
-    customerImage.src = "/web/includes/img/avatar.png"
+    customerImage.className = "rounded-full w-8 h-8 border";
+    customerImage.src = "/web/includes/img/avatar.png";
     const customerName = document.createElement("p");
-    customerName.className = "my-auto text-blue-700 cursor-pointer hover:underline name";
+    customerName.className =
+      "my-auto text-blue-700 cursor-pointer hover:underline name";
     customerName.innerText = this.name;
     customerContainer.append(customerImage, customerName);
     customerData.append(customerContainer);
@@ -41,20 +42,26 @@ export class Customer {
       parent.innerHTML = null;
 
       const api = "/web/includes/controllers/customer-bookings.controller.php";
-      const response = await axios.get(api, { params: { customer_id: this.id } });
+      const response = await axios.get(api, {
+        params: { customer_id: this.id },
+      });
       const { data } = response;
 
       if (!data) {
         const emptyMessage = document.createElement("p");
-        emptyMessage.className = "text-gray-700 text-center"
+        emptyMessage.className = "text-gray-700 text-center";
         emptyMessage.innerText = "This customer does not have bookings yet";
         parent.append(emptyMessage);
-        return
-      };
+        return;
+      }
       const orders = data;
 
       orders.map((order) => {
-        const { event_id: { $oid: id }, event } = order;
+        console.log(order);
+        const {
+          event_id: { $oid: id },
+          event,
+        } = order;
 
         const bookingView = new Booking(
           id,
@@ -64,8 +71,7 @@ export class Customer {
         );
         bookingView.render(parent);
       });
-
-    })
+    });
 
     const emailData = document.createElement("td");
     emailData.innerText = this.email;
@@ -82,5 +88,4 @@ export class Customer {
     tr.append(customerData, emailData, phoneData, ageData, bookingsData);
     parent.append(tr);
   }
-
 }

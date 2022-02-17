@@ -36,7 +36,9 @@
       <!-- Form cancel and confirm buttons -->
       <div class="w-full bg-white px-10 py-4 border-t">
         <div class="float-right flex space-x-4">
-          <button class="cancel py-3 px-6 my-auto">Cancel</button>
+          <a href="/web/admin/dashboard/events/events.php">
+            <button class="cancel py-3 px-6 my-auto">Cancel</button>
+          </a>
           <button id="proceed" class="primary py-3 px-6 my-auto">Confirm</button>
         </div>
       </div>

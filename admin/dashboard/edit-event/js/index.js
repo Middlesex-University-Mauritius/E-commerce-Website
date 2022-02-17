@@ -7,7 +7,7 @@ const tagsContainer = document.getElementById("tags-container");
 const deleteButton = document.getElementById("delete");
 
 // Initialize notification
-const notification = new Notification(parent);
+const notification = new Notification(document.querySelector("#body"));
 
 // Fields
 const title = document.getElementById("title");
@@ -22,8 +22,6 @@ const vip = document.getElementById("vip");
 
 // Image
 const eventImage = document.getElementById("event-image");
-
-const parent = document.getElementById("body");
 
 tag.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && e.target.value.trim().length >= 1) {
@@ -116,8 +114,10 @@ const formInputs = {
   regular: document.getElementById("regular"),
   premium: document.getElementById("premium"),
   vip: document.getElementById("vip"),
+  eventImage: document.getElementById("event-image"),
 };
 
+// Event category checks
 window.onCategoryChange = function (e) {
   checks.forEach((check) => {
     if (check !== e.id) {
@@ -130,9 +130,13 @@ window.onCategoryChange = function (e) {
 
 const proceed = document.getElementById("proceed");
 
+// Clear inputs on change
 Object.values(formInputs).forEach((input) =>
   input.addEventListener("input", () => input.classList.remove("error"))
 );
+
+// Clear inputs
+document.addEventListener("input", () => (proceed.disabled = false));
 
 proceed.addEventListener("click", () => {
   proceed.disabled = true;
@@ -149,7 +153,7 @@ proceed.addEventListener("click", () => {
   // Validate other fields
   let validated = true;
   Object.values(formInputs).forEach((input) => {
-    if (input.value.length === 0) {
+    if (input.value.length === 0 && input.id !== "event-image") {
       validated = false;
       input.classList.add("error");
     }
@@ -230,6 +234,7 @@ proceed.addEventListener("click", () => {
     });
 });
 
+// Handle delete
 deleteButton.addEventListener("click", async () => {
   proceed.disabled = true;
   deleteButton.disabled = true;
@@ -250,6 +255,7 @@ deleteButton.addEventListener("click", async () => {
     notification.render(data.message, "success");
   } else {
     notification.render(data.message, "error");
+    return;
   }
 
   // Redirect

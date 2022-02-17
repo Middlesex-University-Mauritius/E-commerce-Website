@@ -9,18 +9,11 @@ $payload = array();
 $eventService = new Event();
 
 // Delete the event
-$payload = $eventService->deleteEvent($id);
+$deleteEvent = $eventService->deleteEvent($id);
 
-if ($payload["success"]) {
-  $payload = array(
-    "success" => true,
-    "message" => "Event deleted successfully"
-  ); 
-} else {
-  $payload = array(
-    "success" => false,
-    "message" => "Unable to delete event"
-  );
-}
+$payload = [
+  "success" => $deleteEvent["success"],
+  "message" => $deleteEvent["message"]
+];
 
 echo json_encode($payload);

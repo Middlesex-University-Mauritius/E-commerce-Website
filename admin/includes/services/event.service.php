@@ -9,7 +9,20 @@ header("Access-Control-Allow-Methods: PUT, GET, POST");
 
 class Event extends DatabaseHelper {
 
+  // Delete an event
   function deleteEvent($id) {
+    $bookings = $this->database->bookings->find([
+      'event_id' => $id
+    ]);
+
+    // Notify admin about existing booking before deleting
+    if ($bookings) {
+      return [
+        "success" => false,
+        "message" => "There are some bookings related to this event. Cancel them first"
+      ];
+    };
+
     // Find the event to delete
     $deleteOneResult = $this->database->events->deleteOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
     // Get delete result
@@ -21,22 +34,31 @@ class Event extends DatabaseHelper {
       $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
       $files = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);
       foreach($files as $file) {
-          if ($file->isDir()){
-              rmdir($file->getRealPath());
-          } else {
-              unlink($file->getRealPath());
-          }
+        if ($file->isDir()){
+          rmdir($file->getRealPath());
+        } else {
+          unlink($file->getRealPath());
+        }
       }
       rmdir($dir);
     }
 
     // Return payload
-    $payload = [
-      "success" => $success,
-    ];
-    return $payload;
+    if ($success) {
+      return [
+        "success" => true,
+        "message" => "Event deleted"
+      ];
+    } else {
+      return [
+        "success" => false,
+        "message" => "Could not delete event"
+      ];
+    }
+
   }
 
+  // Update promotion
   function setPromoteStatus($id, $status) {
     $payload = array();
     $modifyOneResult = $this->database->events->updateOne(
@@ -55,6 +77,7 @@ class Event extends DatabaseHelper {
     return $payload;
   }
 
+  // Update event with new data
   function updateEvent($id, $data) {
     // Get current time
     $updatedAt = new \MongoDB\BSON\UTCDateTime();
@@ -139,6 +162,7 @@ class Event extends DatabaseHelper {
     return $payload;
   }
 
+  // Update images
   function upload($event_id) {
     $pass = true;
     if($_FILES['file'])

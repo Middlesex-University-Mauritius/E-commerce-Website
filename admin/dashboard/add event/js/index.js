@@ -5,6 +5,7 @@ const tag = document.getElementById("tag");
 const eventImage = document.getElementById("event-image");
 const tagsContainer = document.getElementById("tags-container");
 
+// Handle tags
 tag.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && e.target.value.trim().length >= 1) {
     const tagInput = document.createElement("div");
@@ -23,6 +24,7 @@ const tagsNodes = tagsContainer.childNodes;
 const checks = ["live-music", "stand-up", "arts-and-theater"];
 let category = "live-music";
 
+// Default form inputs
 const formInputs = {
   title: document.getElementById("title"),
   description: document.getElementById("description"),
@@ -31,8 +33,10 @@ const formInputs = {
   regular: document.getElementById("regular"),
   premium: document.getElementById("premium"),
   vip: document.getElementById("vip"),
+  eventImage: document.getElementById("event-image"),
 };
 
+// Event category checks
 window.onCategoryChange = function (e) {
   checks.forEach((check) => {
     if (check !== e.id) {
@@ -48,6 +52,9 @@ const proceed = document.getElementById("proceed");
 Object.values(formInputs).forEach((input) =>
   input.addEventListener("input", () => input.classList.remove("error"))
 );
+
+// Clear inputs
+document.addEventListener("input", () => (proceed.disabled = false));
 
 proceed.addEventListener("click", () => {
   proceed.disabled = true;
@@ -79,47 +86,64 @@ proceed.addEventListener("click", () => {
   // Prepare image for upload
   const formData = new FormData();
   const files = eventImage.files;
-  let images = []
+  let images = [];
   for (let i = 0; i < files.length; i++) {
     formData.append("file[]", files[i]);
     images.push(`image-${i}.${files[i].name.split(".").pop()}`);
   }
 
-  // Append other field inputs to form 
-  formData.append("title", formInputs.title.value)
-  formData.append("description", formInputs.description.value)
-  formData.append("date", formInputs.date.value)
-  formData.append("time", formInputs.time.value)
-  formData.append("category", category)
-  formData.append("averagePrice", JSON.stringify(parseFloat((Number(regular.value) + Number(premium.value) + Number(vip.value)) / 3).toFixed()))
-  formData.append("images", JSON.stringify(images))
-  formData.append("tags", JSON.stringify(tags))
-  formData.append("prices", JSON.stringify({
-    regular: regular.value,
-    premium: premium.value,
-    vip: vip.value,
-  }))
+  // Append other field inputs to form
+  formData.append("title", formInputs.title.value);
+  formData.append("description", formInputs.description.value);
+  formData.append("date", formInputs.date.value);
+  formData.append("time", formInputs.time.value);
+  formData.append("category", category);
+  formData.append(
+    "averagePrice",
+    JSON.stringify(
+      parseFloat(
+        (Number(regular.value) + Number(premium.value) + Number(vip.value)) / 3
+      ).toFixed()
+    )
+  );
+  formData.append("images", JSON.stringify(images));
+  formData.append("tags", JSON.stringify(tags));
+  formData.append(
+    "prices",
+    JSON.stringify({
+      regular: regular.value,
+      premium: premium.value,
+      vip: vip.value,
+    })
+  );
 
   axios
-    .post("/web/admin/includes/controllers/add-event.controller.php", formData, {
-      header: {
-        "Content-Type": "multipart/form-data",
+    .post(
+      "/web/admin/includes/controllers/add-event.controller.php",
+      formData,
+      {
+        header: {
+          "Content-Type": "multipart/form-data",
+        },
       }
-    })
+    )
     .then((response) => {
       const { data } = response;
       const notification = new Notification(parent);
 
       if (data.success) {
-        notification.render("Event created successfully", "success")
+        notification.render("Event created successfully", "success");
       } else {
-        notification.render("Something went wrong when creating event", "error")
+        notification.render(
+          "Something went wrong when creating event",
+          "error"
+        );
       }
 
       setTimeout(() => {
         window.location.href = "/web/admin/dashboard/events/events.php";
         proceed.disabled = false;
-      }, 2000)
+      }, 2000);
     })
     .catch(() => {
       proceed.disabled = false;

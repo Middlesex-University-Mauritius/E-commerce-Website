@@ -7,14 +7,17 @@ class SessionHelper {
     }
   }
 
+  // Add the user id in the session
   function setUser($customer_id) {
     $_SESSION["customer_id"] = $customer_id;
   }
 
+  //  Signed in
   function isSignedIn() {
     return (isset($_SESSION['customer_id']) and isset($_COOKIE['customer_id']));
   }
 
+  // Get user
   function getUser() {
     if ($this->isSignedIn()) {
       return $_SESSION['customer_id'];
@@ -23,6 +26,7 @@ class SessionHelper {
     }
   }
 
+  // Logout
   function logout() {
     session_unset();
     session_destroy();
