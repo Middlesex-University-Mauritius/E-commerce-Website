@@ -1,6 +1,7 @@
 <?php
 
 require_once '../services/customer.service.php';
+require_once '../helpers/session.helper.php';
 
 $request_body = file_get_contents('php://input');
 $data = json_decode($request_body, true);
@@ -13,23 +14,27 @@ $dataArray = [
   "phone" => ($data["phone"]) ?? null
 ];
 
-// Calling our authentication service
+// Calling our customer service
 $customerService = new Customer();
 
-// Register the customer
-$newProfileDetails = $customerService->updateProfileDetails($data);
+// Session helper
+$session = new SessionHelper();
+
+// Update the profile details
+$newProfileDetails = $customerService->updateProfileDetails($session->getUser(), $data);
+$success = $newProfileDetails->getModifiedCount() == 1;
 
 // Inital payload is empty
 $payload = array();
 
-// Register successful
-if ($newProfileDetails["success"]) {
+// Details change successful
+if ($success) {
   $payload = array(
     'success' => true,
     'message' => 'Profile details updated successfully',
   );
 } else {
-  // Registration failed
+  // Failed
   $payload = array(
     'success' => false,
     'message' => 'Something went wrong when updating your profile',

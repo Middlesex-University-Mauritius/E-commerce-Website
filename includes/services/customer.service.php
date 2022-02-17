@@ -12,28 +12,33 @@ class Customer extends DatabaseHelper {
   }
 
   // Update customer email, firstname, lastname, age and phone
-  function updateProfileDetails($newDetails) {
-    $payload = [];
-    session_start();
-
+  function updateProfileDetails($customer_id, $newDetails) {
     $modifyOneResult = $this->database->customers->updateOne(
       [
-        '_id' => new \MongoDB\BSON\ObjectId($_SESSION["customer_id"])
+        '_id' => new \MongoDB\BSON\ObjectId($customer_id)
       ],
       [
         '$set' => $newDetails
       ]
     );
-    // Return payload
-    $payload = [
-      "success" => $modifyOneResult->getModifiedCount() == 1,
-    ];
 
-    return $payload;
+    return $modifyOneResult;
   }
 
   // Update password
-  function updatePassword($newPassword) {
+  function updatePassword($customer_id, $newPassword) {
+    $modifyOneResult = $this->database->customers->updateOne(
+      [
+        '_id' => new \MongoDB\BSON\ObjectId($_SESSION["customer_id"])
+      ],
+      [
+        '$set' => [
+          "password" => $newPassword
+        ]
+      ]
+    );
+
+    return $modifyOneResult;
   }
 
 }

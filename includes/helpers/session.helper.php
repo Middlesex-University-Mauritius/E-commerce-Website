@@ -15,6 +15,14 @@ class SessionHelper {
     return (isset($_SESSION['customer_id']) and isset($_COOKIE['customer_id']));
   }
 
+  function getUser() {
+    if ($this->isSignedIn()) {
+      return $_SESSION['customer_id'];
+    } else {
+      return null;
+    }
+  }
+
   function logout() {
     session_unset();
     session_destroy();
