@@ -18,8 +18,13 @@ $payload = array();
 
 $eventService = new Event();
 
+// Add the event
 $payload = $eventService->addEvent($data);
+
+// Update the images
 $uploaded = $eventService->upload($payload["event_id"]);
+
+// Check response
 if (!$uploaded) {
   $payload = array(
     "success" => false,

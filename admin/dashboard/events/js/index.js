@@ -4,10 +4,11 @@ const eventData = document.getElementById("event-data");
 
 window.onload = async () => {
   const api = "/web/includes/controllers/events-by-category.controller.php";
-  const response = await axios.get(api)
+  const response = await axios.get(api);
 
   const events = response.data;
 
+  // No events. show create button button
   if (!events || events.length === 0) {
     customerTable.innerHTML = null;
     const link = document.createElement("a");
@@ -17,9 +18,10 @@ window.onload = async () => {
     createEventButton.innerText = "Create event";
     link.append(createEventButton);
     customerTable.append(link);
-    return
+    return;
   }
 
+  // Render events
   events.forEach((item) => {
     const {
       _id: { $oid: event_id },
@@ -29,13 +31,23 @@ window.onload = async () => {
       title,
       images,
       bookings,
-      promoted
+      promoted,
     } = item;
 
     let total = 0;
-    if (bookings.length > 0) bookings.map((booking) => total += Object.keys(booking.seats).length) ;
+    if (bookings.length > 0)
+      bookings.map((booking) => (total += Object.keys(booking.seats).length));
 
-    const event = new Event(event_id, title, description, prices, total, tags, images, promoted);
+    const event = new Event(
+      event_id,
+      title,
+      description,
+      prices,
+      total,
+      tags,
+      images,
+      promoted
+    );
     event.render(eventData);
   });
 };

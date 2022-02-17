@@ -15,6 +15,7 @@
   navbar();
   ?>
 
+  <!-- Banner -->
   <div id="banner" class="block py-40 lg:py-56 ">
     <div class="w-[700px] mx-auto">
       <p class="text-5xl text-white font-semibold text-left">The best place to grab event tickets.</p>

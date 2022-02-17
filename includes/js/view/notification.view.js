@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * file: notification.view.js
  * description: Show a popup notification

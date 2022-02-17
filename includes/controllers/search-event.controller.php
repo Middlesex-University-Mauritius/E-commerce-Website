@@ -8,6 +8,7 @@ $query = $_GET["query"] ?? null;
 $field = $_GET["field"] ?? null;
 $order = $_GET["order"] ?? null;
 
+// Events by title
 $events = $eventService->getManyEventsByTitle($query, $field, $order);
 
 echo json_encode($events);

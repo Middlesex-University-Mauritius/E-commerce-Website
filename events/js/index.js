@@ -80,10 +80,12 @@ const renderEvents = async () => {
   });
 };
 
+// Render events
 window.onload = async function () {
   renderEvents();
 };
 
+// Render tabs
 Object.values(tabs).forEach((tab) => {
   tab.addEventListener("click", (event) => {
     const { target } = event;

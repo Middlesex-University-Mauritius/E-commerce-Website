@@ -9,6 +9,7 @@ $tags = $data["tags"] ?? null;
 
 $eventService = new Event();
 
+// Event using search term tags
 $events = $eventService->searchTermResults($tags);
 
 echo json_encode($events);

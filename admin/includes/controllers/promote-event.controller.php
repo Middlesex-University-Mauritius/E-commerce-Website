@@ -12,6 +12,7 @@ $payload = array();
 
 $eventService = new Event();
 
+// Promote an event
 $payload = $eventService->setPromoteStatus($id, $status);
 
 if ($payload["success"]) {

@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 import { formatNumber } from "../scripts/core.js";
 
@@ -39,13 +39,14 @@ export class Event {
     this.shrinked = shrinked;
     this.images = images;
     this.datePosted = datePosted;
-    this.prices = prices
-    this.promoted = promoted
+    this.prices = prices;
+    this.promoted = promoted;
   }
 
-
   isToday(comparedDate) {
-    const mom = moment(Number(comparedDate.$date.$numberLong)).format('YYYY-MM-DD')
+    const mom = moment(Number(comparedDate.$date.$numberLong)).format(
+      "YYYY-MM-DD"
+    );
     const today = moment(mom).isSame(comparedDate, "day");
     return today;
   }
@@ -77,7 +78,8 @@ export class Event {
     };
 
     // Parent card
-    containers.card.className = "bg-white rounded-lg border border-gray-200 shadow-md fade";
+    containers.card.className =
+      "bg-white rounded-lg border border-gray-200 shadow-md fade";
 
     if (!this.shrinked) containers.card.classList.add("flex");
 
@@ -85,7 +87,7 @@ export class Event {
 
     // Card image
     const imageContainer = document.createElement("a");
-    imageContainer.href = `/web/details?id=${this.id}`
+    imageContainer.href = `/web/details?id=${this.id}`;
 
     const image = document.createElement("img");
     image.src = `/web/__images__/${this.id}/${this.images[0]}`;
@@ -108,11 +110,12 @@ export class Event {
 
     // Title
     const titleContainer = document.createElement("div");
-    titleContainer.className = "space-x-2"
+    titleContainer.className = "space-x-2";
 
     const title = document.createElement("a");
     title.href = `/web/details?id=${this.id}`;
-    title.className = "text-blue-600 text-md font-medium event-title hover:font-blue-700 hover:underline";
+    title.className =
+      "text-blue-600 text-md font-medium event-title hover:font-blue-700 hover:underline";
     title.innerText = this.title;
 
     titleContainer.append(title);
@@ -120,9 +123,11 @@ export class Event {
     if (this.isToday(this.datePosted)) {
       const tag = document.createElement("span");
       if (this.promoted) {
-        tag.className = "bg-yellow-200 text-yellow-800 max-w-min text-xs font-semibold mr-2 px-2.5 py-0.5 rounded my-auto";
+        tag.className =
+          "bg-yellow-200 text-yellow-800 max-w-min text-xs font-semibold mr-2 px-2.5 py-0.5 rounded my-auto";
       } else {
-        tag.className = "bg-green-200 text-green-800 max-w-min text-xs font-semibold mr-2 px-2.5 py-0.5 rounded my-auto";
+        tag.className =
+          "bg-green-200 text-green-800 max-w-min text-xs font-semibold mr-2 px-2.5 py-0.5 rounded my-auto";
       }
       tag.innerText = this.promoted ? "PROMOTED" : "NEW";
 
@@ -130,7 +135,8 @@ export class Event {
     } else {
       if (this.promoted) {
         const tag = document.createElement("span");
-        tag.className = "bg-yellow-200 text-yellow-800 max-w-min text-xs font-semibold mr-2 px-2.5 py-0.5 rounded my-auto";
+        tag.className =
+          "bg-yellow-200 text-yellow-800 max-w-min text-xs font-semibold mr-2 px-2.5 py-0.5 rounded my-auto";
         tag.innerText = this.promoted ? "PROMOTED" : "NEW";
         titleContainer.append(tag);
       }

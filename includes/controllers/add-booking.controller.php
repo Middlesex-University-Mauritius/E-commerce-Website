@@ -9,6 +9,7 @@ $bookingService = new Booking();
 $request_body = file_get_contents('php://input');
 $data = json_decode($request_body, true);
 
+// Payload
 $eventId = $data["eventId"] ?? null;
 $seats = $data["seats"] ?? null;
 $total = $data["total"] ?? null;
@@ -16,6 +17,7 @@ $address = $data["address"] ?? null;
 
 $payload = array();
 
+// If user is not signed in
 if (!$session->isSignedIn()) {
   http_response_code(401);
   $payload = [
@@ -26,6 +28,7 @@ if (!$session->isSignedIn()) {
   exit();
 }
 
+// Date posted
 $datePosted = new \MongoDB\BSON\UTCDateTime();
 
 $dataArray = [
@@ -37,8 +40,10 @@ $dataArray = [
   "timestamp" => $datePosted
 ];
 
+// Create the booking
 $response = $bookingService->addBooking($dataArray);
 
+// Send the response
 if ($response["success"]) {
   http_response_code(200);
   $payload = array(
@@ -53,6 +58,7 @@ if ($response["success"]) {
   );
 }
 
+// Encode the payload
 echo json_encode($payload);
 
 ?>

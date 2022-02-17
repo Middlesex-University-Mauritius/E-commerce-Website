@@ -1,4 +1,8 @@
-"use strict"
+"use strict";
+
+/**
+ * description: Seat view
+ */
 
 import { formatNumber } from "../scripts/core.js";
 

@@ -1,5 +1,10 @@
-export class Loader {
+"use strict";
 
+/**
+ * description: Loader view
+ */
+
+export class Loader {
   parent = null;
 
   constructor(parent) {
@@ -8,12 +13,11 @@ export class Loader {
 
   set() {
     const i = document.createElement("i");
-    i.className = "fas fa-spinner animate-spin"
+    i.className = "fas fa-spinner animate-spin";
     this.parent.append(i);
   }
 
   unset() {
     this.parent.innerHTML = null;
   }
-
 }

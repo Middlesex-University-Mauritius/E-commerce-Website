@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * file: message.view.js
  * description: Show a message box in authentication, etc...
@@ -10,7 +12,7 @@ class Message {
     this.message = message;
   }
 
-  render(parent, type="error") {
+  render(parent, type = "error") {
     const msg = document.createElement("p");
     msg.className = type;
     msg.innerText = this.message;

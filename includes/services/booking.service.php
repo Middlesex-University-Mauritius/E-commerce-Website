@@ -40,6 +40,7 @@ class Booking extends DatabaseHelper {
     return $bookings->toArray();
   }
 
+  // Get bookings of a customer
   function getManyBookings($customerId) {
     $bookings = $this->database->bookings->aggregate([
       [
@@ -80,6 +81,7 @@ class Booking extends DatabaseHelper {
     return $bookings->toArray();
   }
 
+  // Add booking
   function addBooking($booking) {
     // Increment bookings count
     $insertResult = $this->database->bookings->insertOne($booking);

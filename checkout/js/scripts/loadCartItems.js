@@ -1,13 +1,25 @@
-import { eventsCount, formatNumber, ticketsCount } from "../../../includes/js/scripts/core.js";
+"use strict";
+
+/**
+ * description: Load the cart items
+ */
+
+import {
+  eventsCount,
+  formatNumber,
+  ticketsCount,
+} from "../../../includes/js/scripts/core.js";
 import { Storage } from "../../../includes/js/scripts/storage.js";
 import { CartItem } from "../view/cartItem.view.js";
 
+// Load cart items
 export const loadCartItems = () => {
   const cartCount = document.getElementById("checkout-count");
   const totalElement = document.getElementById("total");
   const subtotalElement = document.getElementById("subtotal");
   const cart = document.getElementById("cart");
   const placeOrder = document.getElementById("place-order");
+  // Clear previous cart items
   cart.innerHTML = null;
 
   const storage = new Storage("cart", {});
@@ -41,10 +53,15 @@ export const loadCartItems = () => {
     const subtotal = items[id].subtotal;
     total += subtotal;
 
-    const cartItem = new CartItem(id, title, Object.keys(seats).length, subtotal);
+    const cartItem = new CartItem(
+      id,
+      title,
+      Object.keys(seats).length,
+      subtotal
+    );
     cartItem.render(cart);
   });
 
   subtotalElement.innerText = formatNumber(total);
   totalElement.innerText = formatNumber(total + 0.15 * total);
-}
+};

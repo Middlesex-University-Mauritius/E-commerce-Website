@@ -6,6 +6,7 @@ $withBookingQuantity = (isset($_GET["withBookingQuantity"]) and $_GET["withBooki
 
 $customerService = new Customer();
 
+// Get all the customers with filter
 $events = $customerService->getCustomers($withBookingQuantity);
 
 echo json_encode($events);

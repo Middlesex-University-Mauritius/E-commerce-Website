@@ -15,6 +15,7 @@
   navbar();
   ?>
 
+  <!-- Events -->
   <div class="wrapper">
     <div class="pt-10 mb-5 flex justify-between">
       <p class="text-3xl text-gray-700">Events</p>

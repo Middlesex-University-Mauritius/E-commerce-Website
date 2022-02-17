@@ -14,6 +14,7 @@
     include_once "../../includes/sidebar.inc.php";
     ?>
 
+    <!-- Bookings sidebar -->
     <div id="right-sidebar" class="fixed top-0 -right-[400px] h-screen z-30 bg-white w-[400px] drop-shadow-lg border-l transition-all	duration-100">
       <div class="flex border-b p-5 justify-between">
         <p id="right-sidebar-header" class="text-xl text-gray-800">Bookings</p>
@@ -32,6 +33,7 @@
         <?php echo ucfirst(basename($_SERVER['PHP_SELF'], ".php")) ?>
       </p>
 
+      <!-- Filter options -->
       <div class="flex-1 py-6 px-10">
         <div class="card p-0 mb-8">
           <div class="bg-gray-50 border-b p-5 flex space-x-2 rounded-t-md">

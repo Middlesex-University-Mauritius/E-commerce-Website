@@ -4,6 +4,7 @@ require "../helpers/database.helper.php";
 
 class Customer extends DatabaseHelper {
 
+  // Get profile of a customer
   function getProfile($customerId) {
     $customer = $this->database->customers->findOne([
       "_id" => new MongoDB\BSON\ObjectID($customerId)

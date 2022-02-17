@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * file: venue.view.js
  * description: Render venue and seat selections
@@ -31,12 +33,18 @@ export class Venue {
   ratio = 1;
   prices = {};
   seats = {};
-  updating = false
-  compareWithCurrentUser = true
+  updating = false;
+  compareWithCurrentUser = true;
 
   // Can be initialized with a ratio and mouse events disabled
   // Ratio is the actual size of the preview. eg. 1 is full size, 2 is half the size
-  constructor(parent, prices, compareWithCurrentUser = true, ratio = 1, disabled = false) {
+  constructor(
+    parent,
+    prices,
+    compareWithCurrentUser = true,
+    ratio = 1,
+    disabled = false
+  ) {
     this.container.className = "venue-container";
     this.container.id = "venue-container";
     this.parent = parent;
@@ -45,13 +53,14 @@ export class Venue {
     this.prices = prices;
     this.compareWithCurrentUser = compareWithCurrentUser;
 
-    if (Object.keys(cart).length >= 1 && cart[params.id] && Object.keys(cart[params.id]).length >= 1) {
-      this.updating = true;
-
-      const cartButton = document.getElementById("cart-button");
-      cartButton.classList.add("edit")
-      cartButton.innerText = "Save changes"
-      this.updating = true;
+    if (this.isUpdating()) {
+      try {
+        this.updating = true;
+        const cartButton = document.getElementById("cart-button");
+        cartButton.classList.add("edit");
+        cartButton.innerText = "Save changes";
+        this.updating = true;
+      } catch (e) {}
     }
   }
 
@@ -59,25 +68,32 @@ export class Venue {
     this.parent.append(this.container);
   }
 
+  isUpdating() {
+    return (
+      Object.keys(cart).length >= 1 &&
+      cart[params.id] &&
+      Object.keys(cart[params.id]).length >= 1
+    );
+  }
+
   // Set update status back to false
   setUpdating(status) {
-    if (Object.keys(cart).length >= 1 && cart[params.id] && Object.keys(cart[params.id]).length >= 1) {
-    const cartButton = document.getElementById("cart-button");
+    if (this.isUpdating()) {
+      const cartButton = document.getElementById("cart-button");
 
-    // Updating
-    if (status) {
-      cartButton.classList.add("edit")
-      cartButton.innerText = "Save changes"
-      this.updating = true;
+      // Updating
+      if (status) {
+        cartButton.classList.add("edit");
+        cartButton.innerText = "Save changes";
+        this.updating = true;
+      } else {
+        cartButton.classList.remove("edit");
+        cartButton.innerText = "Add to cart";
+        this.updating = false;
+      }
     } else {
-      cartButton.classList.remove("edit")
-      cartButton.innerText = "Add to cart"
-      this.updating = false;
+      return;
     }
-    } else {
-      return
-    }
-
   }
 
   // Compare with database to check if seat is already booked
@@ -251,8 +267,6 @@ export class Section {
       type: this.type,
       price: this.getPrice(),
     });
-
-    this.venue.setSubtotal(this.getPrice());
   }
 
   // Populate sections with default seats and hanlde mouse events
@@ -297,8 +311,8 @@ export class Section {
 
         if (
           this.venue.seats[id].customer &&
-          this.venue.seats[id].customer._id.$oid === getCookie("customer_id")
-          && this.venue.compareWithCurrentUser
+          this.venue.seats[id].customer._id.$oid === getCookie("customer_id") &&
+          this.venue.compareWithCurrentUser
         ) {
           const icon = document.createElement("i");
           icon.className = "fas fa-check";

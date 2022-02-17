@@ -9,6 +9,7 @@ $ids = $data["ids"] ?? null;
 
 $eventService = new Event();
 
+// Recently visited events
 $events = $eventService->recentlyVisited($ids);
 
 echo json_encode($events);

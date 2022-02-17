@@ -9,6 +9,7 @@ $payload = array();
 
 $bookingService = new Booking();
 
+// Cancel the booking
 $payload = $bookingService->cancelBooking($booking_id, $customer_id);
 
 if ($payload["success"]) {

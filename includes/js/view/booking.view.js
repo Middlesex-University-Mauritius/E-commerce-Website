@@ -1,3 +1,9 @@
+"use strict";
+
+/**
+ * description: Booking view
+ */
+
 export class Booking {
   id = null;
   date = null;

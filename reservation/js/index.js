@@ -60,11 +60,10 @@ window.onload = async () => {
 
   if (cart[params.id]) {
     venue.getAvailability(Object.values(cart[params.id].seats), true);
+    venue.setSubtotal(cart[params.id].subtotal);
   }
 
-  if (Object.keys(cart).length >= 1 && cart[params.id] && Object.keys(cart[params.id]).length >= 1) {
-    cartButton.disabled = false;
-  }
+  if (venue.isUpdating()) cartButton.disabled = false;
 
   vip.populateSeats();
   premium.populateSeats();
@@ -77,7 +76,13 @@ let storage = new Storage("cart", {});
 const cart = storage.get();
 
 const addToCart = () => {
-  if (!params.id || !venue || !currentEvent || (Object.keys(venue.getSelections()).length <= 0 && !venue.updating)) return;
+  if (
+    !params.id ||
+    !venue ||
+    !currentEvent ||
+    (Object.keys(venue.getSelections()).length <= 0 && !venue.updating)
+  )
+    return;
 
   if (venue.getSelections()) {
     // Item exists in cart already
@@ -98,19 +103,19 @@ const addToCart = () => {
   storage.set(cart);
 
   // Update cart count
-  updateCart()
+  updateCart();
 };
 
 cartButton.addEventListener("click", () => {
-  addToCart()
+  addToCart();
   if (venue.updating) {
     return venue.setUpdating(false);
   } else {
-    return window.location.href = "/web/checkout/"
+    return (window.location.href = "/web/checkout/");
   }
 });
 
 keysTitle.addEventListener("click", () => {
   const hidden = keysContent.hidden;
   keysContent.hidden = !hidden;
-})
+});

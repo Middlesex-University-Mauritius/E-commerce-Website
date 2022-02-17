@@ -20,7 +20,10 @@ $payload = array();
 
 $eventService = new Event();
 
+// Update an event
 $payload = $eventService->updateEvent($id, $data);
+
+// Check if images have been updated
 if (count(json_decode($_POST["images"])) >= 1) {
   $uploaded = $eventService->upload($id);
   if (!$uploaded) {

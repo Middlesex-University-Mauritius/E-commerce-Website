@@ -6,6 +6,9 @@ const params = Object.fromEntries(urlSearchParams.entries());
 const tagsContainer = document.getElementById("tags-container");
 const deleteButton = document.getElementById("delete");
 
+// Initialize notification
+const notification = new Notification(parent);
+
 // Fields
 const title = document.getElementById("title");
 const description = document.getElementById("description");
@@ -42,19 +45,19 @@ window.onload = async () => {
   try {
     const options = {
       params: {
-        id: params.id
-      }
-    }
+        id: params.id,
+      },
+    };
 
-    const response = await axios.get("/web/includes/controllers/event-by-id.controller.php", options)
+    const response = await axios.get(
+      "/web/includes/controllers/event-by-id.controller.php",
+      options
+    );
 
     const { data } = response;
-    if (!data) {
-      return;
-    }
+    if (!data || data.length <= 0) return;
 
-    if (data.length <= 0) return;
-
+    // Event
     const event = data[0];
 
     title.value = event.title;
@@ -69,6 +72,7 @@ window.onload = async () => {
     const preview = document.getElementById("preview");
     preview.hidden = false;
 
+    // Preview images
     event.images.forEach((img) => {
       const image = document.createElement("img");
       image.src = `/web/__images__/${event._id.$oid}/${img}`;
@@ -76,14 +80,16 @@ window.onload = async () => {
       preview.append(image);
     });
 
+    // Set category
     categories.forEach((cat) => {
       if (cat !== event.category) {
-        document.getElementById(cat).checked = false
+        document.getElementById(cat).checked = false;
       } else {
-        document.getElementById(event.category).checked = true
+        document.getElementById(event.category).checked = true;
       }
-    })
+    });
 
+    // Assign tags
     event.tags.forEach((tag) => {
       const tagInput = document.createElement("div");
       tagInput.innerText = tag;
@@ -92,18 +98,16 @@ window.onload = async () => {
         tagInput.remove();
       });
       tagsContainer.append(tagInput);
-    })
-
-  } catch(error) {
-  }
-
-}
+    });
+  } catch (error) {}
+};
 
 const tagsNodes = tagsContainer.childNodes;
 
 const checks = ["live-music", "stand-up", "arts-and-theater"];
 let category = "live-music";
 
+// Form inputs
 const formInputs = {
   title: document.getElementById("title"),
   description: document.getElementById("description"),
@@ -157,54 +161,70 @@ proceed.addEventListener("click", () => {
   // Prepare image for upload
   const formData = new FormData();
   const files = eventImage.files;
-  let images = []
+  let images = [];
   for (let i = 0; i < files.length; i++) {
     formData.append("file[]", files[i]);
     images.push(`image-${i}.${files[i].name.split(".").pop()}`);
   }
 
-  // Append other field inputs to form 
-  formData.append("title", formInputs.title.value)
-  formData.append("description", formInputs.description.value)
-  formData.append("date", formInputs.date.value)
-  formData.append("time", formInputs.time.value)
-  formData.append("category", category)
-  formData.append("averagePrice", JSON.stringify(parseFloat((Number(regular.value) + Number(premium.value) + Number(vip.value)) / 3).toFixed()))
-  formData.append("images", JSON.stringify(images))
-  formData.append("tags", JSON.stringify(tags))
-  formData.append("prices", JSON.stringify({
-    regular: regular.value,
-    premium: premium.value,
-    vip: vip.value,
-  }))
-
-  axios
-    .post("/web/admin/includes/controllers/update-event.controller.php", formData, {
-      params: {
-        id: params.id
-      },
-      header: {
-        "Content-Type": "multipart/form-data",
-      }
+  // Append other field inputs to form
+  formData.append("title", formInputs.title.value);
+  formData.append("description", formInputs.description.value);
+  formData.append("date", formInputs.date.value);
+  formData.append("time", formInputs.time.value);
+  formData.append("category", category);
+  formData.append(
+    "averagePrice",
+    JSON.stringify(
+      parseFloat(
+        (Number(regular.value) + Number(premium.value) + Number(vip.value)) / 3
+      ).toFixed()
+    )
+  );
+  formData.append("images", JSON.stringify(images));
+  formData.append("tags", JSON.stringify(tags));
+  formData.append(
+    "prices",
+    JSON.stringify({
+      regular: regular.value,
+      premium: premium.value,
+      vip: vip.value,
     })
+  );
+
+  // Update the event
+  axios
+    .post(
+      "/web/admin/includes/controllers/update-event.controller.php",
+      formData,
+      {
+        params: {
+          id: params.id,
+        },
+        header: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    )
     .then((response) => {
-      const notification = new Notification(parent);
       const { data } = response;
 
+      // Popup notification
       if (data.success) {
-        notification.render(data.message, "success")
+        notification.render(data.message, "success");
       } else {
-        notification.render(data.message, "error")
+        notification.render(data.message, "error");
       }
 
+      // Redirect
       setTimeout(() => {
         window.location.href = "/web/admin/dashboard/events/events.php";
         proceed.disabled = false;
         deleteButton.disabled = false;
-      }, 2000)
+      }, 2000);
     })
     .catch(() => {
-      notification.render("Something went wrong when updating event", "error")
+      notification.render("Something went wrong when updating event", "error");
       proceed.disabled = false;
       deleteButton.disabled = false;
     });
@@ -214,24 +234,28 @@ deleteButton.addEventListener("click", async () => {
   proceed.disabled = true;
   deleteButton.disabled = true;
 
-  const notification = new Notification(parent);
-
-  const response = await axios.delete(`/web/admin/includes/controllers/delete-event.controller.php`, {
-    params: {
-      id: params.id
+  // Delete event
+  const response = await axios.delete(
+    `/web/admin/includes/controllers/delete-event.controller.php`,
+    {
+      params: {
+        id: params.id,
+      },
     }
-  })
+  );
   const { data } = response;
 
+  // Show notifications
   if (data.success) {
-    notification.render(data.message, "success")
+    notification.render(data.message, "success");
   } else {
-    notification.render(data.message, "error")
+    notification.render(data.message, "error");
   }
 
+  // Redirect
   setTimeout(() => {
     window.location.href = "/web/admin/dashboard/events/events.php";
     proceed.disabled = false;
     deleteButton.disabled = false;
-  }, 2000)
-})
+  }, 2000);
+});

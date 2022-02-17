@@ -100,6 +100,7 @@ class Event extends DatabaseHelper {
     return $event->toArray();
   }
 
+  // Get recently visited events
   function recentlyVisited($ids) {
     $formattedIds = array();
 
@@ -121,6 +122,7 @@ class Event extends DatabaseHelper {
     return $events->toArray();
   }
 
+  // Get recommended events using tags
   function searchTermResults($tags) {
     $events = $this->database->events->find(
       [

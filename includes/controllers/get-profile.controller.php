@@ -6,12 +6,14 @@ require_once '../helpers/session.helper.php';
 $customerService = new Customer();
 $session = new SessionHelper();
 
+// Is signed in 
 if (!$session->isSignedIn()) {
   echo json_encode(null);
   header("Location: /web/signin");
   exit();
 }
 
+// Get the profile
 $customer = $customerService->getProfile($_SESSION["customer_id"]);
 
 $payload = array();

@@ -18,6 +18,7 @@ head();
       <p id="query" class="text-3xl text-gray-700 mb-4 mt-8"></p>
     </div>
 
+    <!-- Two way sort dropdown -->
     <div class="mb-4 max-w-[200px]">
       <label for="sort-options" class="block mb-2 text-sm font-medium text-gray-900">Sort by:</label>
       <select id="sort-options" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">

@@ -8,6 +8,7 @@ $payload = array();
 
 $eventService = new Event();
 
+// Delete the event
 $payload = $eventService->deleteEvent($id);
 
 if ($payload["success"]) {

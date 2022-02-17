@@ -12,6 +12,7 @@ $password = $data["password"] ?? null;
 $customerService = new Authentication();
 $session = new SessionHelper();
 
+// Check if customer exists
 $customer = $customerService->getCustomerByEmail($email);
 
 $authenticated = 0;
@@ -20,6 +21,7 @@ $payload = array();
 if ($customer) {
   $authenticated = $customer->password === $password;
 
+  // Authenticated
   if ($authenticated) {
     setcookie('customer_id', json_encode((string)$customer->_id), time()+99999999999, '/');
     $session->setUser((string)$customer->_id);
@@ -28,12 +30,14 @@ if ($customer) {
       "message" => "User logged in successfully"
     );
   } else {
+    // Invalid password 
     $payload = array(
       "success" => false,
       "message" => "Entry password invalid. Try again!"
     );
   }
 } else {
+  // Customer does not exist
   $payload = array(
     "success" => false,
     "message" => "This user does not exist"
