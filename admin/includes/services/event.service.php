@@ -162,16 +162,38 @@ class Event extends DatabaseHelper {
     return $payload;
   }
 
+  // Delete a directory with content inside it
+  function deleteParentDirectory($directory) {
+    if (! is_dir($directory)) return;
+    if (substr($directory, strlen($directory) - 1, 1) != '/') {
+      $directory .= '/';
+    }
+    $files = glob($directory . '*', GLOB_MARK);
+    foreach ($files as $file) {
+      if (is_dir($file)) {
+        self::deleteDir($file);
+      } else {
+        unlink($file);
+      }
+    }
+    rmdir($directory);
+  }
+
   // Update images
   function upload($event_id) {
     $pass = true;
     if($_FILES['file'])
     {
       $root = $_SERVER['DOCUMENT_ROOT'] . '/web/__images__/' . $event_id;
-      if (!file_exists($root)) {
-        mkdir($root, 0777, true);
+      // Delete parent directory if already exists
+      if (file_exists($root)) {
+        $this->deleteParentDirectory($root);
       }
 
+      // Create the image folder
+      mkdir($root, 0777, true);
+
+      // Upload image one by one
       $count = count($_FILES['file']['name']);
       for ($i = 0; $i < $count; $i++) {
 
